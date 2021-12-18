@@ -1,0 +1,2 @@
+npx create-react-app react-moviescombine
+npm install @reduxjs/toolkit react-redux
