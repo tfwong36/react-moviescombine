@@ -1,7 +1,4 @@
-import Ticketing from "./MainPageComponents/Ticketing";
-import ComingSoon from "./MainPageComponents/ComingSoon";
 import React from "react";
-import { useEffect, useSelector } from "react";
 
 import "../style/MainPage.css";
 import { getMovieListByIsShowing } from "../apis/MoviesCombine";
@@ -24,7 +21,8 @@ function MainPage() {
 
   return (
     <div>
-      <MovieSwiper></MovieSwiper>
+      <MovieSwiper title={"SHOWING"} isShowing={true}></MovieSwiper>
+      <MovieSwiper title={"COMING SOON"} isShowing={false}></MovieSwiper>
     </div>
   );
 }

@@ -9,16 +9,19 @@ function MovieSwiper(props) {
   const upcomingMovieList = useSelector((state) => state.upcomingMovieList);
 
   function getMovieData(movieList) {
-    return movieList.map((movie, index) => (
-      <Swiper.Item key={index}>
-        <div
-          className="content"
-          style={{
-            backgroundImage: "url(" + movie.posterSource + ")",
-          }}
-        ></div>
-      </Swiper.Item>
-    ));
+    if (movieList != null) {
+      return movieList.map((movie, index) => (
+        <Swiper.Item key={index}>
+          <div
+            className="content"
+            style={{
+              backgroundImage: "url(" + movie.posterSource + ")",
+            }}
+            onClick={() => {}}
+          ></div>
+        </Swiper.Item>
+      ));
+    }
   }
 
   return (
