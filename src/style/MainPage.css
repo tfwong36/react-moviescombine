@@ -3,6 +3,8 @@
   margin-right: 2vw;
   border-radius: 8px;
   height: 25vh;
+  background-position: center;
+  background-size: cover;
 }
 
 .title {
