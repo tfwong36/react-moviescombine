@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600&family=Actor&family=Advent+Pro:wght@200&family=Alef&family=Imperial+Script&family=Signika:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600&family=Acme&family=Actor&family=Advent+Pro:wght@200&family=Alef&family=Imperial+Script&family=Signika:wght@300&display=swap');
 .trailer,
 .movieName {
   width: 273px;
@@ -114,4 +114,23 @@ opacity: 0.6;
   display: flex;
   justify-content: flex-start;
   margin-bottom: 20px;
+}
+
+.backText{
+  width: 273px;
+  height: 31px;
+  font-family: Acme;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 31px;
+  color: #ffffff;
+  text-align: left;
+}
+
+.backArrow{
+  color: #8D96AD;
+  font-size: 20px;
+  margin-right: 10px;
+  margin-left: 5px;
 }
