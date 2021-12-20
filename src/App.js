@@ -1,4 +1,3 @@
-
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -6,25 +5,38 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import {SearchOutline, MovieOutline, FireFill, CouponOutline} from 'antd-mobile-icons'
+import Trending from './components/Trending';
+import MyTickets from './components/MyTickets';
+import Cinema from './components/Cinema';
+import MainPage from './components/MainPage';
+import { Space } from 'antd-mobile'
 
 function App() {
   return (
     <div className="App">
       <Router>
       <div>
-        <nav className="navigation">
+        <nav>
           <ul>
-              <Link to="/" className="navigation-tab">ToDoList🕒</Link>
-              <Link to="/Done" className="navigation-tab">Done✔️</Link>
-              <Link to="/UnDone" className="navigation-tab">UnDone❌</Link>
+              <Link to="/" className="navigation-tab"><SearchOutline color='white' fontSize={36}/></Link>
+              <Link to="/Cinema" className="navigation-tab"><MovieOutline color='white' fontSize={36}/></Link>
+              <Link to="/Trending" className="navigation-tab"><FireFill color='white' fontSize={36}/></Link>
+              <Link to="/MyTickets" className="navigation-tab"><CouponOutline color='white' fontSize={36}/></Link>
           </ul>
         </nav>
         <Switch>
-          <Route exact path="/Done">
+          <Route exact path="/Cinema">
+            <Cinema></Cinema>
           </Route>
-          <Route exact path="/UnDone">
+          <Route exact path="/Trending">
+            <Trending></Trending>
+          </Route>
+          <Route exact path="/MyTickets">
+            <MyTickets></MyTickets>
           </Route>
           <Route exact path="/">
+            <MainPage></MainPage>
           </Route>
         </Switch>
       </div>
