@@ -1,12 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Actor&family=Advent+Pro:wght@200&family=Signika:wght@300&display=swap");
+
 .App {
   text-align: center;
 }
 
-body{
+body {
   background-color: #2e3243;
 }
 
-navigation-tab{
+navigation-tab {
   border: 3px solid white;
 }
 
@@ -22,9 +24,7 @@ navigation-tab{
 }
 
 @media only screen and (min-width: 390px) {
-
 }
 
 @media only screen and (min-height: 844px) {
-
 }
