@@ -9,8 +9,9 @@ function MovieDetails({
   category,
   rating,
 }) {
+    const imgurl = "https://pro2-bar-s3-cdn-cf2.myportfolio.com/f44a6a86-6cdb-4ac5-b205-003353cc5a9c/3297b6ad-5b32-4e86-96c5-f82c5275fbe8_rw_1200.jpg?h=4fb0a82075181bfcbafbadfe3291acec"
     const sectionStyle = {
-        background: " linear-gradient(to top, rgba(0, 0, 0, 255) 25%, rgb(0, 0, 0,0) ),url(https://pro2-bar-s3-cdn-cf2.myportfolio.com/f44a6a86-6cdb-4ac5-b205-003353cc5a9c/3297b6ad-5b32-4e86-96c5-f82c5275fbe8_rw_1200.jpg?h=4fb0a82075181bfcbafbadfe3291acec)",
+        background: " linear-gradient(to top, rgba(0, 0, 0, 255) 25%, rgb(0, 0, 0,0) ),url("+imgurl+"})",
         borderRadius : "50px",
         backgroundSize: "contain",
       }
@@ -18,8 +19,7 @@ function MovieDetails({
   return (
     <div style={ sectionStyle }>
         <div className="container">
-        {/* <div className="movieDetailsText">MOVIE DETAILS</div> */}
-        <div className="emptyDiv"></div>
+        <div className="emptyDiv"/>
         <div className="movieName">Spider-Man: No Way Home</div>
         <div className="ratingGenreFlex">
             <spam className="genre">Drama</spam>
