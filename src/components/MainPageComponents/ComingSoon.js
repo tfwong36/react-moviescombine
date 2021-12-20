@@ -3,13 +3,22 @@ import { Swiper } from "antd-mobile";
 
 import "../../style/MainPage.css";
 
-const colors = ["#acedff", "#bc1fbd", "#2e35e4", "#ffcfac"];
+const localhost = "http://localhost:3000/static/media/";
+const colors = [
+  "kingsman3.dd7a97e8c84921e59bb2.png",
+  "kingsman2.f61b1437747607d0a26a.jpg",
+  "kingsman.e412399793671ea9e593.png",
+  "spiderman.82be141cb1e3ca0be5ed.jpg",
+];
 
 const items = colors.map((color, index) => (
   <Swiper.Item key={index}>
-    <div className="content" style={{ background: color }}>
-      {index + 1}
-    </div>
+    <div
+      className="content"
+      style={{
+        backgroundImage: "url(" + localhost + color + ")",
+      }}
+    ></div>
   </Swiper.Item>
 ));
 
