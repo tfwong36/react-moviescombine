@@ -1,5 +1,5 @@
 import { Rate } from "antd-mobile";
-import "../css/MovieDetails.css";
+import "../style/MovieDetails.css";
 import YoutubeEmbed from "./YoutubeEmbed";
 function MovieDetails({
   title,
