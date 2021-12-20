@@ -1,27 +1,30 @@
 import Ticketing from "./MainPageComponents/Ticketing";
 import ComingSoon from "./MainPageComponents/ComingSoon";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useSelector } from "react";
 
 import "../style/MainPage.css";
-import { getAllUpcomingMovieList } from "../apis/MoviesCombine";
+import { getMovieListByIsShowing } from "../apis/MoviesCombine";
 import { useDispatch } from "react-redux";
-import { INIT_MOVIES } from "../constants/constants";
+import {
+  INIT_SHOWING_MOVIES,
+  INIT_UPCOMING_MOVIES,
+} from "../constants/constants";
+import MovieSwiper from "./MainPageComponents/MovieSwiper";
 
 function MainPage() {
   const dispatch = useDispatch();
-//   const movieList = useSelector((state) => state.movieList).filter(
-//     (movie) => movie.showing
-//   );
 
-  getAllUpcomingMovieList().then((response) => {
-    dispatch({ type: INIT_MOVIES, payload: response.data });
+  getMovieListByIsShowing(true).then((response) => {
+    dispatch({ type: INIT_SHOWING_MOVIES, payload: response.data });
   });
-  //props past into
+  getMovieListByIsShowing(false).then((response) => {
+    dispatch({ type: INIT_UPCOMING_MOVIES, payload: response.data });
+  });
+
   return (
     <div>
-      <Ticketing></Ticketing>
-      <ComingSoon></ComingSoon>
+      <MovieSwiper></MovieSwiper>
     </div>
   );
 }

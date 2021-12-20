@@ -4,10 +4,12 @@ import { Swiper } from "antd-mobile";
 import "../../style/MainPage.css";
 import { useSelector } from "react-redux";
 
-function Ticketing(props) {
-  const movieList = useSelector((state) => state.movieList)
-    .filter((movie) => movie.showing)
-    .map((movie, index) => (
+function MovieSwiper(props) {
+  const showingMovieList = useSelector((state) => state.showingMovieList);
+  const upcomingMovieList = useSelector((state) => state.upcomingMovieList);
+
+  function getMovieData(movieList) {
+    return movieList.map((movie, index) => (
       <Swiper.Item key={index}>
         <div
           className="content"
@@ -17,23 +19,24 @@ function Ticketing(props) {
         ></div>
       </Swiper.Item>
     ));
+  }
 
   return (
     <>
-      <h3 className="title">SHOWING</h3>
+      <h3 className="title">{props.title}</h3>
       <Swiper
         slideSize={70}
         trackOffset={15}
         loop
         stuckAtBoundary={false}
-        defaultIndex={2}
+        defaultIndex={0}
         autoplay={true}
         autoplayInterval={10000}
       >
-        {movieList}
+        {getMovieData(props.isShowing ? showingMovieList : upcomingMovieList)}
       </Swiper>
     </>
   );
 }
 
-export default Ticketing;
+export default MovieSwiper;
