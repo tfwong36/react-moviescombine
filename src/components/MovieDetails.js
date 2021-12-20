@@ -1,4 +1,4 @@
-import { Rate, Space } from "antd-mobile";
+import { Rate } from "antd-mobile";
 import "../css/MovieDetails.css";
 import YoutubeEmbed from "./YoutubeEmbed";
 function MovieDetails({
@@ -10,9 +10,9 @@ function MovieDetails({
   rating,
 }) {
     const sectionStyle = {
-        margin: "20px",
-        background: " no-repeat center center linear-gradient(to top, rgba(0, 0, 0, 255) 25%, rgb(0, 0, 0,0) ),url(https://pro2-bar-s3-cdn-cf2.myportfolio.com/f44a6a86-6cdb-4ac5-b205-003353cc5a9c/3297b6ad-5b32-4e86-96c5-f82c5275fbe8_rw_1200.jpg?h=4fb0a82075181bfcbafbadfe3291acec)",
-        borderradius : "50px",
+        background: " linear-gradient(to top, rgba(0, 0, 0, 255) 25%, rgb(0, 0, 0,0) ),url(https://pro2-bar-s3-cdn-cf2.myportfolio.com/f44a6a86-6cdb-4ac5-b205-003353cc5a9c/3297b6ad-5b32-4e86-96c5-f82c5275fbe8_rw_1200.jpg?h=4fb0a82075181bfcbafbadfe3291acec)",
+        borderRadius : "50px",
+        backgroundSize: "contain",
       }
       
   return (
@@ -21,14 +21,24 @@ function MovieDetails({
         {/* <div className="movieDetailsText">MOVIE DETAILS</div> */}
         <div className="emptyDiv"></div>
         <div className="movieName">Spider-Man: No Way Home</div>
-        <Rate className="star" allowHalf readOnly value={3.5} />
-        <Space style={{ "--gap": "24px" }}>
+        <div className="ratingGenreFlex">
+            <spam className="genre">Drama</spam>
+            <Rate className="star" allowHalf readOnly value={4.5} />
+        </div>
+        <div className="otherDetailsFlex">
             <div className="otherDetails">
+                <div className="otherDetailsTitle">Duration</div>
+                <div className="otherDetailsValue">148 mins</div>
             </div>
             <div className="otherDetails">
+                <div className="otherDetailsTitle">Release</div>
+                <div className="otherDetailsValue">15 Dec 2021</div>
             </div>
-            <div className="otherDetails">TEST</div>
-        </Space>
+            <div className="otherDetails">
+                <div className="otherDetailsTitle">Category</div>
+                <div className="otherDetailsValue">IIB</div>
+            </div>
+        </div>
         <div id="movieDescription">
             <p>
             For the first time in the cinematic history of Spider-Man, our
@@ -40,7 +50,7 @@ function MovieDetails({
             </p>
         </div>
         <div className="trailer">Trailer</div>
-        <YoutubeEmbed embedId="dQw4w9WgXcQ"/>
+        <YoutubeEmbed embedId="rt-2cxAiPJk"/>
         </div>        
     </div>
 
