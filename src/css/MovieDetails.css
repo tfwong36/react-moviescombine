@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Actor&family=Advent+Pro:wght@200&family=Signika:wght@300&display=swap');
+.trailer,
+.movieName {
+  width: 273px;
+  height: 31px;
+  font-family: Advent Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 31px;
+  margin-bottom: 10px;
+
+  /* identical to box height */
+  text-align: left;
+
+  color: #ffffff;
+}
+#movieDescription {
+  width: 323px;
+  height: 139px;
+
+  margin-bottom: 10px;
+  font-family: Actor;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.76px;
+  text-align: left;
+  color: #ffffff;
+  opacity: 0.7;
+}
+.otherDetails {
+  background: #ff05ea;
+  width: 98px;
+  height: 47px;  
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+
+.movieDetailsText{
+/* position: static; */
+width: 175px;
+height: 22px;
+
+
+font-family: Signika;
+font-style: normal;
+font-weight: normal;
+font-size: 26px;
+line-height: 22px;
+
+/* identical to box height, or 85% */
+
+/* fff */
+color: #FFFFFF;
+
+
+/* Inside Auto Layout */}
+.container{
+    display: flex;
+    justify-content:flex-start;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius :25px;
+    /* linear-gradient(red 10%, 30%, blue 90%), */
+}
+
+.otherDetailsTitle{
+position: absolute;
+width: 48px;
+height: 12.16px;
+left: 52px;
+top: 436.48px;
+
+font-family: Abhaya Libre SemiBold;
+font-style: normal;
+font-weight: 600;
+font-size: 13px;
+line-height: 15px;
+text-align: center;
+letter-spacing: -0.24px;
+
+color: #FFFFFF;
+
+opacity: 0.4;
+}
+
+.emptyDiv{
+  height: 300px;
+}
