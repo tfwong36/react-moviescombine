@@ -1,0 +1,17 @@
+.content {
+  margin-left: 2vw;
+  margin-right: 2vw;
+  border-radius: 8px;
+  height: 25vh;
+}
+
+.title {
+  text-align: left;
+  padding-top: 3vh;
+  padding-left: 5vw;
+  margin-bottom: 1vh;
+  font-family: Arial;
+  font-weight: normal;
+  font-size: 18px;
+  color: #ffffff;
+}
