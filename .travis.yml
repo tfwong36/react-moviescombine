@@ -4,11 +4,14 @@ node_js:
   - 16
   
 install:
-    - npm install
+  - npm install
 
 branches:
   only:
   - main
+
+script:
+  - npm run build || true
 
 deploy:
   - provider: heroku
