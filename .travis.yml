@@ -1,0 +1,22 @@
+language: node_js
+
+node_js:
+  - 16
+  
+install:
+    - npm install
+
+script:
+    - npm run test
+
+branches:
+  only:
+  - main
+  - dev
+
+deploy:
+  - provider: heroku
+    api_key: 22c5b519-a454-4299-8cab-4cdb244b1283
+    app: dev-moviescombine
+    on:
+      branch: dev
