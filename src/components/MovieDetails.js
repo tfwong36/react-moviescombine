@@ -1,11 +1,12 @@
 import { Rate } from "antd-mobile";
 import { LeftOutline } from 'antd-mobile-icons'
 import "../style/MovieDetails.css";
-import { useHistory } from "react-router-dom";
+import { useHistory,useLocation } from "react-router-dom";
 import YoutubeEmbed from "./YoutubeEmbed";
-function MovieDetails(props) {
-  console.log(props.posterSource);
-  const history = useHistory();
+function MovieDetails() {
+const location = useLocation();
+const history = useHistory();
+  console.log(location);
   const imgurl =
     "https://pro2-bar-s3-cdn-cf2.myportfolio.com/f44a6a86-6cdb-4ac5-b205-003353cc5a9c/3297b6ad-5b32-4e86-96c5-f82c5275fbe8_rw_1200.jpg?h=4fb0a82075181bfcbafbadfe3291acec";
   const sectionStyle = {
