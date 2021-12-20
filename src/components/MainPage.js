@@ -1,4 +1,11 @@
+import Ticketing from "./Ticketing";
+
+
 function MainPage () {
-    return 0;
+    return (
+        <div>
+            <Ticketing></Ticketing>
+        </div>
+    );
 }
 export default MainPage;

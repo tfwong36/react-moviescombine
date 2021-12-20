@@ -10,7 +10,6 @@ import Trending from './components/Trending';
 import MyTickets from './components/MyTickets';
 import Cinema from './components/Cinema';
 import MainPage from './components/MainPage';
-import { Space } from 'antd-mobile'
 
 function App() {
   return (
