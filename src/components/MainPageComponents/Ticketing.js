@@ -4,7 +4,7 @@ import { Swiper } from "antd-mobile";
 import "../../style/MainPage.css";
 import { useSelector } from "react-redux";
 
-function Ticketing() {
+function Ticketing(props) {
   const movieList = useSelector((state) => state.movieList)
     .filter((movie) => movie.showing)
     .map((movie, index) => (
