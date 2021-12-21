@@ -3,7 +3,7 @@ import { Swiper } from "antd-mobile";
 
 import "../../style/MainPage.css";
 import { useSelector } from "react-redux";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 function MovieSwiper(props) {
   const history = useHistory();
@@ -12,6 +12,7 @@ function MovieSwiper(props) {
 
   function getMovieData(movieList) {
     if (movieList != null) {
+      console.log(movieList);
       return movieList.slice(0, 3).map((movie, index) => (
         <Swiper.Item key={index}>
           <div
@@ -19,7 +20,7 @@ function MovieSwiper(props) {
             style={{
               backgroundImage: "url(" + movie.posterSource + ")",
             }}
-            onClick={() => history.push('/MovieDetails',movie)}
+            onClick={() => history.push("/MovieDetails", movie)}
           ></div>
         </Swiper.Item>
       ));
