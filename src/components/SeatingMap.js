@@ -1,17 +1,21 @@
 import Seat from "./Seat";
-function SeatingMap({seatStatus}){
+import { SEAT_AVALIABLE , SEAT_OCCUPIED} from "../constants/constants";
+function SeatingMap({toggleSeatSelect}){
     const columnNumber = 11;
     const rowNumber = ['A','B','C','D','E','F','G'];
     let seatingStatusList = [];
+    const aSeats = ['A1','C1','F1','B4'];
     rowNumber.forEach( row => 
-        {
+    {
         for(let seat = 1; seat < columnNumber+1 ; seat++){
-            seatingStatusList.push({key:row+seat , status:'a' , row:row, columnNumber:columnNumber});}}
+            const key = row+seat;
+            const status = aSeats.includes(key) ? SEAT_AVALIABLE : SEAT_OCCUPIED;
+            seatingStatusList.push({key:key , status:status , row:row, columnNumber:columnNumber});}}
     );
-        
+
     const listItems = seatingStatusList.map((seat) => {
         return (
-            <div className="grid-item"><Seat key={seat.key} seat={seat}/></div>
+            <div className="grid-item" key={seat.key}><Seat key={seat.key} seat={seat} toggleSeatSelect={toggleSeatSelect}/></div>
         )
     });
 
