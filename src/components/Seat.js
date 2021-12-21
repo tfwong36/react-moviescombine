@@ -1,4 +1,4 @@
-import { ReactComponent as Seatsvg } from '../assects/seat2.svg';
+import { ReactComponent as Seatsvg } from '../assects/seat.svg';
 
 function Seat({seat}){
 

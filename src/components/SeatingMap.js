@@ -1,19 +1,27 @@
 import Seat from "./Seat";
 function SeatingMap({seatStatus}){
-    const columnNumber = 12;
-    // const rowNumber = ['A','B','C','D','E','F','G'];
+    const columnNumber = 11;
+    const rowNumber = ['A','B','C','D','E','F','G'];
     let seatingStatusList = [];
-    const row = 'A';
+    rowNumber.forEach( row => 
+        {
         for(let seat = 1; seat < columnNumber+1 ; seat++){
-            if (seat === 3 || seat === 11)
-                seatingStatusList.push({key:row+seat+"h" , status:'h'});
-            seatingStatusList.push({key:row+seat , status:'a'});
-    };
+            seatingStatusList.push({key:row+seat , status:'a' , row:row, columnNumber:columnNumber});}}
+    );
+        
+    const listItems = seatingStatusList.map((seat) => {
+        return (
+            <>
+            <div className="grid-item"><Seat key={seat.key} seat={seat}/></div>
+            </>
+        )
+    });
 
-    const listItems = seatingStatusList.map((seat) => <Seat key={seat.key} seat={seat}/>);
     return(
         <div className='seating-map-container'>
-          {listItems}
+            <div className="grid-table">
+                {listItems}
+            </div>
         </div>
     );
 
