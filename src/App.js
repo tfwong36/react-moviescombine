@@ -10,7 +10,7 @@ import Trending from './components/Trending';
 import MyTickets from './components/MyTickets';
 import Cinema from './components/Cinema';
 import MainPage from './components/MainPage';
-import { Space } from 'antd-mobile'
+import MovieDetails from './components/MovieDetails';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
       <Router>
       <div>
         <nav>
-          <ul>
+          <ul className="bottom">
               <Link to="/" className="navigation-tab"><SearchOutline color='white' fontSize={36}/></Link>
               <Link to="/Cinema" className="navigation-tab"><MovieOutline color='white' fontSize={36}/></Link>
               <Link to="/Trending" className="navigation-tab"><FireFill color='white' fontSize={36}/></Link>
@@ -34,6 +34,9 @@ function App() {
           </Route>
           <Route exact path="/MyTickets">
             <MyTickets></MyTickets>
+          </Route>
+          <Route exact path="/MovieDetails">
+            <MovieDetails></MovieDetails>
           </Route>
           <Route exact path="/">
             <MainPage></MainPage>

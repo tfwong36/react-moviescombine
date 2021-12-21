@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600&family=Acme&family=Actor&family=Advent+Pro:wght@200&family=Alef&family=Imperial+Script&family=Signika:wght@300&display=swap');
+.trailer,
+.movieName {
+  width: 273px;
+  height: 31px;
+  font-family: Advent Pro;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 31px;
+  margin-bottom: 10px;
+
+  /* identical to box height */
+  text-align: left;
+
+  color: #ffffff;
+}
+#movieDescription {
+  width: 90%;
+  height: 139px;
+
+  margin-bottom: 10px;
+  font-family: Actor;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.76px;
+  text-align: left;
+  color: #ffffff;
+  opacity: 0.7;
+}
+
+.otherDetails {
+  background: #000000;
+  width: 98px;
+  height: 47px;  
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: white;
+}
+
+
+.movieDetailsText{
+width: 175px;
+height: 22px;
+font-family: Signika;
+font-style: normal;
+font-weight: normal;
+font-size: 26px;
+line-height: 22px;
+color: #FFFFFF;
+}
+
+.container{
+    display: flex;
+    justify-content:flex-start;
+    flex-direction: column;
+    margin-left: 25px;
+    margin-right: 25px;
+    border-radius :25px;
+}
+
+.otherDetailsTitle{
+font-family: Abhaya Libre SemiBold;
+font-style: normal;
+font-weight: 700;
+font-size: 13px;
+line-height: 15px;
+text-align: center;
+margin-top: 5px;
+color: #FFFFFF;
+opacity: 0.4;
+}
+
+.otherDetailsFlex{
+  display: flex;
+  justify-content: space-around;
+}
+.otherDetailsValue{
+  font-family: Abhaya Libre;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  letter-spacing: -0.24px;
+  margin-top: 3px;
+  color: #FFFFFF;
+}
+
+.emptyDiv{
+  height: 300px;
+}
+
+.genre{
+font-family: Alef;
+font-style: normal;
+font-weight: normal;
+font-size: 15px;
+line-height: 20px;
+letter-spacing: -0.24px;
+color: #FFFFFF;
+margin-top: 5px;
+margin-right: 20px;
+margin-left: 20px;
+opacity: 0.6;
+}
+
+.ratingGenreFlex{
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.backText{
+  width: 273px;
+  height: 31px;
+  font-family: Acme;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 31px;
+  color: #ffffff;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.backArrow{
+  color: #8D96AD;
+  font-size: 20px;
+  margin-right: 10px;
+  margin-left: 5px;
+}
