@@ -6,7 +6,6 @@
     margin-left: 25px;
     margin-right: 25px;
     border-radius :25px;
-
     text-align: left;
 }
 .movieTitle{
@@ -43,16 +42,24 @@
     color: #FFFFFF;
 }
 
-.seating-map-container{
+.seating-map-grid-table-container{
     margin-top: 5%;
     text-align: center;
-    width: 95%;
+    width: 80%;
 }
+
+.seating-map-container{
+  display: grid;
+  place-items: center;
+}
+
 
 .grid-table{
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto ;
+    grid-row-gap: 1rem;
+    grid-template-columns: 30px 30px 30px 30px 30px 30px 30px 30px 30px 30px 30px;
 }
+
 .grid-item{
     color: white;
 }
@@ -69,4 +76,35 @@
 .seat{
     margin-bottom: 3%;
     margin-left: 2%;
+}
+
+.selected-seat-text{
+    font-family: Advent Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 26px;
+    padding-left: 0px;
+    color: #FFFFFF;    
+}
+
+.seat-availability{
+    display: flex;
+    align-items: center;
+    margin-top: 5%;
+    font-size: 26px;
+    font-family: Alef;
+    font-size: 11px;
+    line-height: 15px;
+    color: #FFFFFF; 
+    
+}
+
+.seat-availability-container{
+    display: block; 
+    margin: auto;
+}
+
+.seat-availability-text{
+    margin-left: 5px;
+    margin-right: 5px;
 }

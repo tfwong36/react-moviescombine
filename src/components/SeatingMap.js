@@ -2,7 +2,7 @@ import Seat from "./Seat";
 import { SEAT_AVALIABLE , SEAT_OCCUPIED} from "../constants/constants";
 function SeatingMap({toggleSeatSelect}){
     const columnNumber = 11;
-    const rowNumber = ['A','B','C','D','E','F','G'];
+    const rowNumber = ['A','B','C','D','E','F','G','H','I'];
     let seatingStatusList = [];
     const aSeats = ['A1','C1','F1','B4'];
     rowNumber.forEach( row => 
@@ -20,7 +20,7 @@ function SeatingMap({toggleSeatSelect}){
     });
 
     return(
-        <div className='seating-map-container'>
+        <div className='seating-map-grid-table-container'>
             <div className="grid-table">
                 {listItems}
             </div>
