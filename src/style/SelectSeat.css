@@ -1,13 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600&family=Acme&family=Actor&family=Advent+Pro:wght@200&family=Alef&family=Imperial+Script&family=Signika:wght@300&display=swap");
-.container {
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  margin-left: 25px;
-  margin-right: 25px;
-  border-radius: 25px;
-
-  text-align: left;
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600&family=Acme&family=Actor&family=Advent+Pro:wght@200&family=Alef&family=Imperial+Script&family=Signika:wght@300&display=swap');
+.container{
+    display: flex;
+    justify-content:flex-start;
+    flex-direction: column;
+    margin-left: 25px;
+    margin-right: 25px;
+    border-radius :25px;
+    text-align: left;
 }
 .movieTitle {
   font-family: Advent Pro;
@@ -42,18 +41,26 @@
   color: #ffffff;
 }
 
-.seating-map-container {
-  margin-top: 5%;
-  text-align: center;
-  width: 95%;
+.seating-map-grid-table-container{
+    margin-top: 5%;
+    text-align: center;
+    width: 80%;
 }
 
-.grid-table {
+.seating-map-container{
   display: grid;
-  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto;
+  place-items: center;
 }
-.grid-item {
-  color: white;
+
+
+.grid-table{
+    display: grid;
+    grid-row-gap: 1rem;
+    grid-template-columns: 30px 30px 30px 30px 30px 30px 30px 30px 30px 30px 30px;
+}
+
+.grid-item{
+    color: white;
 }
 
 .seating-map-row {
@@ -65,7 +72,38 @@
   flex-direction: column;
 }
 
-.seat {
-  margin-bottom: 3%;
-  margin-left: 2%;
+.seat{
+    margin-bottom: 3%;
+    margin-left: 2%;
+}
+
+.selected-seat-text{
+    font-family: Advent Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 26px;
+    padding-left: 0px;
+    color: #FFFFFF;    
+}
+
+.seat-availability{
+    display: flex;
+    align-items: center;
+    margin-top: 5%;
+    font-size: 26px;
+    font-family: Alef;
+    font-size: 11px;
+    line-height: 15px;
+    color: #FFFFFF; 
+    
+}
+
+.seat-availability-container{
+    display: block; 
+    margin: auto;
+}
+
+.seat-availability-text{
+    margin-left: 5px;
+    margin-right: 5px;
 }

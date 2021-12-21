@@ -8,9 +8,9 @@ function Seat({seat, toggleSeatSelect}){
             case SEAT_AVALIABLE:
                 return 'white';
             case SEAT_OCCUPIED:
-                return 'grey';
+                return '#717171';
             case SEAT_SELECTED:
-                return 'red';
+                return '#F24253';
             default:
                 return 'white';
         }
