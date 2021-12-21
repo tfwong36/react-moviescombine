@@ -1,7 +1,6 @@
 import { Rate } from "antd-mobile";
-import { NavBar } from 'antd-mobile'
-import { Button } from 'antd-mobile'
-import { LeftOutline } from "antd-mobile-icons";
+import { NavBar } from "antd-mobile";
+import { Button } from "antd-mobile";
 import "../style/MovieDetails.css";
 import { useHistory, useLocation } from "react-router-dom";
 import YoutubeEmbed from "./YoutubeEmbed";
@@ -22,20 +21,23 @@ function MovieDetails() {
     background:
       " linear-gradient(to top, rgba(0, 0, 0, 255) 25%, rgb(0, 0, 0,0) ),url(" +
       posterSource +
-      "})",
+      ")",
     borderRadius: "50px",
     backgroundSize: "contain",
+    paddingBottom: "3vh",
   };
 
   return (
     <>
-      <div><NavBar className="backText" onClick={() => history.goBack()}>Movie Details</NavBar></div>
+      <div onClick={() => history.goBack()}>
+        <NavBar className="backText">Movie Details</NavBar>
+      </div>
       <div style={sectionStyle}>
         <div className="container">
           <div className="emptyDiv" />
           <div className="movieName">{title}</div>
           <div className="ratingGenreFlex">
-            <spam className="genre">{genre}</spam>
+            <span className="genre">{genre}</span>
             <Rate className="star" allowHalf readOnly value={rating} />
           </div>
           <div className="otherDetailsFlex">
@@ -58,7 +60,11 @@ function MovieDetails() {
           <div className="trailer">Trailer</div>
           <YoutubeEmbed embedId={trailerSource} />
         </div>
-        <div><Button color='warning' onClick={() => history.push("/Showtime")}>Showtime</Button></div>
+        <div>
+          <Button color="warning" onClick={() => history.push("/Showtime")}>
+            Showtime
+          </Button>
+        </div>
       </div>
     </>
   );

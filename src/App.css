@@ -10,7 +10,6 @@ body {
 
 .bottom {
   position: fixed;
-  background-color: #2e3243;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -21,6 +20,13 @@ body {
 .navigation-tab {
   padding-left: 15vw;
   padding-right: 15vw;
+  opacity: 25%;
+}
+
+.navigation-tab-active {
+  padding-left: 15vw;
+  padding-right: 15vw;
+  opacity: 100%;
 }
 
 .App-header {
