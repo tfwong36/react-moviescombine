@@ -3,6 +3,7 @@ function SeatingMap({seatStatus}){
     const columnNumber = 12;
     // const rowNumber = ['A','B','C','D','E','F','G'];
     let seatingStatusList = [];
+    const row = 'A';
         for(let seat = 1; seat < columnNumber+1 ; seat++){
             if (seat === 3 || seat === 11)
                 seatingStatusList.push({key:row+seat+"h" , status:'h'});
