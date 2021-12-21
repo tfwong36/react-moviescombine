@@ -16,7 +16,8 @@ function MovieSwiper(props) {
             style={{
               backgroundImage: "url(" + movie.posterSource + ")",
             }}
-            onClick={() => history.push("/MovieDetails", movie)}
+            // onClick={() => history.push("/MovieDetails", movie)}
+            onClick={() => history.push("/Payment", movie)}
           ></div>
         </Swiper.Item>
       ));
