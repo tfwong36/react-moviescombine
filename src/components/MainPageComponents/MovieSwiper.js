@@ -2,22 +2,21 @@ import React from "react";
 import { Swiper } from "antd-mobile";
 
 import "../../style/MainPage.css";
-import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function MovieSwiper(props) {
-  const showingMovieList = useSelector((state) => state.showingMovieList);
-  const upcomingMovieList = useSelector((state) => state.upcomingMovieList);
+  const history = useHistory();
 
-  function getMovieData(movieList) {
-    if (movieList != null) {
-      return movieList.map((movie, index) => (
+  function getMovieData() {
+    if (props.movieList != null) {
+      return props.movieList.map((movie, index) => (
         <Swiper.Item key={index}>
           <div
             className="content"
             style={{
               backgroundImage: "url(" + movie.posterSource + ")",
             }}
-            onClick={() => {}}
+            onClick={() => history.push("/MovieDetails", movie)}
           ></div>
         </Swiper.Item>
       ));
@@ -36,7 +35,7 @@ function MovieSwiper(props) {
         autoplay={true}
         autoplayInterval={10000}
       >
-        {getMovieData(props.isShowing ? showingMovieList : upcomingMovieList)}
+        {getMovieData()}
       </Swiper>
     </>
   );

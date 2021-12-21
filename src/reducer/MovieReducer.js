@@ -1,16 +1,11 @@
-import {
-  INIT_UPCOMING_MOVIES,
-  INIT_SHOWING_MOVIES,
-} from "../constants/constants";
+import { INIT_MOVIES } from "../constants/constants";
 
-const initState = { upComingMovieList: [], showingMovieList: [] };
+const initState = { movieList: [] };
 
 const MovieReducer = (state = initState, action) => {
   switch (action.type) {
-    case INIT_UPCOMING_MOVIES:
-      return { upComingMovieList: action.payload };
-    case INIT_SHOWING_MOVIES:
-      return { showingMovieList: action.payload };
+    case INIT_MOVIES:
+      return { ...state, movieList: action.payload };
     default:
       return state;
   }
