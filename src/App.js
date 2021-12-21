@@ -4,6 +4,7 @@ import { SearchOutline, CouponOutline } from "antd-mobile-icons";
 import MyTickets from "./components/MyTickets";
 import MainPage from "./components/MainPage";
 import MovieDetails from "./components/MovieDetails";
+import Showtime from "./components/Showtime";
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
             </Route>
             <Route exact path="/MovieDetails">
               <MovieDetails></MovieDetails>
+            </Route>
+            <Route exact path="/Showtime">
+              <Showtime></Showtime>
             </Route>
             <Route exact path="/">
               <MainPage></MainPage>

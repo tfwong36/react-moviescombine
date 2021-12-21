@@ -29,7 +29,7 @@ function MainPage() {
     <div>
       <MovieSwiper title={"SHOWING"} movieList={showingMovieList}></MovieSwiper>
       <MovieSwiper
-        title={"COMING SOON"}
+        title={"UPCOMING"}
         movieList={upcomingMovieList}
       ></MovieSwiper>
     </div>

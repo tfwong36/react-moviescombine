@@ -1,4 +1,6 @@
 import { Rate } from "antd-mobile";
+import { NavBar } from 'antd-mobile'
+import { Button } from 'antd-mobile'
 import { LeftOutline } from "antd-mobile-icons";
 import "../style/MovieDetails.css";
 import { useHistory, useLocation } from "react-router-dom";
@@ -27,10 +29,7 @@ function MovieDetails() {
 
   return (
     <>
-      <div className="backText" onClick={() => history.goBack()}>
-        <LeftOutline className="backArrow" />
-        Movie Details
-      </div>
+      <div><NavBar className="backText" onClick={() => history.goBack()}>Movie Details</NavBar></div>
       <div style={sectionStyle}>
         <div className="container">
           <div className="emptyDiv" />
@@ -59,6 +58,7 @@ function MovieDetails() {
           <div className="trailer">Trailer</div>
           <YoutubeEmbed embedId={trailerSource} />
         </div>
+        <div><Button color='warning' onClick={() => history.push("/Showtime")}>Showtime</Button></div>
       </div>
     </>
   );

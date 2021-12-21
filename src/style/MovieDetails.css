@@ -14,6 +14,7 @@
 
   color: #ffffff;
 }
+
 #movieDescription {
   width: 90%;
   height: 139px;
@@ -113,16 +114,12 @@
 }
 
 .backText {
-  width: 273px;
-  height: 31px;
+  position: fixed;
+  width: 100%;
+  top: 0;
   font-family: Acme;
   font-style: normal;
-  font-weight: 400;
-  font-size: 26px;
-  line-height: 31px;
   color: #ffffff;
-  text-align: left;
-  margin-bottom: 10px;
 }
 
 .backArrow {
