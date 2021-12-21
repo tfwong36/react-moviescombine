@@ -105,8 +105,6 @@ color: #FFFFFF;
 margin-top: 5px;
 margin-right: 20px;
 margin-left: 20px;
-width: 44px;
-height: 20px;
 opacity: 0.6;
 }
 
@@ -126,6 +124,7 @@ opacity: 0.6;
   line-height: 31px;
   color: #ffffff;
   text-align: left;
+  margin-bottom: 10px;
 }
 
 .backArrow{

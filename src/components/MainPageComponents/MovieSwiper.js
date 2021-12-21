@@ -12,8 +12,7 @@ function MovieSwiper(props) {
 
   function getMovieData(movieList) {
     if (movieList != null) {
-      console.log(movieList);
-      return movieList.slice(0, 3).map((movie, index) => (
+      return movieList.map((movie, index) => (
         <Swiper.Item key={index}>
           <div
             className="content"
