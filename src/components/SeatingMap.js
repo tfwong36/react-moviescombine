@@ -10,7 +10,7 @@ function SeatingMap({toggleSeatSelect}){
     {
         for(let seat = 1; seat < columnNumber+1 ; seat++){
             const key = row+seat;
-            const status = aSeats.includes(key) ? SEAT_AVALIABLE : SEAT_OCCUPIED;
+            const status = (!aSeats.includes(key)) ? SEAT_AVALIABLE : SEAT_OCCUPIED;
             seatingStatusList.push({key:key , status:status , row:row, columnNumber:columnNumber});}}
     );
 
