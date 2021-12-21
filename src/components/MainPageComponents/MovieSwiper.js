@@ -9,7 +9,7 @@ function MovieSwiper(props) {
 
   function getMovieData() {
     if (props.movieList != null) {
-      return props.movieList.map((movie, index) => (
+      return props.movieList.slice(0, 5).map((movie, index) => (
         <Swiper.Item key={index}>
           <div
             className="content"

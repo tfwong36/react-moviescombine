@@ -18,10 +18,9 @@ function MainPage() {
     (movie) => movie.movieStatus === "Upcoming"
   );
 
-  console.log(useSelector((state) => state.movieList));
-
   useEffect(() => {
     getAllMovies().then((response) => {
+      console.log(response.data);
       dispatch({ type: INIT_MOVIES, payload: response.data });
     });
   }, [dispatch]);
@@ -30,7 +29,7 @@ function MainPage() {
     <div>
       <MovieSwiper title={"SHOWING"} movieList={showingMovieList}></MovieSwiper>
       <MovieSwiper
-        title={"COMING SOON"}
+        title={"UPCOMING"}
         movieList={upcomingMovieList}
       ></MovieSwiper>
     </div>
