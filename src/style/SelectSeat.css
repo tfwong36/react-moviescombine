@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600&family=Acme&family=Actor&family=Advent+Pro:wght@200&family=Alef&family=Imperial+Script&family=Signika:wght@300&display=swap');
+.container{
+    display: flex;
+    justify-content:flex-start;
+    flex-direction: column;
+    margin-left: 25px;
+    margin-right: 25px;
+    border-radius :25px;
+
+    text-align: left;
+}
+.movieTitle{
+    font-family: Advent Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 26px;
+    line-height: 31px;
+       
+    color: #FFFFFF;
+}
+.priceDuration{
+    
+    font-family: Alef;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 20px;
+    letter-spacing: -0.24px;
+    
+    color: #FFFFFF;
+    
+    opacity: 0.6;
+}
+.cinemaDetail,
+.showDateandTime{
+    font-family: Alef;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.24px;
+    
+    color: #FFFFFF;
+}
+.seating-map-container{
+    margin-top: 3%;
+}
+
+.seating-map-row{
+    display: flex;
+    flex-direction: row ;
+}
+.seating-map-column{
+    display: flex;
+    flex-direction: column ;
+}
+
+
+.seat{
+    margin-bottom: 3%;
+}

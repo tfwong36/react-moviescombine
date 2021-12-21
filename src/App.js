@@ -11,6 +11,7 @@ import MyTickets from './components/MyTickets';
 import Cinema from './components/Cinema';
 import MainPage from './components/MainPage';
 import MovieDetails from './components/MovieDetails';
+import SelectSeat from './components/SelectSeat'
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
             <Trending></Trending>
           </Route>
           <Route exact path="/MyTickets">
-            <MyTickets></MyTickets>
+            <SelectSeat></SelectSeat>
           </Route>
           <Route exact path="/MovieDetails">
             <MovieDetails></MovieDetails>
