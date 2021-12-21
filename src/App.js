@@ -12,6 +12,7 @@ import Cinema from "./components/Cinema";
 import MainPage from "./components/MainPage";
 import MovieDetails from "./components/MovieDetails";
 import SelectSeat from "./components/SelectSeat";
+import Payment from "./components/Payment";
 
 function App() {
   return (
@@ -46,6 +47,9 @@ function App() {
             </Route>
             <Route exact path="/MovieDetails">
               <MovieDetails></MovieDetails>
+            </Route>
+            <Route exact path="/Payment">
+              <Payment></Payment>
             </Route>
             <Route exact path="/">
               <MainPage></MainPage>

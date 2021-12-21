@@ -4,7 +4,11 @@ import {
   INIT_SEATING_PLAN,
 } from "../constants/constants";
 
-const initState = { movieList: [], seatingStatusList: [] };
+const initState = {
+  movieList: [],
+  seatingStatusList: [],
+  selectedSeatList: [],
+};
 
 const MovieReducer = (state = initState, action) => {
   switch (action.type) {
@@ -18,15 +22,16 @@ const MovieReducer = (state = initState, action) => {
       return {
         ...state,
         seatingStatusList: state.seatingStatusList.map((seat) => {
-          if (seat.key === action.payload) {
-            return {
-              key: action.payload,
-              status: "s",
-              row: seat.row,
-              columnNumber: seat.columnNumber,
-            };
+          if (seat.key === action.payload.key) {
+            action.payload.status = "s";
+            return action.payload;
           }
           return seat;
+        }),
+        selectedSeatList: state.seatingStatusList.filter((seat) => {
+          if (seat.status === "s") {
+            return seat;
+          }
         }),
       };
     default:

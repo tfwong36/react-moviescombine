@@ -18,8 +18,6 @@ function MainPage() {
     (movie) => movie.movieStatus === "Upcoming"
   );
 
-  console.log(useSelector((state) => state.movieList));
-
   useEffect(() => {
     getAllMovies().then((response) => {
       dispatch({ type: INIT_MOVIES, payload: response.data });

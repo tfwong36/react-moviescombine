@@ -27,7 +27,7 @@ function Seat({ seat }) {
   }
 
   function handleOnClick() {
-    dispatch({ type: SELECT_SEAT, payload: seat.key });
+    dispatch({ type: SELECT_SEAT, payload: seat });
   }
   return (
     <Seatsvg
