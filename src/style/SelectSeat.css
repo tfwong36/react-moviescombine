@@ -44,6 +44,7 @@
 }
 .seating-map-container{
     margin-top: 3%;
+    text-align: center;
 }
 
 .seating-map-row{
@@ -58,4 +59,5 @@
 
 .seat{
     margin-bottom: 3%;
+    margin-left: 2%;
 }
