@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { SearchOutline, MovieOutline, CouponOutline } from "antd-mobile-icons";
+import { SearchOutline, CouponOutline } from "antd-mobile-icons";
 import MyTickets from "./components/MyTickets";
 import MainPage from "./components/MainPage";
 import MovieDetails from "./components/MovieDetails";
