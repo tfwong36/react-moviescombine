@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { SearchOutline, MovieOutline } from "antd-mobile-icons";
+import { SearchOutline, MovieOutline, CouponOutline } from "antd-mobile-icons";
 import MyTickets from "./components/MyTickets";
 import MainPage from "./components/MainPage";
 import MovieDetails from "./components/MovieDetails";
@@ -27,8 +27,8 @@ function App() {
             <Link to="/" className="navigation-tab">
               <SearchOutline color="white" fontSize={36} />
             </Link>
-            <Link to="/Cinema" className="navigation-tab">
-              <MovieOutline color="white" fontSize={36} />
+            <Link to="/MyTicket" className="navigation-tab">
+              <CouponOutline color="white" fontSize={36} />
             </Link>
           </ul>
         </nav>
