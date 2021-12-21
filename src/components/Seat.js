@@ -1,7 +1,6 @@
 import { ReactComponent as Seatsvg } from '../assects/seat.svg';
 
 function Seat({seat}){
-
     function getFill(status){
         switch(status){
             case 'a':
@@ -22,7 +21,10 @@ function Seat({seat}){
         }
     }
 
-    return <Seatsvg className="seat" width='1.5rem' fill={getFill(seat.status)} fillOpacity={fillOpacity(seat.status)} onClick={() => console.log(seat.key)}/>
+    function handleOnClick(){
+        console.log(seat.key)
+    }
+    return <Seatsvg className="seat" width='1.5rem' fill={getFill(seat.status)} fillOpacity={fillOpacity(seat.status)} onClick={handleOnClick}/>
 }
 
 export default Seat;

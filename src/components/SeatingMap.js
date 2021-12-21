@@ -11,9 +11,7 @@ function SeatingMap({seatStatus}){
         
     const listItems = seatingStatusList.map((seat) => {
         return (
-            <>
             <div className="grid-item"><Seat key={seat.key} seat={seat}/></div>
-            </>
         )
     });
 
