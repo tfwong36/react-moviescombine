@@ -1,36 +1,25 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import { INIT_SEATING_PLAN } from "../constants/constants";
 import Seat from "./Seat";
-function SeatingMap({ seatStatus }) {
-  const dispatch = useDispatch();
-  const seatingStatusList = useSelector((state) => state.seatingStatusList);
-
-  useEffect(() => {
-    let columnNumber = 11;
-    let rowNumber = ["A", "B", "C", "D", "E", "F", "G"];
+import { SEAT_AVALIABLE , SEAT_OCCUPIED} from "../constants/constants";
+function SeatingMap({toggleSeatSelect}){
+    const columnNumber = 11;
+    const rowNumber = ['A','B','C','D','E','F','G'];
     let seatingStatusList = [];
-    rowNumber.forEach((row) => {
-      for (let seat = 1; seat < columnNumber + 1; seat++) {
-        seatingStatusList.push({
-          key: row + seat,
-          status: "a",
-          row: row,
-          columnNumber: columnNumber,
-        });
-      }
-    });
-    dispatch({ type: INIT_SEATING_PLAN, payload: seatingStatusList });
-  }, [dispatch]);
-
-  const listItems = seatingStatusList.map((seat) => {
-    return (
-      <div className="grid-item">
-        <Seat key={seat.key} seat={seat} />
-      </div>
+    const aSeats = ['A1','C1','F1','B4'];
+    rowNumber.forEach( row => 
+    {
+        for(let seat = 1; seat < columnNumber+1 ; seat++){
+            const key = row+seat;
+            const status = aSeats.includes(key) ? SEAT_AVALIABLE : SEAT_OCCUPIED;
+            seatingStatusList.push({key:key , status:status , row:row, columnNumber:columnNumber});}}
     );
-  });
+
+    const listItems = seatingStatusList.map((seat) => {
+        return (
+            <div className="grid-item" key={seat.key}><Seat key={seat.key} seat={seat} toggleSeatSelect={toggleSeatSelect}/></div>
+        )
+
+    });
 
   return (
     <div className="seating-map-container">

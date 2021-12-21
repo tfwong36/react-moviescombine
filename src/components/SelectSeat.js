@@ -1,26 +1,34 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-
 import "../style/SelectSeat.css";
 import SeatingMap from "./SeatingMap";
+import SelectSeatText from "./SelectSeatText";
+function SelectSeat(){
+    const [selectedSeats, setSelectedSeats] = useState([]);
+    const history = useHistory();
+    const toggleSeatSelect = (seat) =>{
+        if (!selectedSeats.includes(seat)){
+            setSelectedSeats([...selectedSeats ,seat])
+        }
+        else{
+            setSelectedSeats(selectedSeats.filter(item => item !== seat));
+        }
+    }
 
-function SelectSeat() {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const selectedSeatList = useSelector((state) => state.selectedSeatList);
-
-  return (
-    <div className="container">
-      <div className="movieTitle">Spider-Man No Way Home</div>
-      <div className="priceDuration">Price $123| Duration 128.3 minutes</div>
-      <div className="cinemaDetail">Emperor Cinemas (Ma On Shan)</div>
-      <div className="showDateandTime">22 Dec 2021 (Wed) 15:10</div>
-      <SeatingMap />
-      <button onClick={() => history.push("/Payment", selectedSeatList)}>
+    return (
+        <div className="container">
+            <div className="movieTitle">Spider-Man No Way Home</div>
+            <div className="priceDuration">Price $123| Duration 128.3 minures</div>
+            <div className="cinemaDetail">Emperor Cinemas (Ma On Shan)</div>
+            <div className="showDateandTime">22 Dec 2021 (Wed) 15:10</div>
+            <SeatingMap toggleSeatSelect={toggleSeatSelect}/>    
+            <SelectSeatText selectedSeats={selectedSeats}/>
+            <button onClick={() => history.push("/Payment", selectedSeats)}>
         To pay
-      </button>
-    </div>
-  );
+      </button>    
+        </div>
+
+    );
 }
 export default SelectSeat;
