@@ -19,6 +19,7 @@ function Seat({seat, toggleSeatSelect}){
         setstate(state === SEAT_AVALIABLE ? SEAT_SELECTED:SEAT_AVALIABLE);
     }
     function handleOnClick(){
+        console.log(seat.key)
         if (state === SEAT_AVALIABLE || state === SEAT_SELECTED){
             toggleSeatSelect(seat.key)
             toggleState();

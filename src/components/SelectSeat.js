@@ -1,17 +1,20 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { Button } from 'antd-mobile'
 import "../style/SelectSeat.css";
 import SeatingMap from "./SeatingMap";
 import SelectSeatText from "./SelectSeatText";
 import SeatAvailability from "./SeatAvailability"
-
+import { getAllSeats } from "../apis/MoviesCombine";
+import { useDispatch } from "react-redux";
+import { INIT_SEATING_PLAN } from "../constants/constants";
 
 function SelectSeat(){
     const [selectedSeats, setSelectedSeats] = useState([]);
     // let location = useLocation();
     const history = useHistory();
+    const dispatch = useDispatch();
     // const {
     //   category,
     //   description,
@@ -25,6 +28,14 @@ function SelectSeat(){
     const price = 123.4
     const cinemaDetail = 'Emperor Cinemas (Ma On Shan)';
     const showDateandTime = '22 Dec 2021 (Wed) 15:10';
+
+    useEffect(() => {
+        getAllSeats('61c1a418f4d70de6e4b77162').then((response) => {
+          console.log(response.data);
+          dispatch({ type: INIT_SEATING_PLAN, payload: response.data });
+        });
+      }, [dispatch]);
+
     const toggleSeatSelect = (seat) =>{
         if (!selectedSeats.includes(seat)){
             setSelectedSeats([...selectedSeats ,seat])
@@ -33,6 +44,7 @@ function SelectSeat(){
             setSelectedSeats(selectedSeats.filter(item => item !== seat));
         }
     }
+
 
     return (
         <>
