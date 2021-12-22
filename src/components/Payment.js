@@ -1,8 +1,8 @@
 import { LeftOutline } from "antd-mobile-icons";
-import { Input } from "antd";
 import "../style/Payment.css";
 import { useHistory, useLocation } from "react-router-dom";
-import { useState } from "react";
+import api from "../apis/api"
+import MovieDetails from "./MovieDetails";
 function Payment() {
   const location = useLocation();
   const history = useHistory();
@@ -18,6 +18,8 @@ function Payment() {
     trailerSource,
     selectedSeats,
     showDateandTime,
+    cinemaDetail,
+    sessionID,
   } = location.state;
 
   console.log("simon: " + selectedSeats);
@@ -45,6 +47,28 @@ function Payment() {
     console.log("year: " + expiryYear);
     console.log("cvv: " + cvv);
     console.log("phone: " + phoneNumber);
+
+
+    const requestBody = {
+      "payment" : {
+        "sessionId": sessionID,
+        "selectedSeats": selectedSeats,
+        "unitPrice": parseInt(price)
+      },
+      "cardHolderName": cardHolderName,
+      "creditCardNumber": cardNumber,
+      "expiryMonth": parseInt(expiryMonth),
+      "expiryYear": parseInt(expiryYear),
+      "cardCVV": parseInt(cvv),
+      "phoneNumber": parseInt(phoneNumber)
+    }
+
+    console.log(requestBody)
+    api.post("/payments" , requestBody).then( (response) => {
+      console.log(response) // success
+    }).catch(
+      // on faile
+    )
 
     history.push("/")
 
@@ -84,9 +108,9 @@ function Payment() {
         </div>
         <div className="movie-title-box">{title}</div>
 
-        <div className="price-duration">Price: $196 | Duration: 148 mins</div>
-        <div className="cinema-detail">Emperor Cinemas (Ma On Shan)</div>
-        <div className="show-date-and-time">22 Dec 2021 (Wed) 15:10</div>
+        <div className="price-duration">Price: {price} | Duration: 148 mins</div>
+        <div className="cinema-detail">{MovieDetails}</div>
+        <div className="show-date-and-time">{showDateandTime}</div>
       </div>
 
       <div className="receipt-info-box">

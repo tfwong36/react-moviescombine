@@ -24,10 +24,10 @@ function SelectSeat(){
     //   releaseDate,
     //   trailerSource,
     // } = location.state;
-    const title = 'spider-man'
-    const price = 123.4
-    const cinemaDetail = 'Emperor Cinemas (Ma On Shan)';
-    const showDateandTime = '22 Dec 2021 (Wed) 15:10';
+    const title = 'spider-man2'
+    const price = 223.4
+    const cinemaDetail = 'Emperor Cinemas (stp)';
+    const showDateandTime = '24 Dec 2021 (Wed) 15:10';
     const sessionID = '61c28138c57b9025d6feb3bb';
     useEffect(() => {
         getAllSeats(sessionID).then((response) => {
