@@ -1,57 +1,124 @@
 import { Rate } from "antd-mobile";
-import { NavBar, TabBar } from 'antd-mobile'
-import { LeftOutline } from 'antd-mobile-icons'
+import { NavBar, JumboTabs } from 'antd-mobile'
+import { List } from 'antd-mobile'
+import { useState } from "react";
 import "../style/Showtime.css";
 import { useHistory,useLocation } from "react-router-dom";
 function Showtime() {
 const location = useLocation();
 const history = useHistory();
+const [ pressedDate, setPressedDate] = useState(1);
+const showdate = [
+  {
+    key: 1,
+    day: 'WED',
+    date: '12/22',
+  },
+  {
+    key: 2,
+    day: 'THU',
+    date: '12/23',
+  },
+  {
+    key: 3,
+    day: 'FRI',
+    date: '12/24',
+  },
+  {
+    key: 4,
+    day: 'SAT',
+    date: '12/25',
+  },{
+    key: 5,
+    day: 'SUN',
+    date: '12/26',
+  },
+];
+
+const cinemas = [
+  {
+    title: 'Emperor Cinemas (Time Square)',
+  },
+  {
+    title: 'Emperor Cinemas (Ma On Shan)',
+  },
+  {
+    title: 'MCL Citygate Cinema',
+  },
+  {
+    title: 'Movie Town - New Town Plaza',
+  },
+  {
+    title: 'Golden Scene Cinema',
+  },
+  {
+    title: 'Broadway Circuit - Hollywood',
+  },
+];
+
+const showDetails = [
+  {
+    timeslot: '10:30',
+    price: '$150',
+    remainingSeats: 20,
+  },
+  {
+    timeslot: '15:10',
+    price: '$150',
+    remainingSeats: 0,
+  },
+  {
+    timeslot: '18:45',
+    price: '$180',
+    remainingSeats: 40,
+  },
+  {
+    timeslot: '22:05',
+    price: '$180',
+    remainingSeats: 0,
+  }
+];
 
   return (
     <>
     <div className="navBar" onClick={() => history.goBack()}><NavBar>Spider-Man: No Way Home</NavBar></div>
-    <div>
-        <div className="otherDetailsFlex">
-          <div className="otherDetails">
-            <div className="otherDetailsTitle">Wed</div>
-            <div className="otherDetailsValue">12/22</div>
+    <div className="container">
+    <div className="showdateFlex">
+        {
+          showdate.map((showdate) => (
+          <div className={ showdate.key === pressedDate ? "showdateSelected" : "showdate" } onClick={() => setPressedDate(showdate.key)}>
+            <div className={ showdate.key === pressedDate ? "showdateTitleSelected" : "showdateTitle" }>{showdate.day}</div>
+            <div className={ showdate.key === pressedDate ? "showdateValueSelected" : "showdateValue" }>{showdate.date}</div>
           </div>
-          <div className="otherDetails">
-            <div className="otherDetailsTitle">Thu</div>
-            <div className="otherDetailsValue">12/23</div>
-          </div>
-          <div className="otherDetails">
-            <div className="otherDetailsTitle">Fri</div>
-            <div className="otherDetailsValue">12/24</div>
-          </div>
-          <div className="otherDetails">
-            <div className="otherDetailsTitle">Sat</div>
-            <div className="otherDetailsValue">12/25</div>
-          </div>
-          <div className="otherDetails">
-            <div className="otherDetailsTitle">Sun</div>
-            <div className="otherDetailsValue">12/26</div>
-          </div>
+          ))
+        }
         </div>
-        <div className="trailer">Emperor Cinemas (Time Square)</div>
-          <div className="otherDetailsFlex">
-          <div className="otherDetails">
-            <div className="otherDetailsTitle">10:30</div>
-            <div className="otherDetailsValue">$150</div>
-          </div>
-          <div className="otherDetails">
-            <div className="otherDetailsTitle">15:40</div>
-            <div className="otherDetailsValue">$150</div>
-          </div>
-          <div className="otherDetails">
-            <div className="otherDetailsTitle">18:00</div>
-            <div className="otherDetailsValue">$180</div>
-          </div>
-          <div className="otherDetails">
-            <div className="otherDetailsTitle">22:30</div>
-            <div className="otherDetailsValue">$180</div>
-          </div>
-        </div>
+        <List
+          style={{
+            '--border-inner': 'none',
+            '--border-top': 'none',
+            '--border-bottom': 'none',
+            'background-color': 'transparent',
+          }}
+        >
+          {
+            cinemas.map((cinema) => (
+              <List.Item>
+              <div className="cinemaTitle">{cinema.title}</div>
+              <div className="showdateFlex">
+              {
+                  showDetails.map((showDetail) => (
+                    <div className={ showDetail.remainingSeats !== 0 ? "showtimeNotNull" : "showtimeNull" }>
+                      <div className="timeslot">{showDetail.timeslot}</div>
+                      <div className="price">{showDetail.price}</div>
+                    </div>
+                  ))
+              }
+              </div>
+              </List.Item>
+              ))
+          }
+        </List>
         </div>
     </>
   );
