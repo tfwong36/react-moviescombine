@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600&family=Acme&family=Actor&family=Advent+Pro:wght@200&family=Alef&family=Imperial+Script&family=Signika:wght@300&display=swap');
-.trailer,
+.cinemaTitle,
 .movieName {
-  width: 273px;
+  width: 90%;
   height: 31px;
   font-family: Advent Pro;
   font-style: normal;
   font-weight: 400;
-  font-size: 26px;
+  font-size: 21px;
   line-height: 31px;
-  margin-bottom: 5px;
+  margin-top: 10px;
 
   /* identical to box height */
   text-align: left;
@@ -32,14 +32,22 @@
   opacity: 0.7;
 }
 
-.otherDetails {
-  background: #000000;
-  width: 98px;
-  height: 47px;  
-  border: 1px solid rgba(255, 255, 255, 0.03);
+.showdateSelected {
+  background: rgba(141, 150, 173, 0.3);
+  width: 62px;
+  height: 65px;
+  border: 1px solid rgba(189, 202, 236, 0.2);
   box-sizing: border-box;
   border-radius: 10px;
-  color: white;
+}
+
+.showdate {
+    background: transparent;
+    width: 62px;
+    height: 65px;
+    border: 1px solid rgba(189, 202, 236, 0.2);
+    box-sizing: border-box;
+    border-radius: 10px;
 }
 
 
@@ -54,6 +62,10 @@ line-height: 22px;
 color: #FFFFFF;
 }
 
+.tab {
+    color: #000;
+}
+
 .container{
     display: flex;
     justify-content:flex-start;
@@ -61,9 +73,10 @@ color: #FFFFFF;
     margin-left: 25px;
     margin-right: 25px;
     border-radius :25px;
+    margin-top: 65px;
 }
 
-.otherDetailsTitle{
+.showtime{
 font-family: Abhaya Libre SemiBold;
 font-style: normal;
 font-weight: 700;
@@ -75,11 +88,76 @@ color: #FFFFFF;
 opacity: 0.4;
 }
 
-.otherDetailsFlex{
+.showdateFlex{
   display: flex;
   justify-content: space-around;
 }
-.otherDetailsValue{
+
+.showdateTitle {
+    font-family: Abhaya Libre SemiBold;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 15px;
+    text-align: center;
+    margin-top: 5px;
+    color: #ffffff;
+    opacity: 0.5;
+  }
+
+  .showdateTitleSelected {
+    font-family: Abhaya Libre SemiBold;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 15px;
+    text-align: center;
+    margin-top: 5px;
+    color: #ffffff;
+  }
+
+  .showdateValue {
+    font-family: Abhaya Libre;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    letter-spacing: -0.24px;
+    margin-top: 3px;
+    color: #ffffff;
+    opacity: 0.5;
+  }
+
+  .showtimeNotNull {
+    background: rgba(108, 138, 113, 0.5);
+    width: 62px;
+    height: 65px;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+  .showtimeNull {
+    background: rgba(152, 87, 87, 0.5);
+    width: 62px;
+    height: 65px;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+  .showdateValueSelected {
+    font-family: Abhaya Libre;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    letter-spacing: -0.24px;
+    margin-top: 3px;
+    color: #FFC600;
+  }
+
+.showtimeValue{
   font-family: Abhaya Libre;
   font-style: normal;
   font-weight: 500;
@@ -109,12 +187,6 @@ margin-right: 20px;
 opacity: 0.6;
 }
 
-.ratingGenreFlex{
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 10px;
-}
-
 .navBar{
   position: fixed;
   top: 0;
@@ -122,6 +194,7 @@ opacity: 0.6;
   font-family: Acme;
   color: #ffffff;
   background-color: #232835;
+  margin-bottom: 20px;
 }
 
 .bottomBar {

@@ -113,6 +113,12 @@
   margin-bottom: 20px;
 }
 
+.showtime {
+  position: fixed;
+  bottom: 30px;
+  text-align: center;
+}
+
 .backText {
   position: fixed;
   width: 100%;
@@ -120,6 +126,7 @@
   font-family: Acme;
   font-style: normal;
   color: #ffffff;
+  background-color: #232835;
 }
 
 .backArrow {
