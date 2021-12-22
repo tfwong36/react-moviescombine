@@ -1,11 +1,14 @@
-
 import React, { useEffect } from "react";
-import { getAllCinemas, getAllSessions } from "../apis/MoviesCombine";
+import { getAllCinemas, getAllSessionsByMovieId } from "../apis/MoviesCombine";
 import { useDispatch } from "react-redux";
-import { INIT_CINEMAS, INIT_SESSIONS } from "../constants/constants";
+import {
+  INIT_CINEMAS,
+  INIT_SESSIONS,
+  INIT_CINEMA_SESSIONS,
+} from "../constants/constants";
 import { useSelector } from "react-redux";
-import { NavBar } from 'antd-mobile'
-import { List } from 'antd-mobile'
+import { NavBar } from "antd-mobile";
+import { List } from "antd-mobile";
 import { useState } from "react";
 import "../style/Showtime.css";
 import { useHistory, useLocation } from "react-router-dom";
@@ -13,136 +16,148 @@ function Showtime() {
   const location = useLocation();
   const history = useHistory();
   const currentDate = new Date();
-  const [ pressedKey, setPressedKey] = useState(1);
-  const [ pressedDate, setPressedDate] = useState(currentDate);
+  const [pressedKey, setPressedKey] = useState(1);
+  const [pressedDate, setPressedDate] = useState(null);
   const dispatch = useDispatch();
-  const weekday = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
-  let showdates = [];
-  const {
-    id,
-    title,
-  } = location.state;
+  const weekday = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+  let showDates = [];
 
-  const sessionList = useSelector((state) => state.sessionList).filter(
-    (session) => session.movieId == id && session.showDateTimeHkt.toString().substring(10) == pressedDate
+  const sessionList = useSelector((state) => state.sessionList);
+
+  const cinemaListWithSessions = useSelector(
+    (state) => state.cinemaListWithSessions
   );
-  
-  const cinemaList = useSelector((state) => state.cinemaList);
-  const cinemaNameList = sessionList.map((session) => {
-      return cinemaList.filter((cinema) => cinema.id === session.cinemaId);
-  });
+
+  const allCinemaList = useSelector((state) => state.cinemaList);
 
   useEffect(() => {
     getAllCinemas().then((response) => {
       dispatch({ type: INIT_CINEMAS, payload: response.data });
     });
-  }, [dispatch]);
-
-  useEffect(() => {
-    getAllSessions().then((response) => {
+    getAllSessionsByMovieId(location.state).then((response) => {
       dispatch({ type: INIT_SESSIONS, payload: response.data });
     });
-  }, [dispatch]);
-  
+  }, [dispatch, location.state]);
+
+  useEffect(() => {
+    const currentSessions = sessionList.filter(
+      (session) =>
+        session.showDateTimeHkt.toString().split("T")[0] ===
+        pressedDate.toString()
+    );
+    dispatch({
+      type: INIT_CINEMA_SESSIONS,
+      payload: allCinemaList.map((cinema) => {
+        cinema.sessionList = currentSessions.filter(
+          (session) => cinema.id === session.cinemaId
+        );
+        return cinema;
+      }),
+    });
+  }, [dispatch, pressedDate]);
+
+  //Arrange future 5 dates btn
   for (var i = 0; i < 5; i++) {
     const displayDate = new Date();
     displayDate.setDate(currentDate.getDate() + i);
-    showdates.push({
+    showDates.push({
       key: i + 1,
       day: weekday[displayDate.getDay()],
-      date: (displayDate.getMonth() + 1) + "/" + displayDate.getDate(),
-      longDate: (displayDate.getFullYear() - 1) + "-" + (displayDate.getMonth() + 1) + "-" + displayDate.getDate()
-    })
+      date: displayDate.getMonth() + 1 + "/" + displayDate.getDate(),
+      longDate:
+        displayDate.getFullYear() +
+        "-" +
+        (displayDate.getMonth() + 1) +
+        "-" +
+        displayDate.getDate(),
+    });
   }
 
-const cinemas = [
-  {
-    title: 'Emperor Cinemas (Time Square)',
-  },
-  {
-    title: 'Emperor Cinemas (Ma On Shan)',
-  },
-  {
-    title: 'MCL Citygate Cinema',
-  },
-  {
-    title: 'Movie Town - New Town Plaza',
-  },
-  {
-    title: 'Golden Scene Cinema',
-  },
-  {
-    title: 'Broadway Circuit - Hollywood',
-  },
-];
-
-const showDetails = [
-  {
-    timeslot: '10:30',
-    price: '$150',
-    remainingSeats: 20,
-  },
-  {
-    timeslot: '15:10',
-    price: '$150',
-    remainingSeats: 0,
-  },
-  {
-    timeslot: '18:45',
-    price: '$180',
-    remainingSeats: 40,
-  },
-  {
-    timeslot: '22:05',
-    price: '$180',
-    remainingSeats: 0,
+  function renderSessions() {
+    return cinemaListWithSessions.map((cinema) => {
+      if (cinema.sessionList.length > 0) {
+        return (
+          <List.Item key={cinema.id + cinema.name}>
+            <div className="cinemaTitle">{cinema.name}</div>
+            <div className="showdateFlex">
+              {cinema.sessionList.map((session) => (
+                <div
+                  className={
+                    session.hasRemainSeat ? "showtimeNotNull" : "showtimeNull"
+                  }
+                >
+                  <div className="timeslot">
+                    {session?.showDateTimeHkt
+                      .toString()
+                      .split("T")[1]
+                      .toString()
+                      .substring(0, 5)}
+                  </div>
+                  <div className="price">{session.price}</div>
+                </div>
+              ))}
+            </div>
+          </List.Item>
+        );
+      } else {
+        return <></>;
+      }
+    });
   }
-];
 
   return (
     <>
-    <div className="navBar" onClick={() => history.goBack()}><NavBar>Spider-Man: No Way Home</NavBar></div>
-    <div className="container">
-    <div className="showdateContainer">
-    <div className="showdateFlex">
-        {
-          showdates.map((showdate) => (
-          <div className={ showdate.key === pressedKey ? "showdateSelected" : "showdate" } onClick={() => { setPressedKey(showdate.key); setPressedDate(showdate.longDate);}}>
-            <div className={ showdate.key === pressedKey ? "showdateTitleSelected" : "showdateTitle" }>{showdate.day}</div>
-            <div className={ showdate.key === pressedKey ? "showdateValueSelected" : "showdateValue" }>{showdate.date}</div>
+      <div className="navBar" onClick={() => history.goBack()}>
+        <NavBar>Spider-Man: No Way Home</NavBar>
+      </div>
+      <div className="container">
+        <div className="showdateContainer">
+          <div className="showdateFlex">
+            {showDates.map((showdate) => (
+              <div
+                key={showdate}
+                className={
+                  showdate.key === pressedKey ? "showdateSelected" : "showdate"
+                }
+                onClick={() => {
+                  setPressedKey(showdate.key);
+                  setPressedDate(showdate.longDate);
+                }}
+              >
+                <div
+                  className={
+                    showdate.key === pressedKey
+                      ? "showdateTitleSelected"
+                      : "showdateTitle"
+                  }
+                >
+                  {showdate.day}
+                </div>
+                <div
+                  className={
+                    showdate.key === pressedKey
+                      ? "showdateValueSelected"
+                      : "showdateValue"
+                  }
+                >
+                  {showdate.date}
+                </div>
+              </div>
+            ))}
           </div>
-          ))
-        }
-        </div>
         </div>
         <List
           style={{
-            '--border-inner': 'none',
-            '--border-top': 'none',
-            '--border-bottom': 'none',
-            'background-color': 'transparent',
-            'margin-top': '70px',
+            "--border-inner": "none",
+            "--border-top": "none",
+            "--border-bottom": "none",
+            "background-color": "transparent",
+            "margin-top": "70px",
           }}
         >
-          {
-            cinemas.map((cinema) => (
-              <List.Item>
-              <div className="cinemaTitle">{cinema.title}</div>
-              <div className="showdateFlex">
-              {
-                  showDetails.map((showDetail) => (
-                    <div className={ showDetail.remainingSeats !== 0 ? "showtimeNotNull" : "showtimeNull" }>
-                      <div className="timeslot">{showDetail.timeslot}</div>
-                      <div className="price">{showDetail.price}</div>
-                    </div>
-                  ))
-              }
-              </div>
-              </List.Item>
-              ))
-          }
+          {renderSessions()}
         </List>
-        </div>
+      </div>
     </>
   );
 }

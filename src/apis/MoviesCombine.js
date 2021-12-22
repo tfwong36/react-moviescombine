@@ -8,6 +8,6 @@ export const getAllCinemas = () => {
   return api.get("/cinemas");
 };
 
-export const getAllSessions = () => {
-  return api.get("/sessions");
+export const getAllSessionsByMovieId = (movieId) => {
+  return api.get("/sessions?movieid=" + movieId);
 };

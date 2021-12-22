@@ -1,8 +1,9 @@
 import {
   INIT_MOVIES,
   SELECT_SEAT,
-  INIT_SESSIONS,
+  INIT_CINEMA_SESSIONS,
   INIT_CINEMAS,
+  INIT_SESSIONS,
   INIT_SEATING_PLAN,
 } from "../constants/constants";
 
@@ -11,6 +12,7 @@ const initState = {
   seatingStatusList: [],
   selectedSeatList: [],
   sessionList: [],
+  cinemaListWithSessions: [],
   cinemaList: [],
 };
 
@@ -20,6 +22,8 @@ const MovieReducer = (state = initState, action) => {
       return { ...state, movieList: action.payload };
     case INIT_SESSIONS:
       return { ...state, sessionList: action.payload };
+    case INIT_CINEMA_SESSIONS:
+      return { ...state, cinemaListWithSessions: action.payload };
     case INIT_CINEMAS:
       return { ...state, cinemaList: action.payload };
 
