@@ -105,6 +105,7 @@ const showDetails = [
             cinemas.map((cinema) => (
               <List.Item>
               <div className="cinemaTitle">{cinema.title}</div>
+              <div className="showdateFlex">
               {
                   showDetails.map((showDetail) => (
                     <div className={ showDetail.remainingSeats !== 0 ? "showtimeNotNull" : "showtimeNull" }>
@@ -113,6 +114,7 @@ const showDetails = [
                     </div>
                   ))
               }
+              </div>
               </List.Item>
               ))
           }

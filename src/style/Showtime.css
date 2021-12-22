@@ -130,7 +130,7 @@ opacity: 0.4;
   }
 
   .showtimeNotNull {
-    background: rgba(108, 138, 113, 0.5);
+    background: rgba(108, 138, 113);
     width: 62px;
     height: 65px;
     box-sizing: border-box;
@@ -138,7 +138,7 @@ opacity: 0.4;
   }
 
   .showtimeNull {
-    background: rgba(152, 87, 87, 0.5);
+    background: rgba(152, 87, 87);
     width: 62px;
     height: 65px;
     box-sizing: border-box;
