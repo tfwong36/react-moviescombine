@@ -69,8 +69,8 @@ color: #FFFFFF;
     display: flex;
     justify-content:flex-start;
     flex-direction: column;
-    margin-left: 25px;
-    margin-right: 25px;
+    margin-left: 20px;
+    margin-right: 20px;
     border-radius :25px;
     margin-top: 65px;
 }
@@ -78,6 +78,11 @@ color: #FFFFFF;
 .showdateFlex{
   display: flex;
   justify-content: space-around;
+}
+
+.showdateContainer {
+    position: fixed;
+    width: 90%;
 }
 
 .showdateTitle {

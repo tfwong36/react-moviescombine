@@ -5,5 +5,12 @@ export const getAllMovies = () => {
 };
 
 export const getAllSeats = (sessionID) => {
-  return api.get('/sessions/'+sessionID+'/seats')
-}
+  return api.get("/sessions/" + sessionID + "/seats");
+};
+export const getAllCinemas = () => {
+  return api.get("/cinemas");
+};
+
+export const getAllSessionsByMovieId = (movieId) => {
+  return api.get("/sessions?movieid=" + movieId);
+};
