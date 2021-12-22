@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { Button } from "antd-mobile";
+import { Button, NavBar } from "antd-mobile";
 import "../style/SelectSeat.css";
 import SeatingMap from "./SeatingMap";
 import SelectSeatText from "./SelectSeatText";
@@ -20,6 +20,9 @@ function SelectSeat() {
 
   return (
     <>
+      <div onClick={() => history.goBack()}>
+        <NavBar className="backText">Seat Selection</NavBar>
+      </div>
       <div className="container">
         <div className="movieTitle">Spider-Man No Way Home</div>
         <div className="priceDuration">
