@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600&family=Acme&family=Actor&family=Advent+Pro:wght@200&family=Alef&family=Imperial+Script&family=Signika:wght@300&display=swap');
+.container{
+    display: flex;
+    justify-content:flex-start;
+    flex-direction: column;
+    margin-left: 25px;
+    margin-right: 25px;
+    border-radius :25px;
+    text-align: left;
+}
+.movieTitle {
+  font-family: Advent Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 31px;
+
+  color: #ffffff;
+}
+.priceDuration {
+  font-family: Alef;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: -0.24px;
+
+  color: #ffffff;
+
+  opacity: 0.6;
+}
+.cinemaDetail,
+.showDateandTime {
+  font-family: Alef;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: -0.24px;
+
+  color: #ffffff;
+}
+
+.seating-map-grid-table-container{
+    margin-top: 5%;
+    text-align: center;
+    width: 80%;
+}
+
+.seating-map-container{
+  display: grid;
+  place-items: center;
+}
+
+
+.grid-table{
+    display: grid;
+    grid-row-gap: 1rem;
+    grid-template-columns: 30px 30px 30px 30px 30px 30px 30px 30px 30px 30px 30px;
+}
+
+.grid-item{
+    color: white;
+}
+
+.seating-map-row {
+  display: flex;
+  flex-direction: row;
+}
+.seating-map-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.seat{
+    margin-bottom: 3%;
+    margin-left: 2%;
+}
+
+.selected-seat-text{
+    font-family: Advent Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 26px;
+    padding-left: 0px;
+    color: #FFFFFF;    
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width:100%; 
+}
+
+.seat-availability{
+    display: flex;
+    align-items: center;
+    margin-top: 5%;
+    font-size: 26px;
+    font-family: Alef;
+    font-size: 11px;
+    line-height: 15px;
+    color: #FFFFFF; 
+    
+}
+
+.seat-availability-container{
+    display: block; 
+    margin: auto;
+}
+
+.seat-availability-text{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.seating-map-purchase-btn{
+  font-family: Acme;
+  background: linear-gradient(255.96deg, rgba(255, 187, 0, 0.6) 0%, #FFBB00 100%);
+  border-radius: 10px;
+  border-style: none;
+  width: 206px;
+  height: 37px;
+}
