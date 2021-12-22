@@ -16,8 +16,8 @@ function Showtime() {
   const location = useLocation();
   const history = useHistory();
   const currentDate = new Date();
-  const [pressedKey, setPressedKey] = useState(1);
-  const [pressedDate, setPressedDate] = useState(null);
+  const [pressedKey, setPressedKey] = useState(6);
+  const [pressedDate, setPressedDate] = useState(currentDate.getDate() + 6);
   const dispatch = useDispatch();
   const weekday = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   let showDates = [];
@@ -104,6 +104,7 @@ function Showtime() {
       }
     });
   }
+  console.log(pressedKey);
 
   return (
     <>
