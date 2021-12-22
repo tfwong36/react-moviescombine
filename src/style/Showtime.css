@@ -76,18 +76,6 @@ color: #FFFFFF;
     margin-top: 65px;
 }
 
-.showtime{
-font-family: Abhaya Libre SemiBold;
-font-style: normal;
-font-weight: 700;
-font-size: 13px;
-line-height: 15px;
-text-align: center;
-margin-top: 5px;
-color: #FFFFFF;
-opacity: 0.4;
-}
-
 .showdateFlex{
   display: flex;
   justify-content: space-around;
@@ -100,9 +88,19 @@ opacity: 0.4;
     font-size: 13px;
     line-height: 15px;
     text-align: center;
-    margin-top: 5px;
+    margin-top: 15px;
     color: #ffffff;
     opacity: 0.5;
+  }
+
+  .showDetails {
+    font-family: Abhaya Libre SemiBold;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    letter-spacing: -0.24px;
+    color: #ffffff;
   }
 
   .showdateTitleSelected {
@@ -112,7 +110,7 @@ opacity: 0.4;
     font-size: 13px;
     line-height: 15px;
     text-align: center;
-    margin-top: 5px;
+    margin-top: 15px;
     color: #ffffff;
   }
 
@@ -131,18 +129,18 @@ opacity: 0.4;
 
   .showtimeNotNull {
     background: rgba(108, 138, 113);
-    width: 62px;
-    height: 65px;
+    width: 68px;
+    height: 37px;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 5px;
   }
 
   .showtimeNull {
     background: rgba(152, 87, 87);
-    width: 62px;
-    height: 65px;
+    width: 69px;
+    height: 37px;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 5px;
   }
 
   .showdateValueSelected {
@@ -157,17 +155,31 @@ opacity: 0.4;
     color: #FFC600;
   }
 
-.showtimeValue{
-  font-family: Abhaya Libre;
+.timeslot {
+  font-family: Abhaya Libre SemiBold;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  line-height: 17px;
+  line-height: 19px;
   text-align: center;
-  letter-spacing: -0.24px;
+  letter-spacing: 0.5px;
   margin-top: 3px;
   color: #FFFFFF;
 }
+
+.price {
+    font-family: Abhaya Libre SemiBold;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 15px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    color: #FFFFFF;
+    background-color: #656565;
+  }
 
 .emptyDiv{
   height: 300px;

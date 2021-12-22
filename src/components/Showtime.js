@@ -109,8 +109,8 @@ const showDetails = [
               {
                   showDetails.map((showDetail) => (
                     <div className={ showDetail.remainingSeats !== 0 ? "showtimeNotNull" : "showtimeNull" }>
-                      <div className={ showdate.key === pressedDate ? "showdateTitleSelected" : "showdateTitle" }>{showDetail.timeslot}</div>
-                      <div className={ showdate.key === pressedDate ? "showdateValueSelected" : "showdateValue" }>{showDetail.price}</div>
+                      <div className="timeslot">{showDetail.timeslot}</div>
+                      <div className="price">{showDetail.price}</div>
                     </div>
                   ))
               }
