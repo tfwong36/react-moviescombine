@@ -17,11 +17,15 @@ function SelectSeat() {
   const history = useHistory();
   const dispatch = useDispatch();
   const { movieTitle, cinema, session } = location.state;
-  const title = "spider-man";
-  const price = 123.4;
-  const cinemaDetail = "Emperor Cinemas (Ma On Shan)";
-  const showDateandTime = "22 Dec 2021 (Wed) 15:10";
-  const sessionID = "61c28138c57b9025d6feb3bb";
+
+  const title = movieTitle;
+  const price = session.price;
+  const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour:'2-digit', minute:'2-digit' };
+  const cinemaDetail = cinema.name + " (" + cinema.location+")";
+  const showDateandTime = (new Date(session.showDateTimeHkt)).toLocaleDateString("en-GB", options);
+  const sessionID = session.id;
+
+  console.log(session)
   useEffect(() => {
     getAllSeats(sessionID).then((response) => {
       dispatch({ type: INIT_SEATING_PLAN, payload: response.data });
@@ -53,6 +57,7 @@ function SelectSeat() {
               title,
               price,
               showDateandTime,
+              sessionID
             })
           }
         >
@@ -70,7 +75,7 @@ function SelectSeat() {
         <div className="priceDuration">
           Price: ${price}| Duration: 128.3 minures
         </div>
-        <div className="cinemaDetail"></div>
+        <div className="cinemaDetail">{cinemaDetail}</div>
         <div className="showDateandTime">{showDateandTime}</div>
       </div>
       <div className="screen-curve">
