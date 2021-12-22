@@ -39,6 +39,21 @@ function Payment() {
   let cvv;
   let phoneNumber;
 
+  let optionMonth = [];
+  let optionYear = [];
+  let thisYear = new Date().getFullYear();
+  
+
+  for(let i = 1 ; i <= 12 ; i++)
+  {
+    optionMonth.push(<option>{i}</option>)
+  }
+
+  for(let i = thisYear ; i <= thisYear + 10 ; i++)
+  {
+    optionYear.push(<option>{i}</option>)
+  }
+
   function payNow(event) {
     event.preventDefault();
     console.log("holder: " + cardHolderName);
@@ -66,11 +81,12 @@ function Payment() {
     console.log(requestBody)
     api.post("/payments" , requestBody).then( (response) => {
       console.log(response) // success
-    }).catch(
-      // on faile
-    )
+      history.push("/")
+    }).catch( (response) => {
+      console.log("got 404")
+      history.goBack()
+    })
 
-    history.push("/")
 
   }
 
@@ -147,26 +163,10 @@ function Payment() {
 
           <div className="credit-card-subheading">Expiry Date (MM/YY)</div>
           <select onChange={handleMonthChange} required className="credit-card-select" type="select">
-            <option>01</option>
-            <option>02</option>
-            <option>03</option>
-            <option>04</option>
-            <option>05</option>
-            <option>06</option>
-            <option>07</option>
-            <option>08</option>
-            <option>09</option>
-            <option>10</option>
-            <option>11</option>
-            <option>12</option>
+            {optionMonth}
           </select>
           <select onChange={handleYearChange} required className="credit-card-select" type="select">
-            <option>2021</option>
-            <option>2022</option>
-            <option>2023</option>
-            <option>2024</option>
-            <option>2025</option>
-            <option>2026</option>
+            {optionYear}
           </select>
 
           <div className="credit-card-subheading">CVV</div>
