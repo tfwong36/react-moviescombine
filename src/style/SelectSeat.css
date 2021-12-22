@@ -49,8 +49,8 @@
 
 .seating-map-container {
   display: grid;
-  justify-content: center;
   position: relative;
+  place-items: center;
   top: -100px;
   user-select: none;
 }
