@@ -111,3 +111,12 @@
     margin-left: 5px;
     margin-right: 5px;
 }
+
+.seating-map-purchase-btn{
+  font-family: Acme;
+  background: linear-gradient(255.96deg, rgba(255, 187, 0, 0.6) 0%, #FFBB00 100%);
+  border-radius: 10px;
+  border-style: none;
+  width: 206px;
+  height: 37px;
+}
