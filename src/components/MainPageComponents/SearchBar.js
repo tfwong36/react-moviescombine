@@ -1,17 +1,26 @@
 import "../../style/MainPage.css";
 import { useState } from "react";
 import { SearchOutline } from "antd-mobile-icons";
+import { useSelector } from "react-redux";
 
 function SearchBar() {
   const [searchMovie, setSearchMovie] = useState([]);
+  const movieDropDownList = useSelector((state) => state.movieList);
 
   function onChangeSearchMovie(event) {
-    console.log(event.target.value);
     setSearchMovie(event.target.value);
   }
 
   function submitSearchMovie() {
+    if (!(searchMovie.trim() === "")) {
+    }
     setSearchMovie("");
+  }
+
+  function getDropDownItem() {
+    return movieDropDownList.map((movie, index) => (
+      <option key={index} value={movie.title} />
+    ));
   }
 
   return (
@@ -25,11 +34,7 @@ function SearchBar() {
         onChange={onChangeSearchMovie}
         value={searchMovie}
       />
-      <datalist id="movies">
-        <option value="Spider-Man: Work From Home" />
-        <option value="Spider-Man: Not Coming Home" />
-        <option value="Spider-Man: Home Sweet Home" />
-      </datalist>
+      <datalist id="movies">{getDropDownItem()}</datalist>
 
       <button
         type="submit"
