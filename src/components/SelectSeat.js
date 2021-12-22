@@ -58,7 +58,7 @@ function SelectSeat(){
                 <SeatingMap toggleSeatSelect={toggleSeatSelect}/>    
                 <SeatAvailability/> 
                 <SelectSeatText selectedSeats={selectedSeats}/>    
-                <Button className='seating-map-purchase-btn' onClick={() => history.push("/Payment",{selectedSeats,cinemaDetail,title,price,showDateandTime})}>
+                <Button className='seating-map-purchase-btn' onClick={() => history.push("/Payment",{selectedSeats,cinemaDetail,title,price,showDateandTime,sessionID})}>
                   PURCHASE
                 </Button> 
             </div>
