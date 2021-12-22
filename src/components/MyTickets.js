@@ -10,9 +10,6 @@ function MyTickets() {
     console.log(event.target.value);
     setMobileNumber(event.target.value);
   }
-  function onClickSearchResult() {
-    console.log("click");
-  }
 
   return (
     <>
