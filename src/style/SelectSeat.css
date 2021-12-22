@@ -52,6 +52,7 @@
   justify-content: center;
   position: relative;
   top: -100px;
+  user-select: none;
 }
 
 .grid-table {
