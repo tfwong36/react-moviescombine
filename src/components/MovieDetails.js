@@ -2,6 +2,7 @@ import { Rate } from "antd-mobile";
 import { NavBar } from "antd-mobile";
 import { Button } from "antd-mobile";
 import { LeftOutline } from "antd-mobile-icons";
+import { Dialog } from "antd-mobile-icons";
 import "../style/MovieDetails.css";
 import { useHistory, useLocation } from "react-router-dom";
 import YoutubeEmbed from "./YoutubeEmbed";
