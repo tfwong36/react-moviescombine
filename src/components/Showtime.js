@@ -22,17 +22,29 @@ function Showtime() {
   const weekday = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   let showDates = [];
 
-  const sessionList = useSelector((state) => state.sessionList);
+  const allCinemaList = useSelector((state) => state.cinemaList);
 
-  const cinemaListWithSessions = useSelector(
-    (state) => state.cinemaListWithSessions
+  const sessionList = useSelector((state) => state.sessionList).filter(
+    (session) =>
+      session.showDateTimeHkt.toString().split("T")[0] ===
+      pressedDate.toString()
   );
 
+  const cinemaListWithSessions = allCinemaList.map((cinema) => {
+    cinema.sessionList = sessionList.filter(
+      (session) => cinema.id === session.cinemaId
+    );
+    return cinema;
+  });
+
+  console.log(
+    useSelector((state) => state.movieList).filter(
+      (movie) => movie.id === location.state
+    )[0].title
+  );
   const movieTitle = useSelector((state) => state.movieList).filter(
     (movie) => movie.id === location.state
   )[0].title;
-
-  const allCinemaList = useSelector((state) => state.cinemaList);
 
   useEffect(() => {
     getAllCinemas().then((response) => {
@@ -42,23 +54,6 @@ function Showtime() {
       dispatch({ type: INIT_SESSIONS, payload: response.data });
     });
   }, [dispatch, location.state]);
-
-  useEffect(() => {
-    const currentSessions = sessionList.filter(
-      (session) =>
-        session.showDateTimeHkt.toString().split("T")[0] ===
-        pressedDate.toString()
-    );
-    dispatch({
-      type: INIT_CINEMA_SESSIONS,
-      payload: allCinemaList.map((cinema) => {
-        cinema.sessionList = currentSessions.filter(
-          (session) => cinema.id === session.cinemaId
-        );
-        return cinema;
-      }),
-    });
-  }, [dispatch, pressedDate]);
 
   //Arrange future 5 dates btn
   for (var i = 0; i < 5; i++) {
@@ -81,7 +76,7 @@ function Showtime() {
     return cinemaListWithSessions.map((cinema) => {
       if (cinema.sessionList.length > 0) {
         return (
-          <List.Item key={cinema.id + cinema.name}>
+          <List.Item>
             <div className="cinemaTitle">{cinema.name}</div>
             <div className="showdateFlex">
               {cinema.sessionList.map((session) => (
@@ -90,7 +85,7 @@ function Showtime() {
                     session.hasRemainSeat ? "showtimeNotNull" : "showtimeNull"
                   }
                   onClick={() =>
-                    history.push("/selectSeat", movieTitle, session, cinema)
+                    history.push("/selectSeat", { movieTitle, session, cinema })
                   }
                 >
                   <div className="timeslot">
