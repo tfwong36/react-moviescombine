@@ -8,6 +8,7 @@ function MovieDetails() {
   const location = useLocation();
   const history = useHistory();
   const {
+    id,
     category,
     description,
     genre,
@@ -61,7 +62,7 @@ function MovieDetails() {
           <YoutubeEmbed embedId={trailerSource} />
         </div>
         <div>
-          <Button color="warning" onClick={() => history.push("/Showtime")}>
+          <Button color="warning" onClick={() => history.push("/Showtime", id)}>
             Showtime
           </Button>
         </div>

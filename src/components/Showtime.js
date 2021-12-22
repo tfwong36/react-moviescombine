@@ -1,39 +1,44 @@
-import { Rate } from "antd-mobile";
-import { NavBar, JumboTabs } from 'antd-mobile'
+
+import React, { useEffect } from "react";
+import { getAllCinemas, getAllSessions } from "../apis/MoviesCombine";
+import { useDispatch } from "react-redux";
+import { INIT_CINEMAS, INIT_SESSIONS } from "../constants/constants";
+import { useSelector } from "react-redux";
+import { NavBar } from 'antd-mobile'
 import { List } from 'antd-mobile'
 import { useState } from "react";
 import "../style/Showtime.css";
-import { useHistory,useLocation } from "react-router-dom";
+import { format } from "date-fns";
+import { useHistory, useLocation } from "react-router-dom";
 function Showtime() {
-const location = useLocation();
-const history = useHistory();
-const [ pressedDate, setPressedDate] = useState(1);
-const showdate = [
-  {
-    key: 1,
-    day: 'WED',
-    date: '12/22',
-  },
-  {
-    key: 2,
-    day: 'THU',
-    date: '12/23',
-  },
-  {
-    key: 3,
-    day: 'FRI',
-    date: '12/24',
-  },
-  {
-    key: 4,
-    day: 'SAT',
-    date: '12/25',
-  },{
-    key: 5,
-    day: 'SUN',
-    date: '12/26',
-  },
-];
+  const location = useLocation();
+  const {
+    id,
+  } = location.state;
+  const history = useHistory();
+  const [ pressedDate, setPressedDate] = useState(1);
+  const dispatch = useDispatch();
+  const currentDate = new Date();
+  const weekday = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
+  let showdates = [];
+  
+  useEffect(() => {
+    getAllSessions().then((response) => {
+      dispatch({ type: INIT_SESSIONS, payload: response.data });
+    });
+  }, [dispatch]);
+  
+  for (var i = 0; i < 5; i++) {
+    const displayDate = new Date();
+    displayDate.setDate(currentDate.getDate() + i);
+    console.log(displayDate);
+    showdates.push({
+      key: i + 1,
+      day: weekday[displayDate.getDay()],
+      date: (displayDate.getMonth() + 1) + "/" + displayDate.getDate(),
+      longDate: (displayDate.getFullYear() - 1) + "-" + (displayDate.getMonth() + 1) + "-" + displayDate.getDate()
+    })
+  }
 
 const cinemas = [
   {
@@ -83,9 +88,10 @@ const showDetails = [
     <>
     <div className="navBar" onClick={() => history.goBack()}><NavBar>Spider-Man: No Way Home</NavBar></div>
     <div className="container">
+    <div className="showdateContainer">
     <div className="showdateFlex">
         {
-          showdate.map((showdate) => (
+          showdates.map((showdate) => (
           <div className={ showdate.key === pressedDate ? "showdateSelected" : "showdate" } onClick={() => setPressedDate(showdate.key)}>
             <div className={ showdate.key === pressedDate ? "showdateTitleSelected" : "showdateTitle" }>{showdate.day}</div>
             <div className={ showdate.key === pressedDate ? "showdateValueSelected" : "showdateValue" }>{showdate.date}</div>
@@ -93,12 +99,14 @@ const showDetails = [
           ))
         }
         </div>
+        </div>
         <List
           style={{
             '--border-inner': 'none',
             '--border-top': 'none',
             '--border-bottom': 'none',
             'background-color': 'transparent',
+            'margin-top': '70px',
           }}
         >
           {
