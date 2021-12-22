@@ -12,7 +12,7 @@ import { INIT_SEATING_PLAN } from "../constants/constants";
 
 function SelectSeat(){
     const [selectedSeats, setSelectedSeats] = useState([]);
-    // let location = useLocation();
+    // const location = useLocation();
     const history = useHistory();
     const dispatch = useDispatch();
     // const {
@@ -45,7 +45,16 @@ function SelectSeat(){
         }
     }
 
-
+    const getPurchaseButton = () =>{
+        if (selectedSeats.length < 1)
+        return <Button disabled className='seating-map-purchase-btn'>
+                 PURCHASE
+                </Button> 
+        else
+            return  <Button  className='seating-map-purchase-btn' onClick={() => history.push("/Payment",{selectedSeats,cinemaDetail,title,price,showDateandTime})}>
+                PURCHASE
+                </Button> 
+    }
     return (
         <>
             <div className="container">
@@ -58,9 +67,7 @@ function SelectSeat(){
                 <SeatingMap toggleSeatSelect={toggleSeatSelect}/>    
                 <SeatAvailability/> 
                 <SelectSeatText selectedSeats={selectedSeats}/>    
-                <Button className='seating-map-purchase-btn' onClick={() => history.push("/Payment",{selectedSeats,cinemaDetail,title,price,showDateandTime,sessionID})}>
-                  PURCHASE
-                </Button> 
+                {getPurchaseButton()}
             </div>
         </>
     );
