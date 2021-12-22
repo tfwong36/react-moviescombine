@@ -21,7 +21,20 @@ function Showtime() {
   const currentDate = new Date();
   const weekday = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
   let showdates = [];
+
+  const sessionList = useSelector((state) => state.sessionListByDate);
   
+  const cinemaList = useSelector((state) => state.cinemaList);
+  const cinemaNameList = sessionList.map((session) => {
+      return cinemaList.filter((cinema) => cinema.id === session.cinemaId);
+  });
+
+  useEffect(() => {
+    getAllCinemas().then((response) => {
+      dispatch({ type: INIT_CINEMAS, payload: response.data });
+    });
+  }, [dispatch]);
+
   useEffect(() => {
     getAllSessions().then((response) => {
       dispatch({ type: INIT_SESSIONS, payload: response.data });
