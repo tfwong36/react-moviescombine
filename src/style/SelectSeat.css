@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600&family=Acme&family=Actor&family=Advent+Pro:wght@200&family=Alef&family=Imperial+Script&family=Signika:wght@300&display=swap");
+.container {
+  display: flex;
+  margin-top: 16px;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-left: 25px;
+  margin-right: 25px;
+  border-radius: 25px;
+  text-align: left;
+}
+.movieTitle {
+  font-family: Advent Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 31px;
+
+  color: #ffffff;
+}
+.priceDuration {
+  font-family: Alef;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: -0.24px;
+
+  color: #ffffff;
+
+  opacity: 0.6;
+}
+.cinemaDetail,
+.showDateandTime {
+  font-family: Alef;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: -0.24px;
+
+  color: #ffffff;
+}
+
+.seating-map-grid-table-container {
+  margin-top: 5%;
+  text-align: center;
+  width: 80%;
+}
+
+.seating-map-container {
+  display: grid;
+  position: relative;
+  place-items: center;
+  top: -100px;
+  user-select: none;
+}
+
+.grid-table {
+  display: grid;
+  grid-row-gap: 1rem;
+  grid-template-columns: 30px 30px 30px 30px 30px 30px 30px 30px 30px 30px 30px;
+}
+
+.grid-item {
+  color: white;
+}
+
+.seating-map-row {
+  display: flex;
+  flex-direction: row;
+}
+.seating-map-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.seat {
+  margin-bottom: 3%;
+  margin-left: 2%;
+}
+
+.selected-seat-text {
+  font-family: Advent Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  padding-left: 0px;
+  color: #ffffff;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.seat-availability {
+  display: flex;
+  align-items: center;
+  margin-top: 5%;
+  font-size: 26px;
+  font-family: Alef;
+  font-size: 11px;
+  line-height: 15px;
+  color: #ffffff;
+}
+
+.seat-availability-container {
+  display: block;
+  margin: auto;
+}
+
+.seat-availability-text {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.seating-map-purchase-btn {
+  font-family: Acme;
+  background: linear-gradient(
+    255.96deg,
+    rgba(255, 187, 0, 0.6) 0%,
+    #ffbb00 100%
+  );
+  border-radius: 10px;
+  border-style: none;
+  width: 206px;
+  height: 37px;
+  margin: 0 auto;
+}
+
+.screen-curve {
+  margin-top: 10%;
+  width: 100%;
+  height: 150px;
+  border: solid 2px #000;
+  padding: 25px;
+  border-color: #ffffff transparent transparent transparent;
+  border-radius: 50% 50% 0 0;
+  margin-top: 60px;
+  opacity: 20%;
+}
+
+.screen-text {
+  color: #ffffff;
+  font-family: Alef;
+  font-size: 11px;
+}
+
+.back-arrow {
+  color: #8d96ad;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.back-text {
+  width: 273px;
+  margin-left: 15px;
+  height: 31px;
+  font-family: Acme;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 31px;
+  color: #ffffff;
+  text-align: left;
+  margin-bottom: 10px;
+}

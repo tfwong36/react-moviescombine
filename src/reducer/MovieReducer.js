@@ -1,6 +1,18 @@
-import { INIT_MOVIES, INIT_SESSIONS, INIT_CINEMAS } from "../constants/constants";
+import {
+  INIT_MOVIES,
+  SELECT_SEAT,
+  INIT_SESSIONS,
+  INIT_CINEMAS,
+  INIT_SEATING_PLAN,
+} from "../constants/constants";
 
-const initState = { movieList: [], sessionList: [], cinemaList: [] };
+const initState = {
+  movieList: [],
+  seatingStatusList: [],
+  selectedSeatList: [],
+  sessionList: [],
+  cinemaList: [],
+};
 
 const MovieReducer = (state = initState, action) => {
   switch (action.type) {
@@ -9,7 +21,27 @@ const MovieReducer = (state = initState, action) => {
     case INIT_SESSIONS:
       return { ...state, sessionList: action.payload };
     case INIT_CINEMAS:
-        return { ...state, cinemaList: action.payload };
+      return { ...state, cinemaList: action.payload };
+
+    case INIT_SEATING_PLAN:
+      return { ...state, seatingStatusList: action.payload };
+
+    case SELECT_SEAT:
+      return {
+        ...state,
+        seatingStatusList: state.seatingStatusList.map((seat) => {
+          if (seat.key === action.payload.key) {
+            action.payload.status = "s";
+            return action.payload;
+          }
+          return seat;
+        }),
+        selectedSeatList: state.seatingStatusList.filter((seat) => {
+          if (seat.status === "s") {
+            return seat;
+          }
+        }),
+      };
     default:
       return state;
   }

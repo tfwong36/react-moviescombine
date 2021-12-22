@@ -1,0 +1,100 @@
+:root {
+  --marginLeft: 27px;
+}
+
+.cinema-detail,
+.show-date-and-time {
+  font-family: Alef;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  margin-left: var(--marginLeft);
+  letter-spacing: -0.24px;
+  text-align: left;
+
+  color: #ffffff;
+}
+
+.movie-title-box {
+  font-family: Advent Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 26px;
+  line-height: 31px;
+  text-align: left;
+  margin-left: var(--marginLeft);
+  color: #ffffff;
+}
+
+.price-duration {
+  font-family: Alef;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: -0.24px;
+  color: #ffffff;
+  text-align: left;
+  margin-left: var(--marginLeft);
+  opacity: 0.6;
+}
+
+.back-text {
+  width: 273px;
+  height: 31px;
+  font-family: Acme;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 31px;
+  color: #ffffff;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.back-arrow {
+  color: #8d96ad;
+  font-size: 20px;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+
+.receipt-header {
+  color: #bdcaec;
+  font-family: Alef;
+  font-size: 16;
+  font-style: bold;
+  text-align: center;
+}
+
+.receipt-content {
+  color: #ffffff;
+  font-family: Alef;
+  font-size: 16;
+  text-align: center;
+}
+
+.receipt-info-box {
+  display: flex;
+  margin-top: 27px;
+  justify-content: space-evenly;
+}
+.receipt-total-box {
+  margin-top: 4px;
+  background-color: rgba(255, 255, 255, 0.25);
+  text-align: center;
+  padding: 10px 17px 10px 10px;
+}
+
+.credit-card-info-box {
+  margin-top: 31px;
+  text-align: left;
+}
+
+.credit-card-heading {
+  color: #ffffff;
+  font-family: Advent Pro;
+  font-size: 26px;
+  margin-left: var(--marginLeft);
+}
