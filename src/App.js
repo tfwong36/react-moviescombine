@@ -12,6 +12,7 @@ import MainPage from "./components/MainPage";
 import MovieDetails from "./components/MovieDetails";
 import SelectSeat from "./components/SelectSeat";
 import Payment from "./components/Payment";
+import PurchaseDetails from "./components/PurchaseDetails";
 
 function App() {
   return (
@@ -30,10 +31,13 @@ function App() {
           </nav>
           <Switch>
             <Route exact path="/selectSeat">
-              <SelectSeat></SelectSeat>
+              <MyTickets></MyTickets>
             </Route>
             <Route exact path="/MovieDetails">
               <MovieDetails></MovieDetails>
+            </Route>
+            <Route exact path="/PurcahseDetails">
+              <PurchaseDetails></PurchaseDetails>
             </Route>
             <Route exact path="/Showtime">
               <Showtime></Showtime>
