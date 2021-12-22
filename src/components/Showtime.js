@@ -28,6 +28,10 @@ function Showtime() {
     (state) => state.cinemaListWithSessions
   );
 
+  const movieTitle = useSelector((state) => state.movieList).filter(
+    (movie) => movie.id === location.state
+  )[0].title;
+
   const allCinemaList = useSelector((state) => state.cinemaList);
 
   useEffect(() => {
@@ -85,6 +89,9 @@ function Showtime() {
                   className={
                     session.hasRemainSeat ? "showtimeNotNull" : "showtimeNull"
                   }
+                  onClick={() =>
+                    history.push("/selectSeat", movieTitle, session, cinema)
+                  }
                 >
                   <div className="timeslot">
                     {session?.showDateTimeHkt
@@ -104,12 +111,11 @@ function Showtime() {
       }
     });
   }
-  console.log(pressedKey);
 
   return (
     <>
       <div className="navBar" onClick={() => history.goBack()}>
-        <NavBar>Spider-Man: No Way Home</NavBar>
+        <NavBar>{movieTitle}</NavBar>
       </div>
       <div className="container">
         <div className="showdateContainer">
