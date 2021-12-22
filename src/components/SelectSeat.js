@@ -28,9 +28,9 @@ function SelectSeat(){
     const price = 123.4
     const cinemaDetail = 'Emperor Cinemas (Ma On Shan)';
     const showDateandTime = '22 Dec 2021 (Wed) 15:10';
-
+    const sessionID = '61c28138c57b9025d6feb3bb';
     useEffect(() => {
-        getAllSeats('61c1a418f4d70de6e4b77162').then((response) => {
+        getAllSeats(sessionID).then((response) => {
           console.log(response.data);
           dispatch({ type: INIT_SEATING_PLAN, payload: response.data });
         });
