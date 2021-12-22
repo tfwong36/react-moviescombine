@@ -1,16 +1,28 @@
-import { INIT_SEATING_PLAN } from "../constants/constants";
+import { getAllSeats } from "../apis/MoviesCombine";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Seat from "./Seat";
-import { SEAT_AVALIABLE , SEAT_OCCUPIED} from "../constants/constants";
+import { SEAT_AVALIABLE , SEAT_OCCUPIED, INIT_SEATING_PLAN} from "../constants/constants";
 function SeatingMap({toggleSeatSelect}){
+    const dispatch = useDispatch();
     const columnNumber = 11;
     const rowNumber = ['A','B','C','D','E','F','G','H','I'];
     let seatingStatusList = [];
-    const aSeats = ['A1','C1','F1','B4'];
+    
+    useEffect(() => {
+        getAllSeats('61c1a418f4d70de6e4b77162').then((response) => {
+          console.log(response.data);
+          dispatch({ type: INIT_SEATING_PLAN, payload: response.data });
+        });
+      }, [dispatch]);
+    
+    const availableSeats = useSelector((state) => state.seatingStatusList);
+
     rowNumber.forEach( row => 
     {
         for(let seat = 1; seat < columnNumber+1 ; seat++){
             const key = row+seat;
-            const status = (!aSeats.includes(key)) ? SEAT_AVALIABLE : SEAT_OCCUPIED;
+            const status = (availableSeats.includes(key)) ? SEAT_AVALIABLE : SEAT_OCCUPIED;
             seatingStatusList.push({key:key , status:status , row:row, columnNumber:columnNumber});}}
     );
 
