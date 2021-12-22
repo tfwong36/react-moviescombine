@@ -3,6 +3,7 @@ import "../style/Payment.css";
 import { useHistory, useLocation } from "react-router-dom";
 import api from "../apis/api"
 import MovieDetails from "./MovieDetails";
+import { Dialog } from "antd-mobile/es/components/dialog/dialog";
 function Payment() {
   const location = useLocation();
   const history = useHistory();
@@ -67,10 +68,11 @@ function Payment() {
     api.post("/payments" , requestBody).then( (response) => {
       console.log(response) // success
       history.push("/")
-    }).catch( (response) => {
-      console.log("got 404")
-      history.goBack()
+    }).catch( () => {
+      Dialog.alert({content: "Please select another seat." , 
+                  onConfirm: () => {history.goBack()}})
     })
+
 
 
   }
