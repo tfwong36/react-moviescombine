@@ -11,16 +11,16 @@ function SeatingMap({toggleSeatSelect}){
     useEffect(() => {
         const columnNumber = 11;
         const rowNumber = ['A','B','C','D','E','F','G','H','I'];
-        let temp = [];
+        let fetchedStatusList = [];
         rowNumber.forEach( row => 
             {
                 for(let seat = 1; seat < columnNumber+1 ; seat++){
                     const key = row+seat;
                     const status = (availableSeats.includes(key)) ? SEAT_AVALIABLE : SEAT_OCCUPIED;
-                    temp.push({key:key , status:status , row:row, columnNumber:columnNumber});
+                    fetchedStatusList.push({key:key , status:status , row:row, columnNumber:columnNumber});
                 }
             });
-        setSeatingStatusList(temp);
+        setSeatingStatusList(fetchedStatusList);
     }, [availableSeats])
 
     const listItems = seatingStatusList.map((seat) => {
