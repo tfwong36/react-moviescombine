@@ -23,11 +23,12 @@ function MovieDetails() {
   } = location.state;
   const sectionStyle = {
     background:
-      " linear-gradient(to top, rgba(0, 0, 0, 255) 25%, rgb(0, 0, 0,0) ),url(" +
+      " linear-gradient(to top, rgba(0, 0, 0, 255) 35%, rgb(0, 0, 0,0) ),url(" +
       location.state.posterSource +
       ")",
     borderRadius: "50px",
     backgroundSize: "contain",
+    backgroundRepeat  : "no-repeat",
   };
 
   return (
