@@ -7,6 +7,7 @@ import { INIT_MOVIES } from "../constants/constants";
 import { useSelector } from "react-redux";
 
 import MovieSwiper from "./MainPageComponents/MovieSwiper";
+import SearchBar from "./MainPageComponents/SearchBar";
 
 function MainPage() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function MainPage() {
 
   return (
     <div>
+      <SearchBar></SearchBar>
       <MovieSwiper title={"SHOWING"} movieList={showingMovieList}></MovieSwiper>
       <MovieSwiper
         title={"UPCOMING"}

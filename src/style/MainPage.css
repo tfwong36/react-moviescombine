@@ -18,3 +18,24 @@
   color: #ffffff;
 }
 
+.search-bar {
+  font-family: Signika;
+  margin-top: 4vh;
+  width: 60vw;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  border: 1px solid gray;
+  border-radius: 20px;
+  background-color: #2e3243;
+  height: 5vh;
+}
+
+.search-submit {
+  text-decoration: none;
+  border: none;
+  margin-top: 4vh;
+  text-align: center;
+  background-color: #2e3243;
+  height: 5vh;
+}
