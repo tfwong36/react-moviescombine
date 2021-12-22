@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600&family=Acme&family=Actor&family=Advent+Pro:wght@200&family=Alef&family=Imperial+Script&family=Signika:wght@300&display=swap");
 .container {
   display: flex;
-  margin-top: 16px;
+  margin-top: 50px;
   justify-content: flex-start;
   flex-direction: column;
   margin-left: 25px;

@@ -14,9 +14,13 @@ function Payment() {
     price,
     releaseDate,
     trailerSource,
+    selectedSeats,
+    showDateandTime,
   } = location.state;
-  console.log(location.state);
-
+  console.log(selectedSeats);
+  console.log(title);
+  console.log(price);
+  console.log(showDateandTime);
   return (
     <>
       <div>
