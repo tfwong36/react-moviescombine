@@ -6,10 +6,12 @@ import "../style/SelectSeat.css";
 import SeatingMap from "./SeatingMap";
 import SelectSeatText from "./SelectSeatText";
 import SeatAvailability from "./SeatAvailability";
+import { LeftOutlined } from "@ant-design/icons/lib/icons";
 
 function SelectSeat() {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const history = useHistory();
+
   const toggleSeatSelect = (seat) => {
     if (!selectedSeats.includes(seat)) {
       setSelectedSeats([...selectedSeats, seat]);
@@ -20,6 +22,9 @@ function SelectSeat() {
 
   return (
     <>
+      <div className="back-text" onClick={() => history.goBack()}>
+        <LeftOutlined className="back-arrow" />
+      </div>
       <div className="container">
         <div className="movieTitle">Spider-Man No Way Home</div>
         <div className="priceDuration">

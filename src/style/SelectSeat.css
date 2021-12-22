@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600&family=Acme&family=Actor&family=Advent+Pro:wght@200&family=Alef&family=Imperial+Script&family=Signika:wght@300&display=swap");
 .container {
   display: flex;
+  margin-top: 16px;
   justify-content: flex-start;
   flex-direction: column;
   margin-left: 25px;
@@ -142,4 +143,24 @@
   color: #ffffff;
   font-family: Alef;
   font-size: 11px;
+}
+
+.back-arrow {
+  color: #8d96ad;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.back-text {
+  width: 273px;
+  margin-left: 15px;
+  height: 31px;
+  font-family: Acme;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 31px;
+  color: #ffffff;
+  text-align: left;
+  margin-bottom: 10px;
 }

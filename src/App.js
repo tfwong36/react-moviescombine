@@ -23,13 +23,13 @@ function App() {
               <Link to="/" className="navigation-tab">
                 <SearchOutline color="white" fontSize={36} />
               </Link>
-              <Link to="/MyTickets" className="navigation-tab">
+              <Link to="/selectSeat" className="navigation-tab">
                 <CouponOutline color="white" fontSize={36} />
               </Link>
             </ul>
           </nav>
           <Switch>
-            <Route exact path="/MyTickets">
+            <Route exact path="/selectSeat">
               <SelectSeat></SelectSeat>
             </Route>
             <Route exact path="/MovieDetails">
