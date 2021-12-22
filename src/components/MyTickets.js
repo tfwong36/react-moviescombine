@@ -1,8 +1,9 @@
 import "../style/MyTickets.css";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 function MyTickets() {
+
   const [mobileNumber, setMobileNumber] = useState([]);
   const history = useHistory();
 

@@ -19,12 +19,13 @@
 }
 
 .search-bar {
+  text-decoration: none;
+  border: none;
   font-family: Signika;
   margin-top: 4vh;
-  width: 60vw;
+  width: 70vw;
   text-align: center;
   color: white;
-  text-decoration: none;
   border: 1px solid gray;
   border-radius: 20px;
   background-color: #2e3243;
@@ -38,4 +39,5 @@
   text-align: center;
   background-color: #2e3243;
   height: 5vh;
+  padding-left: 5vw;
 }

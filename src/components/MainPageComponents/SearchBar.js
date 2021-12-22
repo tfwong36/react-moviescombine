@@ -2,24 +2,38 @@ import "../../style/MainPage.css";
 import { useState } from "react";
 import { SearchOutline } from "antd-mobile-icons";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function SearchBar() {
-  const [searchMovie, setSearchMovie] = useState([]);
+  const [searchMovieTitle, setSearchMovieTitle] = useState([]);
   const movieDropDownList = useSelector((state) => state.movieList);
+  const history = useHistory();
 
   function onChangeSearchMovie(event) {
-    setSearchMovie(event.target.value);
+    setSearchMovieTitle(event.target.value);
   }
 
-  function submitSearchMovie() {
-    if (!(searchMovie.trim() === "")) {
+  function submitSearchMovie(event) {
+    let targetMovie = movieDropDownList.filter(
+      (movie) => movie.title === searchMovieTitle
+    )[0];
+    if (targetMovie !== undefined) {
+      history.push("/MovieDetails", targetMovie);
     }
-    setSearchMovie("");
+    setSearchMovieTitle("");
   }
 
   function getDropDownItem() {
+    // history.push("/MovieDetails");
     return movieDropDownList.map((movie, index) => (
-      <option key={index} value={movie.title} />
+      <>
+        {/* <script>history.push("/MovieDetails", movie)</script> */}
+        <option
+          key={index}
+          value={movie.title}
+          // onClick={() => history.push("/MovieDetails", movie)}
+        />
+      </>
     ));
   }
 
@@ -32,16 +46,15 @@ function SearchBar() {
         name="movie"
         id="movie"
         onChange={onChangeSearchMovie}
-        value={searchMovie}
+        value={searchMovieTitle}
       />
       <datalist id="movies">{getDropDownItem()}</datalist>
-
       <button
         type="submit"
         className="search-submit"
         onClick={submitSearchMovie}
       >
-        <SearchOutline color="white" fontSize={24} />
+        <SearchOutline fontSize={26} color="white" />
       </button>
     </div>
   );
