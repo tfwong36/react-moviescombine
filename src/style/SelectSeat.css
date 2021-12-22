@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600&family=Acme&family=Actor&family=Advent+Pro:wght@200&family=Alef&family=Imperial+Script&family=Signika:wght@300&display=swap");
 .container {
   display: flex;
-  margin-top: 16px;
+  margin-top: 50px;
   justify-content: flex-start;
   flex-direction: column;
   margin-left: 25px;
@@ -26,9 +26,7 @@
   line-height: 20px;
   letter-spacing: -0.24px;
 
-  color: #ffffff;
-
-  opacity: 0.6;
+  color: #b1b1b1;
 }
 .cinemaDetail,
 .showDateandTime {

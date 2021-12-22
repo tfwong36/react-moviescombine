@@ -10,6 +10,7 @@ function MovieDetails() {
   const location = useLocation();
   const history = useHistory();
 
+    id,
   const sectionStyle = {
     background:
       " linear-gradient(to top, rgba(0, 0, 0, 255) 25%, rgb(0, 0, 0,0) ),url(" +
@@ -60,7 +61,7 @@ function MovieDetails() {
           <YoutubeEmbed embedId={location.state.trailerSource} />
         </div>
         <div>
-          <Button color="warning" onClick={() => history.push("/Showtime")}>
+          <Button color="warning" onClick={() => history.push("/Showtime", id)}>
             Showtime
           </Button>
         </div>

@@ -98,3 +98,38 @@
   font-size: 26px;
   margin-left: var(--marginLeft);
 }
+
+.credit-card-subheading {
+  color: #ffffff;
+  font-family: Advent Pro;
+  font-size: 15px;
+  margin-left: var(--marginLeft);
+  margin-bottom: 5px;
+}
+
+.credit-card-text
+{
+  border-radius: 20px;
+  width: 90%;
+  margin-left: var(--marginLeft);
+  margin-bottom: 10px;
+}
+
+.credit-card-select
+{
+  border-radius: 20px;
+  width: 40%;
+  margin-left: var(--marginLeft);
+  margin-bottom: 10px;
+}
+
+.credit-card-btn{
+  font-family: Acme;
+  background: linear-gradient(255.96deg, rgba(255, 187, 0, 0.6) 0%, #FFBB00 100%);
+  border-radius: 10px;
+  border-style: none;
+  width: 206px;
+  height: 37px;
+  width: 90%;
+  margin-left: var(--marginLeft);
+}
