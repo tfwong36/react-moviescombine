@@ -31,7 +31,6 @@ function SelectSeat(){
     const sessionID = '61c28138c57b9025d6feb3bb';
     useEffect(() => {
         getAllSeats(sessionID).then((response) => {
-          console.log(response.data);
           dispatch({ type: INIT_SEATING_PLAN, payload: response.data });
         });
       }, [dispatch]);
