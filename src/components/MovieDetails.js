@@ -62,7 +62,7 @@ function MovieDetails() {
           <YoutubeEmbed embedId={trailerSource} />
         </div>
         <div>
-          <Button color="warning" onClick={() => history.push("/Showtime", id)}>
+          <Button color="warning" onClick={() => history.push("/Showtime", location.state)}>
             Showtime
           </Button>
         </div>

@@ -8,21 +8,24 @@ import { NavBar } from 'antd-mobile'
 import { List } from 'antd-mobile'
 import { useState } from "react";
 import "../style/Showtime.css";
-import { format } from "date-fns";
 import { useHistory, useLocation } from "react-router-dom";
 function Showtime() {
   const location = useLocation();
-  const {
-    id,
-  } = location.state;
   const history = useHistory();
-  const [ pressedDate, setPressedDate] = useState(1);
-  const dispatch = useDispatch();
   const currentDate = new Date();
+  const [ pressedKey, setPressedKey] = useState(1);
+  const [ pressedDate, setPressedDate] = useState(currentDate);
+  const dispatch = useDispatch();
   const weekday = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
   let showdates = [];
+  const {
+    id,
+    title,
+  } = location.state;
 
-  const sessionList = useSelector((state) => state.sessionListByDate);
+  const sessionList = useSelector((state) => state.sessionList).filter(
+    (session) => session.movieId == id && session.showDateTimeHkt.toString().substring(10) == pressedDate
+  );
   
   const cinemaList = useSelector((state) => state.cinemaList);
   const cinemaNameList = sessionList.map((session) => {
@@ -44,7 +47,6 @@ function Showtime() {
   for (var i = 0; i < 5; i++) {
     const displayDate = new Date();
     displayDate.setDate(currentDate.getDate() + i);
-    console.log(displayDate);
     showdates.push({
       key: i + 1,
       day: weekday[displayDate.getDay()],
@@ -105,9 +107,9 @@ const showDetails = [
     <div className="showdateFlex">
         {
           showdates.map((showdate) => (
-          <div className={ showdate.key === pressedDate ? "showdateSelected" : "showdate" } onClick={() => setPressedDate(showdate.key)}>
-            <div className={ showdate.key === pressedDate ? "showdateTitleSelected" : "showdateTitle" }>{showdate.day}</div>
-            <div className={ showdate.key === pressedDate ? "showdateValueSelected" : "showdateValue" }>{showdate.date}</div>
+          <div className={ showdate.key === pressedKey ? "showdateSelected" : "showdate" } onClick={() => { setPressedKey(showdate.key); setPressedDate(showdate.longDate);}}>
+            <div className={ showdate.key === pressedKey ? "showdateTitleSelected" : "showdateTitle" }>{showdate.day}</div>
+            <div className={ showdate.key === pressedKey ? "showdateValueSelected" : "showdateValue" }>{showdate.date}</div>
           </div>
           ))
         }
