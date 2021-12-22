@@ -49,7 +49,9 @@
 
 .seating-map-container {
   display: grid;
-  place-items: center;
+  justify-content: center;
+  position: relative;
+  top: -100px;
 }
 
 .grid-table {
@@ -121,6 +123,7 @@
   border-style: none;
   width: 206px;
   height: 37px;
+  margin: 0 auto;
 }
 
 .screen-curve {

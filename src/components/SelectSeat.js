@@ -28,11 +28,10 @@ function SelectSeat() {
         <div className="cinemaDetail">Emperor Cinemas (Ma On Shan)</div>
         <div className="showDateandTime">22 Dec 2021 (Wed) 15:10</div>
       </div>
+      <div className="screen-curve">
+        <div className="screen-text">SCREEN</div>
+      </div>
       <div className="seating-map-container">
-        <div className="screen-curve">
-          <div className="screen-text">SCREEN</div>
-        </div>
-
         <SeatingMap toggleSeatSelect={toggleSeatSelect} />
         <SeatAvailability />
         <SelectSeatText selectedSeats={selectedSeats} />
