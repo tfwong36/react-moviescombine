@@ -7,28 +7,13 @@ function Payment() {
   const location = useLocation();
   const history = useHistory();
   const {
-    category,
-    description,
-    genre,
-    posterSource,
-    rating,
     title,
     price,
-    releaseDate,
-    trailerSource,
     selectedSeats,
     showDateandTime,
     cinemaDetail,
     sessionID,
   } = location.state;
-
-  console.log("simon: " + selectedSeats);
-  console.log("simon: " + price);
-  console.log("simon: " + title);
-  console.log("simon: " + genre);
-
-  // setNoberOfTicket(selectedSeats.length);
-  // setTotalPrice(numberOfTicket * price);
 
   const numberOfTicket = selectedSeats.length;
   const totalPrice = numberOfTicket * price;
@@ -125,7 +110,7 @@ function Payment() {
         <div className="movie-title-box">{title}</div>
 
         <div className="price-duration">Price: {price} | Duration: 148 mins</div>
-        <div className="cinema-detail">{MovieDetails}</div>
+        <div className="cinema-detail">{cinemaDetail}</div>
         <div className="show-date-and-time">{showDateandTime}</div>
       </div>
 
