@@ -41,6 +41,10 @@ function Showtime() {
     (movie) => movie.id === location.state
   )[0].title;
 
+  const movieDuration = useSelector((state) => state.movieList).filter(
+    (movie) => movie.id === location.state
+  )[0].duration;
+  
   useEffect(() => {
     getAllCinemas().then((response) => {
       dispatch({ type: INIT_CINEMAS, payload: response.data });
@@ -88,6 +92,7 @@ function Showtime() {
                     onClick={() =>
                       history.push("/selectSeat", {
                         movieTitle,
+                        movieDuration,
                         session,
                         cinema,
                       })

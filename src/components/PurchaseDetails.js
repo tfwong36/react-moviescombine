@@ -15,7 +15,7 @@ function PurchaseDetails() {
       </span>
     ));
   }
-
+  
   return (
     <>
       <div onClick={() => history.goBack()}>
@@ -30,7 +30,7 @@ function PurchaseDetails() {
         <p>
           <span className="left-align">Theatre:</span>
           <span className="right-align">
-            {location.state.paymentDetails.cinema.location}
+            {location.state.paymentDetails.cinema.name + " ("+ location.state.paymentDetails.cinema.location+")"}
           </span>
         </p>
         <br></br>
