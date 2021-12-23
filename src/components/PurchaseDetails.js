@@ -57,7 +57,6 @@ function PurchaseDetails() {
           </span>
           </p>
       </div>
-      <br></br>
         </>
       );
   }
@@ -148,6 +147,7 @@ function PurchaseDetails() {
         </p>
       </div>
       {SnackDetails(location.state.paymentDetails.foodOrder)}
+      <br></br>
     <div className="purchase-detail">
         <p>
           <span className="left-align">Grand Total (HKD):</span>
