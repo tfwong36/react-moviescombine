@@ -165,6 +165,7 @@ function Showtime() {
             "--border-bottom": "none",
             "background-color": "transparent",
             "margin-top": "70px",
+            "margin-bottom": "80px"
           }}
         >
           {renderSessions()}

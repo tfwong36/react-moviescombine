@@ -2,7 +2,7 @@
 .cinemaTitle,
 .movieName {
   width: 90%;
-  height: 31px;
+  height: 38px;
   font-family: Advent Pro;
   font-style: normal;
   font-weight: 400;
@@ -72,12 +72,14 @@ color: #FFFFFF;
     margin-left: 20px;
     margin-right: 20px;
     border-radius :25px;
-    margin-top: 65px;
 }
 
 .showdateFlex{
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  justify-content: left;
+  background-color: #2e3243;
+  height: auto;
 }
 
 .showdateContainer {
@@ -204,13 +206,14 @@ opacity: 0.6;
 }
 
 .navBar{
-  position: fixed;
-  top: 0;
-  width: 100%;
-  font-family: Acme;
-  color: #ffffff;
-  background-color: #232835;
-  margin-bottom: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    font-family: Acme;
+    font-style: normal;
+    color: #ffffff;
+    background-color: #2e3243;
+    height: 51px;
 }
 
 .bottomBar {
