@@ -22,3 +22,8 @@ export const getPaymentByPhoneNumber = (phoneNumber) => {
 export const postPasswordGetPaymentDetail = (paymentId, password) => {
   return api.post("/payments/" + paymentId, {password: password});
 };
+
+export const getAllSnacks = () => {
+  return api.get("/foods");
+};
+

@@ -10,14 +10,16 @@ import { getAllSeats } from "../apis/MoviesCombine";
 import { useDispatch } from "react-redux";
 import { INIT_SEATING_PLAN } from "../constants/constants";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import SnackOrdering from "./SelectSeatComponents/SnacksComponents/SnackOrdering";
 
 function SelectSeat() {
   const [selectedSeats, setSelectedSeats] = useState([]);
+
   const location = useLocation();
   const history = useHistory();
   const dispatch = useDispatch();
   const { movieTitle, cinema, session } = location.state;
-
+  const [isSnackModalVisible, setIsSnackModalVisible] = useState(false);
   const title = movieTitle;
   const price = session.price;
   const options = {
@@ -35,7 +37,6 @@ function SelectSeat() {
   );
   const sessionID = session.id;
 
-  console.log(session);
   useEffect(() => {
     getAllSeats(sessionID).then((response) => {
       dispatch({ type: INIT_SEATING_PLAN, payload: response.data });
@@ -49,32 +50,7 @@ function SelectSeat() {
       setSelectedSeats(selectedSeats.filter((item) => item !== seat));
     }
   };
-  const getPurchaseButton = () => {
-    if (selectedSeats.length < 1)
-      return (
-        <Button disabled className="seating-map-purchase-btn">
-          PURCHASE
-        </Button>
-      );
-    else
-      return (
-        <Button
-          className="seating-map-purchase-btn"
-          onClick={() =>
-            history.push("/Payment", {
-              selectedSeats,
-              cinemaDetail,
-              title,
-              price,
-              showDateandTime,
-              sessionID,
-            })
-          }
-        >
-          PURCHASE
-        </Button>
-      );
-  };
+
   return (
     <>
       <div onClick={() => history.goBack()}>
@@ -95,7 +71,23 @@ function SelectSeat() {
         <SeatingMap toggleSeatSelect={toggleSeatSelect} />
         <SeatAvailability />
         <SelectSeatText selectedSeats={selectedSeats} />
-        {getPurchaseButton()}
+        <Button
+          className="seating-map-purchase-btn"
+          disabled={selectedSeats.length < 1}
+          onClick={() => setIsSnackModalVisible(true)}
+        >
+          PURCHASE
+        </Button>
+        <SnackOrdering
+          isSnackModalVisible={isSnackModalVisible}
+          setIsSnackModalVisible={setIsSnackModalVisible}
+          selectedSeats={selectedSeats}
+          cinemaDetail={cinemaDetail}
+          title={title}
+          price={price}
+          showDateandTime={showDateandTime}
+          sessionID={sessionID}
+        ></SnackOrdering>
       </div>
     </>
   );

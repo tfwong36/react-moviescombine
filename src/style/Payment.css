@@ -73,6 +73,7 @@
   font-family: Alef;
   font-size: 16;
   text-align: center;
+  width: 100px;
 }
 
 .receipt-info-box {
@@ -81,7 +82,7 @@
   justify-content: space-evenly;
 }
 .receipt-total-box {
-  margin-top: 4px;
+  margin-top: 2%;
   background-color: rgba(255, 255, 255, 0.25);
   text-align: center;
   padding: 10px 17px 10px 10px;
