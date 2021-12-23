@@ -2,7 +2,8 @@
   margin-left: 2vw;
   margin-right: 2vw;
   border-radius: 8px;
-  height: 25vh;
+  padding: 20vw;
+  height: 30vh;
   background-position: center;
   background-size: cover;
 }
@@ -19,14 +20,14 @@
 }
 
 .flexContainer {
-  margin-top: 50px;
+  margin-top: 5vh;
   display: flex;
-  flex-direction: row;  
+  flex-direction: row;
   justify-content: space-evenly;
   width: 100%;
 }
 
-img {
+.image {
   width: 50%;
   max-width: 35px;
   max-height: 52px;
