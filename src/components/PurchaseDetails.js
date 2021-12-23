@@ -23,16 +23,59 @@ function PurchaseDetails() {
       history.goBack();
     }
   }
+
+  console.log(location.state.paymentDetails)
+
+  const SnackDetails= (SnackDetails) => {
+    if (SnackDetails === null || SnackDetails.length < 1 )
+    return <></>;
+    const foodNames = SnackDetails.map((food) => (    
+      <>
+          <div className="right-align">
+            {food.food.name + " x " + food.quantity + " : "+ food.food.unitPrice}
+          </div>
+          <br></br> 
+      </>      
+  ))
+    const foodTotalprice = location.state.paymentDetails.foodTotalPrice;
+      return (
+        <>
+        <div className="purchase-detail">
+        <br></br>
+          <p>
+          <span className="left-align">Snacks ordered:</span>
+          {foodNames}
+          <span className="left-align">Snacks Totoal:</span>
+          <span className="right-align">
+            ${foodTotalprice}
+          </span>
+          </p>
+      </div>
+      <br></br>
+        </>
+      );
+  }
+
   return (
     <>
-      <div onClick={() => redirectPage()}>
-        <NavBar className="backText">Purchase Details</NavBar>
+      <div>
+        <NavBar onBack={() => redirectPage()} className="backText">Purchase Details</NavBar>
       </div>
       <div>
         <h1 className="movie-title">
           {location.state.paymentDetails.movie.title}
         </h1>
       </div>
+      <div
+        className="qrcode"
+        style={{
+          backgroundImage:
+            "url(" +
+            qrcodeURL +
+            location.state.paymentDetails.phoneNumber +
+            ")",
+        }}
+      ></div>
       <div className="purchase-detail">
         <p>
           <span className="left-align">Theatre:</span>
@@ -45,16 +88,21 @@ function PurchaseDetails() {
         </p>
         <br></br>
         <p>
-          <span className="left-align">Date:</span>
+          <span className="left-align">Date and Time:</span>
           <span className="right-align">
-            {location.state.paymentDetails.sessionResponse.date}
-          </span>
-        </p>
-        <br></br>
-        <p>
-          <span className="left-align">Time:</span>
-          <span className="right-align">
-            {location.state.paymentDetails.sessionResponse.time}
+            {
+              new Date(location.state.paymentDetails.sessionResponse.showDateTimeHkt).toLocaleDateString(
+                "en-GB",
+                {
+                  weekday: "short",
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                }
+              )
+            }
           </span>
         </p>
         <br></br>
@@ -93,16 +141,7 @@ function PurchaseDetails() {
           </span>
         </p>
       </div>
-      <div
-        className="qrcode"
-        style={{
-          backgroundImage:
-            "url(" +
-            qrcodeURL +
-            location.state.paymentDetails.phoneNumber +
-            ")",
-        }}
-      ></div>
+      {SnackDetails(location.state.paymentDetails.foodOrder)}
     </>
   );
 }

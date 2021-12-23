@@ -33,6 +33,7 @@
 .right-align {
   float: right;
   padding-right: 1vw;
+  white-space:pre-wrap;
 }
 
 .qrcode {
