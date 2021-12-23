@@ -19,3 +19,6 @@ export const getPaymentByPhoneNumber = (phoneNumber) => {
   return api.get("/payments?phoneNumber=" + phoneNumber);
 };
 
+export const postPasswordGetPaymentDetail = (paymentId) => {
+  return api.post("payments/" + paymentId);
+};

@@ -6,6 +6,7 @@ import {
   INIT_SESSIONS,
   INIT_SEATING_PLAN,
   GET_PAYMENT_BY_PHONE_NUMBER,
+  GET_PAYMENT_DETAIL_AFTER_PASSWORD,
 } from "../constants/constants";
 
 const initState = {
@@ -16,6 +17,7 @@ const initState = {
   cinemaListWithSessions: [],
   cinemaList: [],
   paymentByPhoneNumberList: [],
+  paymentListAfterPassword: [],
 };
 
 const MovieReducer = (state = initState, action) => {
@@ -50,6 +52,8 @@ const MovieReducer = (state = initState, action) => {
       };
     case GET_PAYMENT_BY_PHONE_NUMBER:
       return { ...state, paymentByPhoneNumberList: action.payload };
+    case GET_PAYMENT_DETAIL_AFTER_PASSWORD:
+      return { ...state, paymentListAfterPassword: action.payload };
     default:
       return state;
   }

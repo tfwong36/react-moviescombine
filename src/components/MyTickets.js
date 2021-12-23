@@ -2,21 +2,31 @@ import "../style/MyTickets.css";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { GET_PAYMENT_BY_PHONE_NUMBER } from "../constants/constants";
-import { getPaymentByPhoneNumber } from "../apis/MoviesCombine";
+import {
+  GET_PAYMENT_BY_PHONE_NUMBER,
+  GET_PAYMENT_DETAIL_AFTER_PASSWORD,
+} from "../constants/constants";
+import {
+  getPaymentByPhoneNumber,
+  postPasswordGetPaymentDetail,
+} from "../apis/MoviesCombine";
+import { Modal } from "antd-mobile";
 import { useSelector } from "react-redux";
 import { SearchOutline } from "antd-mobile-icons";
 
 function MyTickets() {
   const [mobileNumber, setMobileNumber] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [password, setPassword] = useState([]);
+  const [paymentId, setPaymentId] = useState([]);
   const history = useHistory();
   const dispatch = useDispatch();
+
   const paymentByPhoneNumberList = useSelector(
     (state) => state.paymentByPhoneNumberList
   );
 
   function onChangeMobileNumber(event) {
-    console.log(event.target.value);
     setMobileNumber(event.target.value);
   }
 
@@ -27,12 +37,35 @@ function MyTickets() {
     });
   }
 
-  function loadPayment() {
+  function onChangePassword(event) {
+    setPassword(event.target.value);
+  }
+
+  function displayModal(paymentId) {
+    setPaymentId(paymentId);
+    setIsModalVisible(true);
+  }
+  function handleCancel() {
+    setIsModalVisible(false);
+  }
+
+  function submitPassword() {
+    setIsModalVisible(false);
+    postPasswordGetPaymentDetail(paymentId).then((response) => {
+      dispatch({
+        type: GET_PAYMENT_DETAIL_AFTER_PASSWORD,
+        payload: response.data,
+      });
+    });
+  }
+
+  function loadHistory() {
     return paymentByPhoneNumberList.map((payment, index) => (
       <div id="searchResultPanel" className="resultPanelGroup">
         <div
           className="search-result-item"
-          onClick={() => history.push("/PurcahseDetails")}
+          //   onClick={() => history.push("/PurcahseDetails")}
+          onClick={() => displayModal(payment.paymentId)}
         >
           <p className="search-result-item-title">{payment.movie.title}</p>
           <p className="search-result-item-location">
@@ -44,7 +77,7 @@ function MyTickets() {
               {payment.sessionResponse.time}
             </span>
             <span className="search-result-item-price">
-              HKD${payment.unitPrice}
+              HKD$ {payment.unitPrice}
             </span>
           </p>
         </div>
@@ -75,7 +108,28 @@ function MyTickets() {
       <div>
         <div className="my-ticket-result">Result</div>
       </div>
-      {loadPayment()}
+      {loadHistory()}
+      <Modal
+        title="Please Input Password"
+        visible={isModalVisible}
+        content={
+          <>
+            <input
+              type="password"
+              placeholder="Password"
+              className="modal-input"
+              onChange={onChangePassword}
+              value={password}
+            ></input>
+            <button onClick={handleCancel} className="modal-button-cancel">
+              Cancel
+            </button>
+            <button onClick={submitPassword} className="modal-button-confirm">
+              Confirm
+            </button>
+          </>
+        }
+      ></Modal>
     </>
   );
 }
