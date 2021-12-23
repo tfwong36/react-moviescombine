@@ -24,14 +24,11 @@ function SearchBar() {
   }
 
   function getDropDownItem() {
-    // history.push("/MovieDetails");
     return movieDropDownList.map((movie, index) => (
       <>
-        {/* <script>history.push("/MovieDetails", movie)</script> */}
         <option
           key={index}
           value={movie.title}
-          // onClick={() => history.push("/MovieDetails", movie)}
         />
       </>
     ));

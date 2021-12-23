@@ -5,6 +5,7 @@ import {
   INIT_CINEMAS,
   INIT_SESSIONS,
   INIT_SEATING_PLAN,
+  GET_PAYMENT_BY_PHONE_NUMBER,
 } from "../constants/constants";
 
 const initState = {
@@ -14,6 +15,7 @@ const initState = {
   sessionList: [],
   cinemaListWithSessions: [],
   cinemaList: [],
+  paymentByPhoneNumberList: [],
 };
 
 const MovieReducer = (state = initState, action) => {
@@ -46,6 +48,8 @@ const MovieReducer = (state = initState, action) => {
           }
         }),
       };
+    case GET_PAYMENT_BY_PHONE_NUMBER:
+      return { ...state, paymentByPhoneNumberList: action.payload };
     default:
       return state;
   }
