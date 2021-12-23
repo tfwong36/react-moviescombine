@@ -6,12 +6,12 @@ import { useHistory, useLocation } from "react-router-dom";
 import { Divider } from "antd-mobile";
 import api from "../apis/api";
 import creditCardIcon from "../assects/creditCard.png";
-import {postPasswordGetPaymentDetail} from '../apis/MoviesCombine';
+import { postPasswordGetPaymentDetail } from "../apis/MoviesCombine";
 import { useDispatch } from "react-redux";
-import {GET_PAYMENT_DETAIL_AFTER_PASSWORD} from "../constants/constants"
+import { GET_PAYMENT_DETAIL_AFTER_PASSWORD } from "../constants/constants";
 
 function Payment() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
   const snackList = useSelector((state) => state.snackList);
@@ -32,14 +32,19 @@ function Payment() {
   const numberOfTicket = selectedSeats.length;
   const totalPrice =
     numberOfTicket * price +
-    snackList.reduce((sum, { quantity, unitPrice }) => sum + quantity * unitPrice, 0);
+    snackList.reduce(
+      (sum, { quantity, unitPrice }) => sum + quantity * unitPrice,
+      0
+    );
 
-  const snackRequestObject = snackList.filter((snack) => snack.quantity > 0).map((snack) => {
-    return {
-      foodId: snack.id,
-      quantity: snack.quantity,
-    };
-  });
+  const snackRequestObject = snackList
+    .filter((snack) => snack.quantity > 0)
+    .map((snack) => {
+      return {
+        foodId: snack.id,
+        quantity: snack.quantity,
+      };
+    });
 
   let cardHolderName;
   let cardNumber;
@@ -48,7 +53,6 @@ function Payment() {
   let cvv;
   let phoneNumber;
   let password;
-
 
   for (let i = 1; i <= 12; i++) {
     optionMonth.push(<option>{i}</option>);
@@ -62,54 +66,72 @@ function Payment() {
     event.preventDefault();
 
     const paymentRequestBody = {
-      "payment": {
-        "sessionId": sessionID,
-        "selectedSeats": selectedSeats,
-        "unitPrice": parseInt(price),
+      payment: {
+        sessionId: sessionID,
+        selectedSeats: selectedSeats,
+        unitPrice: parseInt(price),
       },
-      "cardHolderName": cardHolderName,
-      "creditCardNumber": cardNumber,
-      "expiryMonth": parseInt(expiryMonth),
-      "expiryYear": parseInt(expiryYear),
-      "cardCVV": parseInt(cvv),
-      "phoneNumber": parseInt(phoneNumber),
-      "foodOrderList": snackRequestObject,
+      cardHolderName: cardHolderName,
+      creditCardNumber: cardNumber,
+      expiryMonth: parseInt(expiryMonth),
+      expiryYear: parseInt(expiryYear),
+      cardCVV: parseInt(cvv),
+      phoneNumber: parseInt(phoneNumber),
+      foodOrderList: snackRequestObject,
     };
 
-    console.log(paymentRequestBody)
+    console.log(paymentRequestBody);
 
-    api.post("/payments" , paymentRequestBody).then( (response) => {
-      showPasswordPopUp(response)
-    }).catch( () => {
-      showErrorPopup();
-    })
+    api
+      .post("/payments", paymentRequestBody)
+      .then((response) => {
+        showPasswordPopUp(response);
+      })
+      .catch(() => {
+        showErrorPopup();
+      });
   }
 
-  function showPasswordPopUp(response){
-      Dialog.show({
-        content: (<div> <p>Success, please set a one time password: </p> <input type="password" onChange={handlePasswordChange}></input> </div>),
-        closeOnAction: true,
-        actions: [{
+  function showPasswordPopUp(response) {
+    Dialog.show({
+      content: (
+        <div>
+          {" "}
+          <p>Success, please set a one time password: </p>{" "}
+          <input type="password" onChange={handlePasswordChange}></input>{" "}
+        </div>
+      ),
+      closeOnAction: true,
+      actions: [
+        {
           key: "ok",
           text: "OK",
-          onClick: () => { setPassword(response) }
-        }]
-      })
-
+          onClick: () => {
+            setPassword(response);
+          },
+        },
+      ],
+    });
   }
 
   function setPassword(response) {
-    const passwordRequestBody = { "id": response.data.payment.id, "password": password }
-    api.post("/payments/password", passwordRequestBody).then(gotoPurchaseDetails(response.data.payment.id , password))
-
+    const passwordRequestBody = {
+      id: response.data.payment.id,
+      password: password,
+    };
+    api
+      .post("/payments/password", passwordRequestBody)
+      .then(gotoPurchaseDetails(response.data.payment.id, password));
   }
 
   function gotoPurchaseDetails(paymentId, password) {
-    console.log('goto id ' + paymentId);
-    console.log('password id ' + password);
+    console.log("goto id " + paymentId);
+    console.log("password id " + password);
 
-    let sum =0;
-    for(let i =0 ; i<=100000000 ; i++) {sum+=i;}
+    let sum = 0;
+    for (let i = 0; i <= 100000000; i++) {
+      sum += i;
+    }
     postPasswordGetPaymentDetail(paymentId, password).then((response) => {
       dispatch({
         type: GET_PAYMENT_DETAIL_AFTER_PASSWORD,
@@ -125,14 +147,17 @@ function Payment() {
     Dialog.show({
       content: "Please select another seat.",
       closeOnAction: true,
-      actions: [{
-        key: "ok",
-        text: "OK",
-        onClick: () => { history.goBack() }
-      }]
-    })
+      actions: [
+        {
+          key: "ok",
+          text: "OK",
+          onClick: () => {
+            history.goBack();
+          },
+        },
+      ],
+    });
   }
-
 
   function handlePasswordChange(event) {
     password = event.target.value;
@@ -163,22 +188,29 @@ function Payment() {
   }
 
   const getSnackPaymentDiv = () => {
-    if (snackList.filter((snack) => snack.quantity > 0).length < 1) return <></>
-    const foodNames = snackList.filter((snack) => snack.quantity > 0).map((food) =>(
-      <div className="receipt-content" key={food.name + food.unitPrice}>
-        {food.name}
-      </div>      
-    ))
-    const foodQuantity = snackList.filter((snack) => snack.quantity > 0).map((food) =>(
-      <div className="receipt-content" key={food.name + food.unitPrice}>
-        {food.quantity}
-      </div>      
-    ))   
-    const foodPrices = snackList.filter((snack) => snack.quantity > 0).map((food) => (
-      <div className="receipt-content" key={food.name + food.unitPrice}>
-        ${food.unitPrice}
-      </div>
-    ));
+    if (snackList.filter((snack) => snack.quantity > 0).length < 1)
+      return <></>;
+    const foodNames = snackList
+      .filter((snack) => snack.quantity > 0)
+      .map((food) => (
+        <div className="receipt-content" key={food.name + food.unitPrice}>
+          {food.name}
+        </div>
+      ));
+    const foodQuantity = snackList
+      .filter((snack) => snack.quantity > 0)
+      .map((food) => (
+        <div className="receipt-content" key={food.name + food.unitPrice}>
+          {food.quantity}
+        </div>
+      ));
+    const foodPrices = snackList
+      .filter((snack) => snack.quantity > 0)
+      .map((food) => (
+        <div className="receipt-content" key={food.name + food.unitPrice}>
+          ${food.unitPrice}
+        </div>
+      ));
     return (
       <>
         <Divider
@@ -264,6 +296,7 @@ function Payment() {
             onChange={handleCardNumberChange}
             required
             className="credit-card-text"
+            maxLength={16}
             pattern="[0-9]{16}"
           ></input>
 
@@ -291,6 +324,7 @@ function Payment() {
             required
             className="credit-card-text"
             pattern="[0-9]{3}"
+            maxLength={3}
           ></input>
 
           <div className="credit-card-subheading">Phone Number (8 digits)</div>
@@ -299,6 +333,7 @@ function Payment() {
             required
             className="credit-card-text"
             pattern="[0-9]{8}"
+            maxLength={8}
           ></input>
 
           <input
