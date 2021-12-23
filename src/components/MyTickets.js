@@ -19,11 +19,15 @@ function MyTickets() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [password, setPassword] = useState([]);
   const [paymentId, setPaymentId] = useState([]);
+  const [status, setStatus] = useState([]);
   const history = useHistory();
   const dispatch = useDispatch();
 
   const paymentByPhoneNumberList = useSelector(
     (state) => state.paymentByPhoneNumberList
+  );
+  const responseAfterPassword = useSelector(
+    (state) => state.paymentAfterPassword
   );
 
   function onChangeMobileNumber(event) {
@@ -51,12 +55,18 @@ function MyTickets() {
 
   function submitPassword() {
     setIsModalVisible(false);
-    postPasswordGetPaymentDetail(paymentId).then((response) => {
+    postPasswordGetPaymentDetail(paymentId, password).then((response) => {
+      setStatus(response.status);
       dispatch({
         type: GET_PAYMENT_DETAIL_AFTER_PASSWORD,
         payload: response.data,
       });
     });
+    setPassword("");
+    if (status === 200) {
+      console.log(responseAfterPassword);
+      history.push("/PurcahseDetails", responseAfterPassword);
+    }
   }
 
   function loadHistory() {
