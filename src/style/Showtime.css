@@ -152,10 +152,13 @@ color: #FFFFFF;
 
   .showtimeNull {
     background: rgba(152, 87, 87);
-    width: 69px;
+    width: 68px;
     height: 37px;
     box-sizing: border-box;
     border-radius: 5px;
+    margin-top: 5px;
+    margin-left: 5px;
+    pointer-events: none;
   }
 
   .showdateValueSelected {
