@@ -24,6 +24,7 @@ function Payment() {
   let expiryYear;
   let cvv;
   let phoneNumber;
+  let password;
 
   let optionMonth = [];
   let optionYear = [];
@@ -50,7 +51,7 @@ function Payment() {
     console.log("phone: " + phoneNumber);
 
 
-    const requestBody = {
+    const paymentRequestBody = {
       "payment" : {
         "sessionId": sessionID,
         "selectedSeats": selectedSeats,
@@ -64,10 +65,15 @@ function Payment() {
       "phoneNumber": parseInt(phoneNumber)
     }
 
-    console.log(requestBody)
-    api.post("/payments" , requestBody).then( (response) => {
-      console.log(response) // success
-      history.push("/")
+
+    api.post("/payments" , paymentRequestBody).then( (response) => {
+      Dialog.alert({
+        content: (<div> <p>Success, please set a one time password: </p> <input onChange={handlePasswordChange}></input> </div>),
+        onConfirm: () => {
+          console.log(response.data)
+          const passwordRequestBody = {"id": response.data.payment.id , "password": password }
+          api.post("/payments/password" , passwordRequestBody).then(history.push("/"))
+      }})
     }).catch( () => {
       Dialog.alert({content: "Please select another seat." , 
                   onConfirm: () => {history.goBack()}})
@@ -75,6 +81,12 @@ function Payment() {
 
 
 
+  }
+
+  function handlePasswordChange(event)
+  {
+    password = event.target.value;
+    console.log("password: " + password);
   }
 
   function handleNameChange(event) {
