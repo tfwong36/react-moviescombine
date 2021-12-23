@@ -74,13 +74,20 @@ color: #FFFFFF;
     border-radius :25px;
 }
 
-.showdateFlex{
+.sessionFlex{
   display: flex;
   flex-wrap: wrap;
   justify-content: left;
   background-color: #2e3243;
   height: auto;
 }
+
+.showdateFlex{
+    display: flex;
+    justify-content: space-around;
+    background-color: #2e3243;
+    height: 75px;
+  }
 
 .showdateContainer {
     position: fixed;
