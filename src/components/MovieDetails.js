@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { Dialog } from "antd-mobile-icons";
 import "../style/MovieDetails.css";
 import { useHistory, useLocation } from "react-router-dom";
-import YoutubeEmbed from "./YoutubeEmbed";
+import YoutubeEmbed from "./MovieDetailComponents/YoutubeEmbed";
 function MovieDetails() {
   const location = useLocation();
   const history = useHistory();
@@ -28,7 +28,7 @@ function MovieDetails() {
       ")",
     borderRadius: "50px",
     backgroundSize: "contain",
-    backgroundRepeat  : "no-repeat",
+    backgroundRepeat: "no-repeat",
   };
 
   return (

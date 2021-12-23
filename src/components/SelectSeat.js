@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, NavBar } from "antd-mobile";
 import "../style/SelectSeat.css";
-import SeatingMap from "./SeatingMap";
-import SelectSeatText from "./SelectSeatText";
-import SeatAvailability from "./SeatAvailability";
+import SeatingMap from "./SelectSeatComponents/SeatingMap";
+import SelectSeatText from "./SelectSeatComponents/SelectSeatText";
+import SeatAvailability from "./SelectSeatComponents/SeatAvailability";
 import { getAllSeats } from "../apis/MoviesCombine";
 import { useDispatch } from "react-redux";
 import { INIT_SEATING_PLAN } from "../constants/constants";
@@ -20,12 +20,22 @@ function SelectSeat() {
 
   const title = movieTitle;
   const price = session.price;
-  const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour:'2-digit', minute:'2-digit' };
-  const cinemaDetail = cinema.name + " (" + cinema.location+")";
-  const showDateandTime = (new Date(session.showDateTimeHkt)).toLocaleDateString("en-GB", options);
+  const options = {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  };
+  const cinemaDetail = cinema.name + " (" + cinema.location + ")";
+  const showDateandTime = new Date(session.showDateTimeHkt).toLocaleDateString(
+    "en-GB",
+    options
+  );
   const sessionID = session.id;
 
-  console.log(session)
+  console.log(session);
   useEffect(() => {
     getAllSeats(sessionID).then((response) => {
       dispatch({ type: INIT_SEATING_PLAN, payload: response.data });
@@ -57,7 +67,7 @@ function SelectSeat() {
               title,
               price,
               showDateandTime,
-              sessionID
+              sessionID,
             })
           }
         >
