@@ -356,7 +356,7 @@ function Payment() {
                   expiryYear: parseInt(expiryYear),
                   cardCVV: parseInt(cvv),
                   phoneNumber: parseInt(phoneNumber),
-                  foodOrderList: snackRequestObject,
+                  foodOrderRequests: snackRequestObject,
                 };
 
                 api

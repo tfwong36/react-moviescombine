@@ -172,6 +172,9 @@ function Showtime() {
           {renderSessions()}
         </List>
           :
+          pressedKey === 6 ?
+          <p className="message">Please select date.</p>
+          :
           <p className="message">No session this day.</p>
         }
       </div>
