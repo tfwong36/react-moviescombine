@@ -19,15 +19,11 @@ function MyTickets() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [password, setPassword] = useState([]);
   const [paymentId, setPaymentId] = useState([]);
-  const [status, setStatus] = useState([]);
   const history = useHistory();
   const dispatch = useDispatch();
 
   const paymentByPhoneNumberList = useSelector(
     (state) => state.paymentByPhoneNumberList
-  );
-  const responseAfterPassword = useSelector(
-    (state) => state.paymentAfterPassword
   );
 
   function onChangeMobileNumber(event) {
@@ -48,6 +44,7 @@ function MyTickets() {
     setPaymentId(paymentId);
     setIsModalVisible(true);
   }
+
   function handleCancel() {
     setIsModalVisible(false);
   }
@@ -59,7 +56,6 @@ function MyTickets() {
         type: GET_PAYMENT_DETAIL_AFTER_PASSWORD,
         payload: response.data,
       });
-      setStatus(response.status);
       if (response.status === 200) {
         history.push("/PurcahseDetails", response.data);
       }
@@ -99,7 +95,7 @@ function MyTickets() {
         <input
           type="number"
           className="mobile-number-search"
-          placeholder="Phone Number"
+          placeholder="Search Transaction with Phone Number"
           onChange={onChangeMobileNumber}
         ></input>
         <button

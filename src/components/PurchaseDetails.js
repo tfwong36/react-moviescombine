@@ -6,9 +6,7 @@ function PurchaseDetails() {
   const location = useLocation();
   const history = useHistory();
   const qrcodeURL =
-    "https://dev-moviescombine-api.herokuapp.com/qrcode?url=https://dev-moviescombine-api.herokuapp.com/payments?qrKey=";
-
-  console.log(location.state);
+    "https://dev-moviescombine-api.herokuapp.com/qrcode?url=https://dev-moviescombine-api.herokuapp.com/payments?phoneNumber=";
 
   function displaySeats(seatList) {
     return seatList.map((seat, index) => (
@@ -88,7 +86,11 @@ function PurchaseDetails() {
       <div
         className="qrcode"
         style={{
-          backgroundImage: "url(" + qrcodeURL + location.state.qrKey + ")",
+          backgroundImage:
+            "url(" +
+            qrcodeURL +
+            location.state.paymentDetails.phoneNumber +
+            ")",
         }}
       ></div>
     </>
