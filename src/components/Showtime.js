@@ -44,7 +44,6 @@ function Showtime() {
   const movieDuration = useSelector((state) => state.movieList).filter(
     (movie) => movie.id === location.state
   )[0].duration;
-  
   useEffect(() => {
     getAllCinemas().then((response) => {
       dispatch({ type: INIT_CINEMAS, payload: response.data });
@@ -77,7 +76,7 @@ function Showtime() {
         return (
           <List.Item>
             <div className="cinemaTitle">{cinema.name}</div>
-            <div className="showdateFlex">
+            <div className="sessionFlex">
               {cinema.sessionList
                 .sort(function (a, b) {
                   return (
@@ -158,18 +157,23 @@ function Showtime() {
             ))}
           </div>
         </div>
-        <List
-          style={{
-            "--border-inner": "none",
-            "--border-top": "none",
-            "--border-bottom": "none",
-            "background-color": "transparent",
-            "margin-top": "70px",
-            "margin-bottom": "80px"
-          }}
-        >
+        {
+          sessionList.length > 0 ?
+          <List
+            style={{
+              "--border-inner": "none",
+              "--border-top": "none",
+              "--border-bottom": "none",
+              "background-color": "transparent",
+              "margin-top": "70px",
+              "margin-bottom": "80px"
+            }}
+          >
           {renderSessions()}
         </List>
+          :
+          <p className="message">No session this day.</p>
+        }
       </div>
     </>
   );

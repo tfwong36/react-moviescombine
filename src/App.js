@@ -1,11 +1,12 @@
 import "./App.css";
-import { TabBar } from 'antd-mobile'
+import { TabBar } from "antd-mobile";
 import { useHistory, useLocation } from "react-router-dom";
 import { MemoryRouter as Router, Switch, Route, Link } from "react-router-dom";
 import {
   SearchOutline,
   MovieOutline,
   FireFill,
+  UserOutline,
   CouponOutline,
 } from "antd-mobile-icons";
 import MyTickets from "./components/MyTickets";
@@ -16,40 +17,40 @@ import SelectSeat from "./components/SelectSeat";
 import Payment from "./components/Payment";
 import PurchaseDetails from "./components/PurchaseDetails";
 
-
 function App() {
   const Bottom = () => {
-    const history = useHistory()
-    const location = useLocation()
-    const { pathname } = location
-  
+    const history = useHistory();
+    const location = useLocation();
+    const { pathname } = location;
+
     const setRouteActive = (value) => {
-      history.push(value)
-    }
-  
+      history.push(value);
+    };
+
     const tabs = [
       {
-        key: '/',
+        key: "/",
         icon: <SearchOutline fontSize={30} />,
       },
       {
-        key: '/MyTickets',
-        icon: <CouponOutline fontSize={30} />,
-      }
-    ]
-  
+        key: "/MyTickets",
+        UserOutline,
+        icon: <UserOutline fontSize={30} />,
+      },
+    ];
+
     return (
-      <TabBar activeKey={pathname} onChange={value => setRouteActive(value)}>
-        {tabs.map(item => (
+      <TabBar activeKey={pathname} onChange={(value) => setRouteActive(value)}>
+        {tabs.map((item) => (
           <TabBar.Item key={item.key} icon={item.icon} title={item.title} />
         ))}
       </TabBar>
-    )
-  }
+    );
+  };
 
   return (
     <div className="App">
-      <Router initialEntries={['/']}>
+      <Router initialEntries={["/"]}>
         <div>
           <Switch>
             <Route exact path="/MyTickets">

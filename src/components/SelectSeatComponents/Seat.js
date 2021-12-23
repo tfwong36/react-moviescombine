@@ -40,7 +40,7 @@ function Seat({ seat, toggleSeatSelect }) {
   return (
     <Seatsvg
       className="seat"
-      width="1.5rem"
+      width="1.4rem"
       fill={getFill(state)}
       fillOpacity = {getOpacity(state)}
       onClick={handleOnClick}

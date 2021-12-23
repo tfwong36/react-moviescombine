@@ -36,7 +36,7 @@ function MovieDetails() {
         <NavBar onBack={() => history.goBack()} className="backText">Movie Details</NavBar>
       </div>
       <div style={sectionStyle}>
-        <div className="container">
+        <div className="movieDetailsContainer">
           <div className="emptyDiv" />
           <div className="movieName">{location.state.title}</div>
           <div className="ratingGenreFlex">
@@ -71,13 +71,15 @@ function MovieDetails() {
             <p>{location.state.description}</p>
           </div>
           <div className="trailer">Trailer</div>
+          <div className="youtubeVideo">
           <YoutubeEmbed embedId={location.state.trailerSource} />
+          </div>
           <div className="buttonContainer">
             <Button className="showtimeButton" onClick={() => history.push("/Showtime", id)}>
-              Showtime
+              SHOWTIME
             </Button>
           </div>
-        </div>
+          </div>
       </div>
     </>
   );
