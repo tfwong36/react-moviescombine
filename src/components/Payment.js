@@ -2,13 +2,16 @@ import { LeftOutline } from "antd-mobile-icons";
 import { useSelector } from "react-redux";
 import "../style/Payment.css";
 import { Dialog } from "antd-mobile/es/components/dialog/dialog";
-import { ConfigProvider } from 'antd';
-import enUS from 'antd/lib/locale/en_US';
 import { useHistory, useLocation } from "react-router-dom";
 import { Divider } from "antd-mobile";
 import api from "../apis/api";
 import creditCardIcon from "../assects/creditCard.png";
+import {postPasswordGetPaymentDetail} from '../apis/MoviesCombine';
+import { useDispatch } from "react-redux";
+import {GET_PAYMENT_DETAIL_AFTER_PASSWORD} from "../constants/constants"
+
 function Payment() {
+  const dispatch = useDispatch()
   const location = useLocation();
   const history = useHistory();
   const snackList = useSelector((state) => state.snackList);
@@ -76,31 +79,58 @@ function Payment() {
     console.log(paymentRequestBody)
 
     api.post("/payments" , paymentRequestBody).then( (response) => {
+      showPasswordPopUp(response)
+    }).catch( () => {
+      showErrorPopup();
+    })
+  }
+
+  function showPasswordPopUp(response){
       Dialog.show({
         content: (<div> <p>Success, please set a one time password: </p> <input type="password" onChange={handlePasswordChange}></input> </div>),
         closeOnAction: true,
         actions: [{
           key: "ok",
           text: "OK",
-          onClick: () => {
-            console.log(response.data)
-            const passwordRequestBody = {"id": response.data.payment.id , "password": password }
-            api.post("/payments/password" , passwordRequestBody).then(history.push("/PurcahseDetails"))
-          }
+          onClick: () => { setPassword(response) }
         }]
       })
-    }).catch( () => {
-      Dialog.show({
-                      content: "Please select another seat." , 
-                      closeOnAction: true,
-                      actions: [{
-                        key: "ok",
-                        text: "OK",
-                        onClick: () => {history.goBack()}
-                    }]
-                })
-    })
 
+  }
+
+  function setPassword(response) {
+    const passwordRequestBody = { "id": response.data.payment.id, "password": password }
+    api.post("/payments/password", passwordRequestBody).then(gotoPurchaseDetails(response.data.payment.id , password))
+
+  }
+
+  function gotoPurchaseDetails(paymentId, password) {
+    console.log('goto id ' + paymentId);
+    console.log('password id ' + password);
+
+    let sum =0;
+    for(let i =0 ; i<=100000000 ; i++) {sum+=i;}
+    postPasswordGetPaymentDetail(paymentId, password).then((response) => {
+      dispatch({
+        type: GET_PAYMENT_DETAIL_AFTER_PASSWORD,
+        payload: response.data,
+      });
+      if (response.status === 200) {
+        history.push("/PurcahseDetails", response.data);
+      }
+    });
+  }
+
+  function showErrorPopup() {
+    Dialog.show({
+      content: "Please select another seat.",
+      closeOnAction: true,
+      actions: [{
+        key: "ok",
+        text: "OK",
+        onClick: () => { history.goBack() }
+      }]
+    })
   }
 
 
@@ -229,12 +259,12 @@ function Payment() {
             pattern="[a-zA-Z]{+}"
           ></input>
 
-          <div className="credit-card-subheading">Card Number (format: 1234-1234-1234-1234)</div>
+          <div className="credit-card-subheading">Card Number (16 digits)</div>
           <input
             onChange={handleCardNumberChange}
             required
             className="credit-card-text"
-            pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}"
+            pattern="[0-9]{16}"
           ></input>
 
           <div className="credit-card-subheading">Expiry Date (MM/YY)</div>
@@ -255,7 +285,7 @@ function Payment() {
             {optionYear}
           </select>
 
-          <div className="credit-card-subheading">CVV</div>
+          <div className="credit-card-subheading">CVV (3 digits)</div>
           <input
             onChange={handleCvvChange}
             required
@@ -263,7 +293,7 @@ function Payment() {
             pattern="[0-9]{3}"
           ></input>
 
-          <div className="credit-card-subheading">Phone Number</div>
+          <div className="credit-card-subheading">Phone Number (8 digits)</div>
           <input
             onChange={handlePhoneNumberChange}
             required
