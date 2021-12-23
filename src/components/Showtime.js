@@ -86,29 +86,29 @@ function Showtime() {
                   );
                 })
                 .map((session) => (
-                  <div
-                    className={
-                      session.hasRemainSeat ? "showtimeNotNull" : "showtimeNull"
-                    }
-                    onClick={() =>
-                      history.push("/selectSeat", {
-                        movieTitle,
-                        session,
-                        cinema,
-                      })
-                    }
-                  >
-                    <div className="timeslot">
-                      {session?.showDateTimeHkt
-                        .toString()
-                        .split("T")[1]
-                        .toString()
-                        .substring(0, 5)}
+                      <div
+                        className={
+                          session.hasRemainSeat ? "showtimeNotNull" : "showtimeNull"
+                        }
+                        onClick={() =>
+                          history.push("/selectSeat", {
+                            movieTitle,
+                            session,
+                            cinema,
+                          })
+                        }
+                      >
+                      <div className="timeslot">
+                        {session?.showDateTimeHkt
+                          .toString()
+                          .split("T")[1]
+                          .toString()
+                          .substring(0, 5)}
+                      </div>
+                      <div className="price">${session.price}</div>
                     </div>
-                    <div className="price">${session.price}</div>
-                  </div>
                 ))}
-            </div>
+                </div>
           </List.Item>
         );
       } else {
@@ -158,18 +158,23 @@ function Showtime() {
             ))}
           </div>
         </div>
-        <List
-          style={{
-            "--border-inner": "none",
-            "--border-top": "none",
-            "--border-bottom": "none",
-            "background-color": "transparent",
-            "margin-top": "70px",
-            "margin-bottom": "80px"
-          }}
-        >
+        {
+          sessionList.length > 0 ?
+          <List
+            style={{
+              "--border-inner": "none",
+              "--border-top": "none",
+              "--border-bottom": "none",
+              "background-color": "transparent",
+              "margin-top": "70px",
+              "margin-bottom": "80px"
+            }}
+          >
           {renderSessions()}
         </List>
+          :
+          <p className="message">No session this day.</p>
+        }
       </div>
     </>
   );

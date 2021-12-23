@@ -146,6 +146,8 @@ color: #FFFFFF;
     height: 37px;
     box-sizing: border-box;
     border-radius: 5px;
+    margin-top: 5px;
+    margin-left: 5px;
   }
 
   .showtimeNull {
@@ -196,6 +198,22 @@ color: #FFFFFF;
 
 .emptyDiv{
   height: 300px;
+}
+
+.message {
+   margin-top: 90px;
+   margin-left: 12px;
+   color: white;
+   width: 90%;
+   height: 38px;
+   font-family: Advent Pro;
+   font-style: normal;
+   font-weight: 400;
+   font-size: 21px;
+   line-height: 31px;
+
+   /* identical to box height */
+   text-align: left;
 }
 
 .genre{
