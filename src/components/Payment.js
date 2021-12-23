@@ -51,17 +51,17 @@ function Payment() {
     console.log("phone: " + phoneNumber);
 
     const paymentRequestBody = {
-      payment: {
-        sessionId: sessionID,
-        selectedSeats: selectedSeats,
-        unitPrice: parseInt(price),
+      "payment": {
+        "sessionId": sessionID,
+        "selectedSeats": selectedSeats,
+        "unitPrice": parseInt(price),
       },
-      cardHolderName: cardHolderName,
-      creditCardNumber: cardNumber,
-      expiryMonth: parseInt(expiryMonth),
-      expiryYear: parseInt(expiryYear),
-      cardCVV: parseInt(cvv),
-      phoneNumber: parseInt(phoneNumber),
+      "cardHolderName": cardHolderName,
+      "creditCardNumber": cardNumber,
+      "expiryMonth": parseInt(expiryMonth),
+      "expiryYear": parseInt(expiryYear),
+      "cardCVV": parseInt(cvv),
+      "phoneNumber": parseInt(phoneNumber),
     };
 
 
@@ -176,7 +176,7 @@ function Payment() {
             pattern="[a-zA-Z]{+}"
           ></input>
 
-          <div className="credit-card-subheading">Card Number</div>
+          <div className="credit-card-subheading">Card Number (format: 1234-1234-1234-1234)</div>
           <input
             onChange={handleCardNumberChange}
             required
