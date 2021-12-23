@@ -79,25 +79,35 @@ function Showtime() {
           <List.Item>
             <div className="cinemaTitle">{cinema.name}</div>
             <div className="showdateFlex">
-              {cinema.sessionList.map((session) => (
-                <div
-                  className={
-                    session.hasRemainSeat ? "showtimeNotNull" : "showtimeNull"
-                  }
-                  onClick={() =>
-                    history.push("/selectSeat", { movieTitle, session, cinema })
-                  }
-                >
-                  <div className="timeslot">
-                    {session?.showDateTimeHkt
-                      .toString()
-                      .split("T")[1]
-                      .toString()
-                      .substring(0, 5)}
+              {cinema.sessionList
+                .sort(function (a, b) {
+                  return (
+                    new Date(a.showDateTimeHkt) - new Date(b.showDateTimeHkt)
+                  );
+                })
+                .map((session) => (
+                  <div
+                    className={
+                      session.hasRemainSeat ? "showtimeNotNull" : "showtimeNull"
+                    }
+                    onClick={() =>
+                      history.push("/selectSeat", {
+                        movieTitle,
+                        session,
+                        cinema,
+                      })
+                    }
+                  >
+                    <div className="timeslot">
+                      {session?.showDateTimeHkt
+                        .toString()
+                        .split("T")[1]
+                        .toString()
+                        .substring(0, 5)}
+                    </div>
+                    <div className="price">${session.price}</div>
                   </div>
-                  <div className="price">{session.price}</div>
-                </div>
-              ))}
+                ))}
             </div>
           </List.Item>
         );

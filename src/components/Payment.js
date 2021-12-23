@@ -59,7 +59,6 @@ function Payment() {
       phoneNumber: parseInt(phoneNumber),
     };
 
-    console.log(requestBody);
     api
       .post("/payments", requestBody)
       .then((response) => {
@@ -122,13 +121,13 @@ function Payment() {
         </span>
         <span>
           <div className="receipt-header">Price</div>
-          <div className="receipt-content">{price}</div>
+          <div className="receipt-content">${price}</div>
         </span>
       </div>
 
       <div className="receipt-total-box">
-        <span className="receipt-header">Total Price</span>
-        <span className="receipt-content">{totalPrice.toFixed(1)}</span>
+        <span className="receipt-header">Total Price: </span>
+        <span className="receipt-content">${totalPrice.toFixed(1)}</span>
       </div>
 
       <div className="credit-card-info-box">
