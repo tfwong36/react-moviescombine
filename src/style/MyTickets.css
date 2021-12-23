@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600&family=Acme&family=Actor&family=Advent+Pro:wght@200&family=Alef&family=Imperial+Script&family=Signika:wght@300&display=swap");
+
+.my-ticket-title {
+  padding-left: 7vw;
+  padding-top: 5vh;
+  color: white;
+  font-family: Acme;
+  font-size: 24px;
+  text-align: left;
+}
+
+.my-ticket-result {
+  padding-left: 7vw;
+  padding-top: 3vh;
+  color: white;
+  font-family: Acme;
+  font-size: 24px;
+  text-align: left;
+  opacity: 70%;
+}
+
+.mobile-number-search {
+  margin-top: 2vh;
+  width: 70vw;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  border: 1px solid gray;
+  border-radius: 20px;
+  background-color: #2e3243;
+  height: 5vh;
+}
+
+.middle-line {
+  background-color: lightgrey;
+  height: 1vh;
+  opacity: 50%;
+  margin-top: 3vh;
+}
+
+.search-result-item {
+  margin-top: 2vh;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 3.5vw;
+  padding-right: 3vw;
+  height: 13vh;
+  width: 85vw;
+  border: 3px solid lightgrey;
+  border-radius: 30px;
+  color: white;
+  text-align: left;
+}
+.search-result-item-title {
+  margin-top: 1.5vh;
+  margin-bottom: 0;
+
+  font-family: Acme;
+  font-size: 20px;
+}
+.search-result-item-location {
+  margin-top: 1vh;
+  margin-bottom: 0;
+  text-align: left;
+  font-family: Acme;
+  font-size: 14px;
+  opacity: 80%;
+}
+.search-result-item-time {
+  margin-top: 1vh;
+  margin-bottom: 0;
+  text-align: left;
+  font-family: Acme;
+  opacity: 80%;
+  font-size: 14px;
+}
+.search-result-item-price {
+  padding-left: 30vw;
+}

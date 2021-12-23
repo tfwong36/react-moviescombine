@@ -1,9 +1,8 @@
 import { LeftOutline } from "antd-mobile-icons";
 import "../style/Payment.css";
 import { useHistory, useLocation } from "react-router-dom";
-import api from "../apis/api"
-import MovieDetails from "./MovieDetails";
-import { Dialog } from "antd-mobile/es/components/dialog/dialog";
+import api from "../apis/api";
+import creditCardIcon from "../assects/creditCard.png";
 function Payment() {
   const location = useLocation();
   const history = useHistory();
@@ -29,16 +28,13 @@ function Payment() {
   let optionMonth = [];
   let optionYear = [];
   let thisYear = new Date().getFullYear();
-  
 
-  for(let i = 1 ; i <= 12 ; i++)
-  {
-    optionMonth.push(<option>{i}</option>)
+  for (let i = 1; i <= 12; i++) {
+    optionMonth.push(<option>{i}</option>);
   }
 
-  for(let i = thisYear ; i <= thisYear + 10 ; i++)
-  {
-    optionYear.push(<option>{i}</option>)
+  for (let i = thisYear; i <= thisYear + 10; i++) {
+    optionYear.push(<option>{i}</option>);
   }
 
   function payNow(event) {
@@ -50,43 +46,30 @@ function Payment() {
     console.log("cvv: " + cvv);
     console.log("phone: " + phoneNumber);
 
-
-    const paymentRequestBody = {
-      "payment" : {
-        "sessionId": sessionID,
-        "selectedSeats": selectedSeats,
-        "unitPrice": parseInt(price)
+    const requestBody = {
+      payment: {
+        sessionId: sessionID,
+        selectedSeats: selectedSeats,
+        unitPrice: parseInt(price),
       },
-      "cardHolderName": cardHolderName,
-      "creditCardNumber": cardNumber,
-      "expiryMonth": parseInt(expiryMonth),
-      "expiryYear": parseInt(expiryYear),
-      "cardCVV": parseInt(cvv),
-      "phoneNumber": parseInt(phoneNumber)
-    }
+      cardHolderName: cardHolderName,
+      creditCardNumber: cardNumber,
+      expiryMonth: parseInt(expiryMonth),
+      expiryYear: parseInt(expiryYear),
+      cardCVV: parseInt(cvv),
+      phoneNumber: parseInt(phoneNumber),
+    };
 
-
-    api.post("/payments" , paymentRequestBody).then( (response) => {
-      Dialog.alert({
-        content: (<div> <p>Success, please set a one time password: </p> <input onChange={handlePasswordChange}></input> </div>),
-        onConfirm: () => {
-          console.log(response.data)
-          const passwordRequestBody = {"id": response.data.payment.id , "password": password }
-          api.post("/payments/password" , passwordRequestBody).then(history.push("/"))
-      }})
-    }).catch( () => {
-      Dialog.alert({content: "Please select another seat." , 
-                  onConfirm: () => {history.goBack()}})
-    })
-
-
-
-  }
-
-  function handlePasswordChange(event)
-  {
-    password = event.target.value;
-    console.log("password: " + password);
+    api
+      .post("/payments", requestBody)
+      .then((response) => {
+        console.log(response); // success
+        history.push("/");
+      })
+      .catch((response) => {
+        console.log("got 404");
+        history.goBack();
+      });
   }
 
   function handleNameChange(event) {
@@ -113,8 +96,6 @@ function Payment() {
     phoneNumber = event.target.value;
   }
 
-
-
   return (
     <>
       <div>
@@ -123,7 +104,9 @@ function Payment() {
         </div>
         <div className="movie-title-box">{title}</div>
 
-        <div className="price-duration">Price: {price} | Duration: 148 mins</div>
+        <div className="price-duration">
+          Price: {price} | Duration: 148 mins
+        </div>
         <div className="cinema-detail">{cinemaDetail}</div>
         <div className="show-date-and-time">{showDateandTime}</div>
       </div>
@@ -139,42 +122,77 @@ function Payment() {
         </span>
         <span>
           <div className="receipt-header">Price</div>
-          <div className="receipt-content">{price}</div>
+          <div className="receipt-content">${price}</div>
         </span>
       </div>
 
-
       <div className="receipt-total-box">
-        <span className="receipt-header">Total Price</span>
-        <span className="receipt-content">{totalPrice.toFixed(1)}</span>
+        <span className="receipt-header">Total Price: </span>
+        <span className="receipt-content">${totalPrice.toFixed(1)}</span>
       </div>
 
       <div className="credit-card-info-box">
-        <div className="credit-card-heading">Credit Card</div>
+        <div style={{ display: "flex" }}>
+          <span>
+            <div className="credit-card-heading">Credit Card</div>
+          </span>
+          <span>
+            <img src={creditCardIcon} className="credit-card-icon"></img>
+          </span>
+        </div>
 
         <form onSubmit={payNow}>
-
           <div className="credit-card-subheading">Card Holder Name</div>
-          <input onChange={handleNameChange} required className="credit-card-text"></input>
+          <input
+            onChange={handleNameChange}
+            required
+            className="credit-card-text"
+          ></input>
 
           <div className="credit-card-subheading">Card Number</div>
-          <input onChange={handleCardNumberChange} required className="credit-card-text"></input>
+          <input
+            onChange={handleCardNumberChange}
+            required
+            className="credit-card-text"
+          ></input>
 
           <div className="credit-card-subheading">Expiry Date (MM/YY)</div>
-          <select onChange={handleMonthChange} required className="credit-card-select" type="select">
+          <select
+            onChange={handleMonthChange}
+            required
+            className="credit-card-select"
+            type="select"
+          >
             {optionMonth}
           </select>
-          <select onChange={handleYearChange} required className="credit-card-select" type="select">
+          <select
+            onChange={handleYearChange}
+            required
+            className="credit-card-select"
+            type="select"
+          >
             {optionYear}
           </select>
 
           <div className="credit-card-subheading">CVV</div>
-          <input onChange={handleCvvChange} required className="credit-card-text"></input>
+          <input
+            onChange={handleCvvChange}
+            required
+            className="credit-card-text"
+          ></input>
 
           <div className="credit-card-subheading">Phone Number</div>
-          <input onChange={handlePhoneNumberChange} required className="credit-card-text"></input>
+          <input
+            onChange={handlePhoneNumberChange}
+            required
+            className="credit-card-text"
+          ></input>
 
-          <input type="submit" className="credit-card-btn" value="Pay Now" ></input>
+          <input
+            type="submit"
+            className="credit-card-btn"
+            value="Pay Now"
+          ></input>
         </form>
       </div>
     </>

@@ -14,3 +14,8 @@ export const getAllCinemas = () => {
 export const getAllSessionsByMovieId = (movieId) => {
   return api.get("/sessions?movieid=" + movieId);
 };
+
+export const getPaymentByPhoneNumber = (phoneNumber) => {
+  return api.get("/payments?phoneNumber=" + phoneNumber);
+};
+

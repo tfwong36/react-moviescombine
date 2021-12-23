@@ -1,6 +1,7 @@
 import React from "react";
 import { Swiper } from "antd-mobile";
 
+
 import "../../style/MainPage.css";
 import { useHistory } from "react-router-dom";
 

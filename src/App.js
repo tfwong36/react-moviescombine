@@ -12,6 +12,7 @@ import MainPage from "./components/MainPage";
 import MovieDetails from "./components/MovieDetails";
 import SelectSeat from "./components/SelectSeat";
 import Payment from "./components/Payment";
+import PurchaseDetails from "./components/PurchaseDetails";
 
 function App() {
   return (
@@ -23,23 +24,29 @@ function App() {
               <Link to="/" className="navigation-tab">
                 <SearchOutline color="white" fontSize={36} />
               </Link>
-              <Link to="/selectSeat" className="navigation-tab">
+              <Link to="/MyTickets" className="navigation-tab">
                 <CouponOutline color="white" fontSize={36} />
               </Link>
             </ul>
           </nav>
           <Switch>
-            <Route exact path="/selectSeat">
-              <SelectSeat></SelectSeat>
+            <Route exact path="/MyTickets">
+              <MyTickets></MyTickets>
             </Route>
             <Route exact path="/MovieDetails">
               <MovieDetails></MovieDetails>
+            </Route>
+            <Route exact path="/PurcahseDetails">
+              <PurchaseDetails></PurchaseDetails>
             </Route>
             <Route exact path="/Showtime">
               <Showtime></Showtime>
             </Route>
             <Route exact path="/Payment">
               <Payment></Payment>
+            </Route>
+            <Route exact path="/SelectSeat">
+              <SelectSeat></SelectSeat>
             </Route>
             <Route exact path="/">
               <MainPage></MainPage>

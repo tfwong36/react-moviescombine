@@ -1,11 +1,9 @@
 import { Rate } from "antd-mobile";
 import { NavBar } from "antd-mobile";
 import { Button } from "antd-mobile";
-import { LeftOutline } from "antd-mobile-icons";
-import { Dialog } from "antd-mobile-icons";
 import "../style/MovieDetails.css";
 import { useHistory, useLocation } from "react-router-dom";
-import YoutubeEmbed from "./YoutubeEmbed";
+import YoutubeEmbed from "./MovieDetailComponents/YoutubeEmbed";
 function MovieDetails() {
   const location = useLocation();
   const history = useHistory();
@@ -22,12 +20,12 @@ function MovieDetails() {
   } = location.state;
   const sectionStyle = {
     background:
-      " linear-gradient(to top, rgba(0, 0, 0, 255) 25%, rgb(0, 0, 0,0) ),url(" +
-      posterSource +
+      " linear-gradient(to top, rgba(0, 0, 0, 255) 35%, rgb(0, 0, 0,0) ),url(" +
+      location.state.posterSource +
       ")",
     borderRadius: "50px",
     backgroundSize: "contain",
-    paddingBottom: "3vh",
+    backgroundRepeat: "no-repeat",
   };
 
   return (
@@ -38,10 +36,15 @@ function MovieDetails() {
       <div style={sectionStyle}>
         <div className="container">
           <div className="emptyDiv" />
-          <div className="movieName">{title}</div>
+          <div className="movieName">{location.state.title}</div>
           <div className="ratingGenreFlex">
-            <span className="genre">{genre}</span>
-            <Rate className="star" allowHalf readOnly value={rating} />
+            <span className="genre">{location.state.genre}</span>
+            <Rate
+              className="star"
+              allowHalf
+              readOnly
+              value={location.state.rating}
+            />
           </div>
           <div className="otherDetailsFlex">
             <div className="otherDetails">
@@ -50,18 +53,20 @@ function MovieDetails() {
             </div>
             <div className="otherDetails">
               <div className="otherDetailsTitle">Release</div>
-              <div className="otherDetailsValue">{releaseDate}</div>
+              <div className="otherDetailsValue">
+                {location.state.releaseDate}
+              </div>
             </div>
             <div className="otherDetails">
               <div className="otherDetailsTitle">Category</div>
-              <div className="otherDetailsValue">{category}</div>
+              <div className="otherDetailsValue">{location.state.category}</div>
             </div>
           </div>
           <div id="movieDescription">
-            <p>{description}</p>
+            <p>{location.state.description}</p>
           </div>
           <div className="trailer">Trailer</div>
-          <YoutubeEmbed embedId={trailerSource} />
+          <YoutubeEmbed embedId={location.state.trailerSource} />
         </div>
         <div>
           <Button color="warning" onClick={() => history.push("/Showtime", id)}>
