@@ -96,7 +96,7 @@ function Payment() {
         <div>
           {" "}
           <p>Success, please set a one time password: </p>{" "}
-          <input type="password" onChange={handlePasswordChange}></input>{" "}
+          <input type="password" onChange={handlePasswordChange} required></input>{" "}
         </div>
       ),
       closeOnAction: true,
