@@ -17,21 +17,23 @@ function MovieDetails() {
     title,
     releaseDate,
     trailerSource,
+    duration,
   } = location.state;
   const sectionStyle = {
     background:
       " linear-gradient(to top, rgba(0, 0, 0, 255) 35%, rgb(0, 0, 0,0) ),url(" +
       location.state.posterSource +
       ")",
-    borderRadius: "50px",
+    borderRadius: "45px",
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
+    marginTop: "51px"
   };
 
   return (
     <>
-      <div onClick={() => history.goBack()}>
-        <NavBar className="backText">Movie Details</NavBar>
+      <div>
+        <NavBar onBack={() => history.goBack()} className="backText">Movie Details</NavBar>
       </div>
       <div style={sectionStyle}>
         <div className="container">
@@ -44,12 +46,15 @@ function MovieDetails() {
               allowHalf
               readOnly
               value={location.state.rating}
+              style={{
+                '--active-color': '#F79E44'
+              }}
             />
           </div>
           <div className="otherDetailsFlex">
             <div className="otherDetails">
               <div className="otherDetailsTitle">Duration</div>
-              <div className="otherDetailsValue">148 mins</div>
+              <div className="otherDetailsValue">{location.state.duration}</div>
             </div>
             <div className="otherDetails">
               <div className="otherDetailsTitle">Release</div>
@@ -67,11 +72,11 @@ function MovieDetails() {
           </div>
           <div className="trailer">Trailer</div>
           <YoutubeEmbed embedId={location.state.trailerSource} />
-        </div>
-        <div>
-          <Button color="warning" onClick={() => history.push("/Showtime", id)}>
-            Showtime
-          </Button>
+          <div className="buttonContainer">
+            <Button className="showtimeButton" onClick={() => history.push("/Showtime", id)}>
+              Showtime
+            </Button>
+          </div>
         </div>
       </div>
     </>

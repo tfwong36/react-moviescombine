@@ -28,7 +28,7 @@ function MovieSwiper(props) {
     <>
       <h3 className="title">{props.title}</h3>
       <Swiper
-        slideSize={48}
+        slideSize={45}
         trackOffset={15}
         loop
         stuckAtBoundary={false}
