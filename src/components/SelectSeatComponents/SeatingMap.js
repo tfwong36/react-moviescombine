@@ -9,34 +9,51 @@ function SeatingMap({ toggleSeatSelect }) {
 
   useEffect(() => {
     const columnNumber = 9;
-    const rowNumber = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
+    const rowNumber = ["A", "B", "C", "D", "E", "F", "G", "H", "I","num"];
     let fetchedStatusList = [];
     rowNumber.forEach((row) => {
       for (let seat = 1; seat < columnNumber + 1; seat++) {
-        const key = row + seat;
-        const status = availableSeats.includes(key)
-          ? SEAT_AVALIABLE
-          : SEAT_OCCUPIED;
-        if(seat === 3 || seat === 8)
+        if (row !== "num"){
+          const key = row + seat;
+          const status = availableSeats.includes(key)
+            ? SEAT_AVALIABLE
+            : SEAT_OCCUPIED;
+          if(seat === 3 || seat === 8)
+            fetchedStatusList.push({
+              key: key+SEAT_NONEXIST,
+              status: SEAT_NONEXIST,
+              row: row,
+              columnNumber: columnNumber,
+            })
           fetchedStatusList.push({
-            key: key+SEAT_NONEXIST,
+            key: key,
+            status: status,
+            row: row,
+            columnNumber: columnNumber,
+          });
+          if(seat === 9)
+          fetchedStatusList.push({
+            key: row,
+            status: rowNumber,
+            row: row,
+            columnNumber: columnNumber,
+          })
+        }
+        else{
+          if(seat === 3 || seat === 8)
+          fetchedStatusList.push({
+            key: seat+SEAT_NONEXIST,
             status: SEAT_NONEXIST,
             row: row,
             columnNumber: columnNumber,
           })
-        fetchedStatusList.push({
-          key: key,
-          status: status,
-          row: row,
-          columnNumber: columnNumber,
-        });
-        if(seat === 9)
-        fetchedStatusList.push({
-          key: row,
-          status: rowNumber,
-          row: row,
-          columnNumber: columnNumber,
-        })
+          fetchedStatusList.push({
+            key: seat,
+            status: rowNumber,
+            row: row,
+            columnNumber: columnNumber,
+          })
+        }
       }
     });
     setSeatingStatusList(fetchedStatusList);
@@ -44,10 +61,12 @@ function SeatingMap({ toggleSeatSelect }) {
 
   const listItems = seatingStatusList.map((seat) => {
     const rowNumber = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
-    if (!rowNumber.includes(seat.key))
+    const rowNumber2 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    if (!rowNumber.includes(seat.key) && !rowNumber2.includes(seat.key))
       return (
         <div className="grid-item" key={seat.key + seat.status}>
           <Seat key={seat.key} seat={seat} toggleSeatSelect={toggleSeatSelect} />
+          {/* {seat.key} */}
         </div>
       );
     else 
