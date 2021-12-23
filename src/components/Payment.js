@@ -253,7 +253,6 @@ function Payment() {
             onChange={handleNameChange}
             required
             className="credit-card-text"
-            pattern="[a-zA-Z]{+}"
             disabled={isWaitingReponse}
           ></input>
 
@@ -261,9 +260,8 @@ function Payment() {
           <input
             onChange={handleCardNumberChange}
             required
-            maxlength="16"
+            maxLength="16"
             className="credit-card-text"
-            maxLength={16}
             pattern="[0-9]{16}"
             disabled={isWaitingReponse}
           ></input>
@@ -292,10 +290,9 @@ function Payment() {
           <input
             onChange={handleCvvChange}
             required
-            maxlength="3"
+            maxLength="3"
             className="credit-card-text"
             pattern="[0-9]{3}"
-            maxLength={3}
             disabled={isWaitingReponse}
           ></input>
 
@@ -304,9 +301,8 @@ function Payment() {
             onChange={handlePhoneNumberChange}
             required
             className="credit-card-text"
-            maxlength="8"
+            maxLength="8"
             pattern="[0-9]{8}"
-            maxLength={8}
             disabled={isWaitingReponse}
           ></input>
 
