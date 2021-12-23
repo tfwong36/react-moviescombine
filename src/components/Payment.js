@@ -26,6 +26,7 @@ function Payment() {
   const [cvv, setCvv] = useState();
   const [phoneNumber, setPhoneNumber] = useState();
   const [password, setPassword] = useState();
+  const [isWaitingReponse, setIsWaitingResponse] = useState(false);
 
   const {
     title,
@@ -74,6 +75,7 @@ function Payment() {
     for (let i = 0; i <= 1000000000; i++) {
       sum += i;
     }
+    setIsWaitingResponse(false);
     postPasswordGetPaymentDetail(paymentId, password).then((response) => {
       dispatch({
         type: GET_PAYMENT_DETAIL_AFTER_PASSWORD,
@@ -86,7 +88,6 @@ function Payment() {
   }
 
   function showErrorPopup(response) {
-    console.log(response.status);
     if (response.status === 403) {
       Dialog.show({
         content: (
@@ -202,7 +203,11 @@ function Payment() {
   return (
     <>
       <div>
-        <div className="back-text" onClick={() => history.goBack()}>
+        <div
+          style={isWaitingReponse ? { display: "none" } : {}}
+          className="back-text"
+          onClick={() => history.goBack()}
+        >
           <LeftOutline className="back-arrow" />
         </div>
         <div className="movie-title-box">{title}</div>
@@ -249,6 +254,7 @@ function Payment() {
             required
             className="credit-card-text"
             pattern="[a-zA-Z]{+}"
+            disabled={isWaitingReponse}
           ></input>
 
           <div className="credit-card-subheading">Card Number (16 digits)</div>
@@ -258,6 +264,7 @@ function Payment() {
             className="credit-card-text"
             maxLength={16}
             pattern="[0-9]{16}"
+            disabled={isWaitingReponse}
           ></input>
 
           <div className="credit-card-subheading">Expiry Date (MM/YY)</div>
@@ -266,6 +273,7 @@ function Payment() {
             required
             className="credit-card-select"
             type="select"
+            disabled={isWaitingReponse}
           >
             {optionMonth}
           </select>
@@ -274,6 +282,7 @@ function Payment() {
             required
             className="credit-card-select"
             type="select"
+            disabled={isWaitingReponse}
           >
             {optionYear}
           </select>
@@ -285,6 +294,7 @@ function Payment() {
             className="credit-card-text"
             pattern="[0-9]{3}"
             maxLength={3}
+            disabled={isWaitingReponse}
           ></input>
 
           <div className="credit-card-subheading">Phone Number (8 digits)</div>
@@ -294,12 +304,14 @@ function Payment() {
             className="credit-card-text"
             pattern="[0-9]{8}"
             maxLength={8}
+            disabled={isWaitingReponse}
           ></input>
 
           <input
             type="submit"
             className="credit-card-btn"
             value="Pay Now"
+            disabled={isWaitingReponse}
           ></input>
         </form>
       </div>
@@ -339,13 +351,14 @@ function Payment() {
                 phoneNumber: parseInt(phoneNumber),
                 foodOrderList: snackRequestObject,
               };
-              console.log(paymentRequestBody);
+              setIsWaitingResponse(true);
               api
                 .post("/payments", paymentRequestBody)
                 .then((response) => {
                   gotoPurchaseDetails(response.data.payment.id, password);
                 })
                 .catch((error) => {
+                  setIsWaitingResponse(false);
                   showErrorPopup(error.response);
                 });
             },
