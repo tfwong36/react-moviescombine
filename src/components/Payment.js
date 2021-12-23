@@ -75,7 +75,7 @@ function Payment() {
     for (let i = 0; i <= 1000000000; i++) {
       sum += i;
     }
-    setIsWaitingResponse(false);
+
     postPasswordGetPaymentDetail(paymentId, password).then((response) => {
       dispatch({
         type: GET_PAYMENT_DETAIL_AFTER_PASSWORD,
@@ -338,32 +338,37 @@ function Payment() {
           {
             key: "ok",
             text: "Confirm",
+            onClose: () => setIsWaitingResponse(false),
+            disabled: isWaitingReponse,
             onClick: () => {
-              const paymentRequestBody = {
-                payment: {
-                  sessionId: sessionID,
-                  selectedSeats: selectedSeats,
-                  unitPrice: parseInt(price),
-                },
-                password: password,
-                cardHolderName: cardHolderName,
-                creditCardNumber: cardNumber,
-                expiryMonth: parseInt(expiryMonth),
-                expiryYear: parseInt(expiryYear),
-                cardCVV: parseInt(cvv),
-                phoneNumber: parseInt(phoneNumber),
-                foodOrderList: snackRequestObject,
-              };
-              setIsWaitingResponse(true);
-              api
-                .post("/payments", paymentRequestBody)
-                .then((response) => {
-                  gotoPurchaseDetails(response.data.payment.id, password);
-                })
-                .catch((error) => {
-                  setIsWaitingResponse(false);
-                  showErrorPopup(error.response);
-                });
+              if (!isWaitingReponse) {
+                setIsWaitingResponse(true);
+                const paymentRequestBody = {
+                  payment: {
+                    sessionId: sessionID,
+                    selectedSeats: selectedSeats,
+                    unitPrice: parseInt(price),
+                  },
+                  password: password,
+                  cardHolderName: cardHolderName,
+                  creditCardNumber: cardNumber,
+                  expiryMonth: parseInt(expiryMonth),
+                  expiryYear: parseInt(expiryYear),
+                  cardCVV: parseInt(cvv),
+                  phoneNumber: parseInt(phoneNumber),
+                  foodOrderList: snackRequestObject,
+                };
+
+                api
+                  .post("/payments", paymentRequestBody)
+                  .then((response) => {
+                    gotoPurchaseDetails(response.data.payment.id, password);
+                  })
+                  .catch((error) => {
+                    showErrorPopup(error.response);
+                    setIsWaitingResponse(false);
+                  });
+              }
             },
           },
         ]}
