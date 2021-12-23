@@ -66,31 +66,41 @@ function Payment() {
 
 
     api.post("/payments" , paymentRequestBody).then( (response) => {
+      showPasswordPopUp(response)
+    }).catch( () => {
+      showErrorPopup();
+    })
+  }
+
+  function showPasswordPopUp(response){
       Dialog.show({
         content: (<div> <p>Success, please set a one time password: </p> <input type="password" onChange={handlePasswordChange}></input> </div>),
         closeOnAction: true,
         actions: [{
           key: "ok",
           text: "OK",
-          onClick: () => {
-            console.log(response.data)
-            const passwordRequestBody = {"id": response.data.payment.id , "password": password }
-            api.post("/payments/password" , passwordRequestBody).then(history.push("/PurcahseDetails"))
-          }
+          onClick: () => { setPassword(response) }
         }]
       })
-    }).catch( () => {
-      Dialog.show({
-                      content: "Please select another seat." , 
-                      closeOnAction: true,
-                      actions: [{
-                        key: "ok",
-                        text: "OK",
-                        onClick: () => {history.goBack()}
-                    }]
-                })
-    })
 
+  }
+
+  function setPassword(response) {
+    const passwordRequestBody = { "id": response.data.payment.id, "password": password }
+    api.post("/payments/password", passwordRequestBody).then(history.push("/"))
+
+  }
+
+  function showErrorPopup(event) {
+    Dialog.show({
+      content: "Please select another seat.",
+      closeOnAction: true,
+      actions: [{
+        key: "ok",
+        text: "OK",
+        onClick: () => { history.goBack() }
+      }]
+    })
   }
 
 
