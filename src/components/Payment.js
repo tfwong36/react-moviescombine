@@ -1,4 +1,5 @@
 import { LeftOutline } from "antd-mobile-icons";
+import { useSelector } from "react-redux";
 import "../style/Payment.css";
 import { useHistory, useLocation } from "react-router-dom";
 import { Divider } from "antd-mobile";
@@ -7,7 +8,7 @@ import creditCardIcon from "../assects/creditCard.png";
 function Payment() {
   const location = useLocation();
   const history = useHistory();
-//   const snackList = useSelector((state) => state.snackList);
+  const snackList = useSelector((state) => state.snackList);
 
   const {
     title,
@@ -18,28 +19,12 @@ function Payment() {
     sessionID,
   } = location.state;
 
-  const snackList = [
-    {
-      id: "001",
-      name: "pop corn",
-      quantity: 3,
-      unitPrice: 1000,
-    },
-    {
-      id: "002",
-      name: "coke",
-      quantity: 4,
-      unitPrice: 10000,
-    },
-  ];
-
-  // const snackList = []
   const numberOfTicket = selectedSeats.length;
   const totalPrice =
     numberOfTicket * price +
     snackList.reduce((sum, { quantity, unitPrice }) => sum + quantity * unitPrice, 0);
 
-  const snackRequestObject = snackList.map((snack) => {
+  const snackRequestObject = snackList.filter((snack) => snack.quantity > 0).map((snack) => {
     return {
       foodId: snack.id,
       quantity: snack.quantity,
@@ -67,12 +52,6 @@ function Payment() {
 
   function payNow(event) {
     event.preventDefault();
-    console.log("holder: " + cardHolderName);
-    console.log("number: " + cardNumber);
-    console.log("month: " + expiryMonth);
-    console.log("year: " + expiryYear);
-    console.log("cvv: " + cvv);
-    console.log("phone: " + phoneNumber);
 
     const requestBody = {
       payment: {
@@ -88,6 +67,7 @@ function Payment() {
       phoneNumber: parseInt(phoneNumber),
       foodOrderList: snackRequestObject,
     };
+    console.log(requestBody)
     api
       .post("/payments", requestBody)
       .then((response) => {
@@ -125,13 +105,13 @@ function Payment() {
   }
 
   const getSnackPaymentDiv = () => {
-    if (snackList.length < 1) return <></>
-    const foodNamesWithquantity = snackList.map((food) => (
+    if (snackList.filter((snack) => snack.quantity > 0).length < 1) return <></>
+    const foodNamesWithquantity = snackList.filter((snack) => snack.quantity > 0).map((food) => (
       <div className="receipt-content" key={food.name + food.quantity}>
         {food.name} x {food.quantity}
       </div>
     ));
-    const foodPrices = snackList.map((food) => (
+    const foodPrices = snackList.filter((snack) => snack.quantity > 0).map((food) => (
       <div className="receipt-content" key={food.name + food.unitPrice}>
         ${food.unitPrice}
       </div>

@@ -37,11 +37,6 @@ function Showtime() {
     return cinema;
   });
 
-  console.log(
-    useSelector((state) => state.movieList).filter(
-      (movie) => movie.id === location.state
-    )[0].title
-  );
   const movieTitle = useSelector((state) => state.movieList).filter(
     (movie) => movie.id === location.state
   )[0].title;
