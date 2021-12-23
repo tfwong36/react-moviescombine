@@ -10,7 +10,7 @@ import {
   getPaymentByPhoneNumber,
   postPasswordGetPaymentDetail,
 } from "../apis/MoviesCombine";
-import { Modal } from "antd-mobile";
+import { Modal, Toast } from "antd-mobile";
 import { useSelector } from "react-redux";
 import { SearchOutline } from "antd-mobile-icons";
 
@@ -60,7 +60,13 @@ function MyTickets() {
       if (response.status === 200) {
         history.push("/PurcahseDetails", response.data);
       }
-    });
+    }).catch(()=>{
+        Toast.show({
+          icon: 'fail',
+          content: 'Invalid Password',
+        })
+      }
+    );
     setPassword("");
   }
 
@@ -133,6 +139,7 @@ function MyTickets() {
           </>
         }
       ></Modal>
+      <div className="emptyDiv"></div>
     </>
   );
 }
