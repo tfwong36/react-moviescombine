@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Seat from "./Seat";
-import { SEAT_AVALIABLE, SEAT_OCCUPIED, SEAT_NONEXIST } from "../../constants/constants";
+import { SEAT_AVALIABLE, SEAT_OCCUPIED, SEAT_NONEXIST} from "../../constants/constants";
 function SeatingMap({ toggleSeatSelect }) {
   const [seatingStatusList, setSeatingStatusList] = useState([]);
 
@@ -30,17 +30,33 @@ function SeatingMap({ toggleSeatSelect }) {
           row: row,
           columnNumber: columnNumber,
         });
+        if(seat === 9)
+        fetchedStatusList.push({
+          key: row,
+          status: rowNumber,
+          row: row,
+          columnNumber: columnNumber,
+        })
       }
     });
     setSeatingStatusList(fetchedStatusList);
   }, [availableSeats]);
 
   const listItems = seatingStatusList.map((seat) => {
+    const rowNumber = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
+    if (!rowNumber.includes(seat.key))
+      return (
+        <div className="grid-item" key={seat.key + seat.status}>
+          <Seat key={seat.key} seat={seat} toggleSeatSelect={toggleSeatSelect} />
+        </div>
+      );
+    else 
     return (
-      <div className="grid-item" key={seat.key + seat.status}>
-        <Seat key={seat.key} seat={seat} toggleSeatSelect={toggleSeatSelect} />
+      <div className="grid-item-row" key={seat.key + seat.status + " row"}>
+        {seat.key}
       </div>
     );
+
   });
 
   return (

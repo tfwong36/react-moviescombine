@@ -3,16 +3,16 @@ const SeatAvailability = () => {
   return (
     <div className="seat-availability-container">
       <div className="seat-availability">
-        <Seatsvg width="1.5rem" fill="white" style={{ marginInline: "8px" }} />
+        <Seatsvg width="1.3rem" fill="white" style={{ marginInline: "8px" }} />
         <div className="seat-availability-text">Available</div>
         <Seatsvg
-          width="1.5rem"
+          width="1.3rem"
           fill="#717171"
           style={{ marginInline: "8px" }}
         />
         <div className="seat-availability-text">Reserved</div>
         <Seatsvg
-          width="1.5rem"
+          width="1.3rem"
           fill="#F24253"
           style={{ marginInline: "8px" }}
         />
