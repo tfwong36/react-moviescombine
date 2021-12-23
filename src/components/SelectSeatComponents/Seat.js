@@ -4,6 +4,7 @@ import {
   SEAT_SELECTED,
   SEAT_AVALIABLE,
   SEAT_OCCUPIED,
+  SEAT_NONEXIST,
 } from "../../constants/constants";
 function Seat({ seat, toggleSeatSelect }) {
   const [state, setstate] = useState(seat.status);
@@ -17,6 +18,14 @@ function Seat({ seat, toggleSeatSelect }) {
         return "#F24253";
       default:
         return "white";
+    }
+  }
+  function getOpacity(status) {
+    switch (status) {
+      case SEAT_NONEXIST:
+        return 0;
+      default:
+        return 100;
     }
   }
   function toggleState() {
@@ -33,6 +42,7 @@ function Seat({ seat, toggleSeatSelect }) {
       className="seat"
       width="1.5rem"
       fill={getFill(state)}
+      fillOpacity = {getOpacity(state)}
       onClick={handleOnClick}
     />
   );

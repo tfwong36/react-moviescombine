@@ -1,14 +1,14 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Seat from "./Seat";
-import { SEAT_AVALIABLE, SEAT_OCCUPIED } from "../../constants/constants";
+import { SEAT_AVALIABLE, SEAT_OCCUPIED, SEAT_NONEXIST } from "../../constants/constants";
 function SeatingMap({ toggleSeatSelect }) {
   const [seatingStatusList, setSeatingStatusList] = useState([]);
 
   const availableSeats = useSelector((state) => state.seatingStatusList);
 
   useEffect(() => {
-    const columnNumber = 11;
+    const columnNumber = 9;
     const rowNumber = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
     let fetchedStatusList = [];
     rowNumber.forEach((row) => {
@@ -17,6 +17,13 @@ function SeatingMap({ toggleSeatSelect }) {
         const status = availableSeats.includes(key)
           ? SEAT_AVALIABLE
           : SEAT_OCCUPIED;
+        if(seat === 3 || seat === 8)
+          fetchedStatusList.push({
+            key: key+SEAT_NONEXIST,
+            status: SEAT_NONEXIST,
+            row: row,
+            columnNumber: columnNumber,
+          })
         fetchedStatusList.push({
           key: key,
           status: status,

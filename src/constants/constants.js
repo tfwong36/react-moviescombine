@@ -7,4 +7,5 @@ export const INIT_SEATING_PLAN = "/initSeatingPlan";
 
 export const SEAT_SELECTED = "s";
 export const SEAT_AVALIABLE = "a";
+export const SEAT_NONEXIST = "n";
 export const SEAT_OCCUPIED = "o";
