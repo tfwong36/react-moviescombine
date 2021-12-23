@@ -176,12 +176,12 @@ function Payment() {
             pattern="[a-zA-Z]{+}"
           ></input>
 
-          <div className="credit-card-subheading">Card Number (format: 1234-1234-1234-1234)</div>
+          <div className="credit-card-subheading">Card Number (16 digits)</div>
           <input
             onChange={handleCardNumberChange}
             required
             className="credit-card-text"
-            pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}"
+            pattern="[0-9]{16}"
           ></input>
 
           <div className="credit-card-subheading">Expiry Date (MM/YY)</div>
@@ -202,7 +202,7 @@ function Payment() {
             {optionYear}
           </select>
 
-          <div className="credit-card-subheading">CVV</div>
+          <div className="credit-card-subheading">CVV (3 digits)</div>
           <input
             onChange={handleCvvChange}
             required
@@ -210,7 +210,7 @@ function Payment() {
             pattern="[0-9]{3}"
           ></input>
 
-          <div className="credit-card-subheading">Phone Number</div>
+          <div className="credit-card-subheading">Phone Number (8 digits)</div>
           <input
             onChange={handlePhoneNumberChange}
             required
