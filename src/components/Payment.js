@@ -22,13 +22,13 @@ function Payment() {
     {
       id: "001",
       name: "pop corn",
-      quanity: 3,
+      quantity: 3,
       unitPrice: 1000,
     },
     {
       id: "002",
       name: "coke",
-      quanity: 4,
+      quantity: 4,
       unitPrice: 10000,
     },
   ];
@@ -37,12 +37,12 @@ function Payment() {
   const numberOfTicket = selectedSeats.length;
   const totalPrice =
     numberOfTicket * price +
-    snackList.reduce((sum, { quanity, unitPrice }) => sum + quanity * unitPrice, 0);
+    snackList.reduce((sum, { quantity, unitPrice }) => sum + quantity * unitPrice, 0);
 
   const snackRequestObject = snackList.map((snack) => {
     return {
-      id: snack.id,
-      quanity: snack.quanity,
+      foodId: snack.id,
+      quantity: snack.quantity,
     };
   });
 
@@ -126,9 +126,9 @@ function Payment() {
 
   const getSnackPaymentDiv = () => {
     if (snackList.length < 1) return <></>
-    const foodNamesWithQuanity = snackList.map((food) => (
-      <div className="receipt-content" key={food.name + food.quanity}>
-        {food.name} x {food.quanity}
+    const foodNamesWithquantity = snackList.map((food) => (
+      <div className="receipt-content" key={food.name + food.quantity}>
+        {food.name} x {food.quantity}
       </div>
     ));
     const foodPrices = snackList.map((food) => (
@@ -147,7 +147,7 @@ function Payment() {
         <div className="receipt-info-box">
           <span>
             <div className="receipt-header">Food</div>
-            {foodNamesWithQuanity}
+            {foodNamesWithquantity}
           </span>
           <span>
             <div className="receipt-header">Price</div>
