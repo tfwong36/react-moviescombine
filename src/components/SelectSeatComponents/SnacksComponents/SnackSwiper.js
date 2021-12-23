@@ -1,10 +1,10 @@
 import React from "react";
 import { Swiper } from "antd-mobile";
 
-import "../../style/MainPage.css";
+import "../../../style/MainPage.css";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { DEFAULT_FOOD_SWIPER_INDEX } from "../../constants/constants";
+import { DEFAULT_FOOD_SWIPER_INDEX } from "../../../constants/constants";
 
 function SnackSwiper(props) {
   const snackList = useSelector((state) => state.snackList);
@@ -16,10 +16,11 @@ function SnackSwiper(props) {
           <div
             className="content"
             style={{
+              marginTop: "15px",
               backgroundImage: "url(" + snack.imgSrc + ")",
             }}
           ></div>
-          <div style={{ marginBottom: "10px" }}>
+          <div className="swiper-item">
             {snack.name} ${snack.unitPrice}
           </div>
         </Swiper.Item>

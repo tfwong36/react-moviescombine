@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600&family=Acme&family=Actor&family=Advent+Pro:wght@200&family=Alef&family=Imperial+Script&family=Signika:wght@300&display=swap");
+
+.modal-title {
+  font-family: Acme;
+  font-size: 22px;
+  margin-top: 21px;
+}
+
+.modal-subtitle {
+  font-family: Acme;
+  font-size: 15px;
+  margin-top: 15px;
+  color: #888888;
+}
+
+.swiper-item {
+  font-family: Alef;
+  font-size: 14px;
+  color: #232835;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.swiper-item {
+  font-family: Alef;
+  font-size: 14px;
+  color: #232835;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.adjust-quantity-area {
+  display: flex;
+  justify-content: space-evenly;
+  height: 34px;
+  border: Solid #efeff4 1px;
+  margin-top: 33px;
+  margin-bottom: 15px;
+}
+
+.adjust-quantity-quantity {
+  font-family: "Abyssinica SIL";
+
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 34px;
+  font-size: 14px;
+}
+
+.adm-modal-main {
+  border-radius: 30px;
+}
+
+.confirm-btn {
+  font-family: "Abyssinica SIL";
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  color: #1890ff;
+  border-radius: 0 0 30px 0;
+}
+
+.cancel-btn {
+  font-family: "Abyssinica SIL";
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  left: 0;
+  border-radius: 0 0 0 30px;
+}

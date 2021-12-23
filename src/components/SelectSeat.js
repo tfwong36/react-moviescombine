@@ -10,7 +10,7 @@ import { getAllSeats } from "../apis/MoviesCombine";
 import { useDispatch } from "react-redux";
 import { INIT_SEATING_PLAN } from "../constants/constants";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
-import SnackOrdering from "./SelectSeatComponents/SnackOrdering";
+import SnackOrdering from "./SelectSeatComponents/SnacksComponents/SnackOrdering";
 
 function SelectSeat() {
   const [selectedSeats, setSelectedSeats] = useState([]);
@@ -74,17 +74,7 @@ function SelectSeat() {
         <Button
           className="seating-map-purchase-btn"
           disabled={selectedSeats.length < 1}
-          onClick={
-            () => setIsSnackModalVisible(true)
-            //   history.push("/Payment", {
-            //   selectedSeats,
-            //   cinemaDetail,
-            //   title,
-            //   price,
-            //   showDateandTime,
-            //   sessionID,
-            // })
-          }
+          onClick={() => setIsSnackModalVisible(true)}
         >
           PURCHASE
         </Button>
