@@ -30,7 +30,8 @@ function MyTickets() {
     setMobileNumber(event.target.value);
   }
 
-  function submitPhoneNumber() {
+  function submitPhoneNumber(event) {
+    event.preventDefault();
     getPaymentByPhoneNumber(mobileNumber).then((response) => {
       dispatch({ type: GET_PAYMENT_BY_PHONE_NUMBER, payload: response.data });
     });
@@ -92,19 +93,19 @@ function MyTickets() {
     <>
       <div>
         <div className="my-ticket-title">My Tickets</div>
-        <input
-          type="number"
-          className="mobile-number-search"
-          placeholder="Search Transaction with Phone Number"
-          onChange={onChangeMobileNumber}
-        ></input>
-        <button
-          type="submit"
-          className="search-submit"
-          onClick={submitPhoneNumber}
-        >
-          <SearchOutline fontSize={26} color="white" />
-        </button>
+        <form onSubmit={submitPhoneNumber}>
+          <input
+            required
+            pattern="[0-9]{8}"
+            maxLength={8}
+            className="mobile-number-search"
+            placeholder="Search Transaction with Phone Number"
+            onChange={onChangeMobileNumber}
+          ></input>
+          <button type="submit" className="search-submit">
+            <SearchOutline fontSize={26} color="white" />
+          </button>
+        </form>
       </div>
       <div className="middle-line"></div>
       <div>

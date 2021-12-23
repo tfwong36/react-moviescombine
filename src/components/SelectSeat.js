@@ -60,10 +60,12 @@ function SelectSeat() {
       <div className="container">
         <div className="movieTitle">{title}</div>
         <div className="priceDuration">
-          Price: ${price}| Duration: {duration} minures
+          Price: ${price} | Duration: {duration} minures
         </div>
         <div className="cinemaDetail">{cinemaDetail}</div>
         <div className="showDateandTime">{showDateandTime}</div>
+      </div>
+      <div>
       </div>
       <div className="screen-curve">
         <div className="screen-text">SCREEN</div>
