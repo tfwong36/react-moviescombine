@@ -18,7 +18,7 @@ function PurchaseDetails() {
 
   function redirectPage() {
     if (history.entries[history.length - 2].pathname === "/Payment") {
-      history.go(-6);
+      history.go(-history.length);
     } else {
       history.goBack();
     }

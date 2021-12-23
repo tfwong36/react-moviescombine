@@ -9,12 +9,24 @@ import creditCardIcon from "../assects/creditCard.png";
 import { postPasswordGetPaymentDetail } from "../apis/MoviesCombine";
 import { useDispatch } from "react-redux";
 import { GET_PAYMENT_DETAIL_AFTER_PASSWORD } from "../constants/constants";
+import { useState } from "react";
 
 function Payment() {
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
+  const [isSetPwPopVisible, setIsSetPwPopVisible] = useState(false);
+  const [paymentRes, setPaymentRes] = useState([]);
   const snackList = useSelector((state) => state.snackList);
+  const [cardHolderName, setCardHolderName] = useState("");
+  const [cardNumber, setCardNumber] = useState();
+  const [expiryMonth, setExpiryMonth] = useState(1);
+  let thisYear = new Date().getFullYear();
+  const [expiryYear, setExpiryYear] = useState(thisYear);
+  const [cvv, setCvv] = useState();
+  const [phoneNumber, setPhoneNumber] = useState();
+  const [password, setPassword] = useState();
+  const [isWaitingReponse, setIsWaitingResponse] = useState(false);
 
   const {
     title,
@@ -27,7 +39,6 @@ function Payment() {
 
   let optionMonth = [];
   let optionYear = [];
-  let thisYear = new Date().getFullYear();
 
   const numberOfTicket = selectedSeats.length;
   const totalPrice =
@@ -46,14 +57,6 @@ function Payment() {
       };
     });
 
-  let cardHolderName;
-  let cardNumber;
-  let expiryMonth = 1;
-  let expiryYear = thisYear;
-  let cvv;
-  let phoneNumber;
-  let password;
-
   for (let i = 1; i <= 12; i++) {
     optionMonth.push(<option>{i}</option>);
   }
@@ -64,74 +67,15 @@ function Payment() {
 
   function payNow(event) {
     event.preventDefault();
-
-    const paymentRequestBody = {
-      payment: {
-        sessionId: sessionID,
-        selectedSeats: selectedSeats,
-        unitPrice: parseInt(price),
-      },
-      cardHolderName: cardHolderName,
-      creditCardNumber: cardNumber,
-      expiryMonth: parseInt(expiryMonth),
-      expiryYear: parseInt(expiryYear),
-      cardCVV: parseInt(cvv),
-      phoneNumber: parseInt(phoneNumber),
-      foodOrderList: snackRequestObject,
-    };
-
-    console.log(paymentRequestBody);
-
-    api
-      .post("/payments", paymentRequestBody)
-      .then((response) => {
-        showPasswordPopUp(response);
-      })
-      .catch(() => {
-        showErrorPopup();
-      });
-  }
-
-  function showPasswordPopUp(response) {
-    Dialog.show({
-      content: (
-        <div>
-          {" "}
-          <p>Success, please set a one time password: </p>{" "}
-          <input type="password" onChange={handlePasswordChange}></input>{" "}
-        </div>
-      ),
-      closeOnAction: true,
-      actions: [
-        {
-          key: "ok",
-          text: "OK",
-          onClick: () => {
-            setPassword(response);
-          },
-        },
-      ],
-    });
-  }
-
-  function setPassword(response) {
-    const passwordRequestBody = {
-      id: response.data.payment.id,
-      password: password,
-    };
-    api
-      .post("/payments/password", passwordRequestBody)
-      .then(gotoPurchaseDetails(response.data.payment.id, password));
+    setIsSetPwPopVisible(true);
   }
 
   function gotoPurchaseDetails(paymentId, password) {
-    console.log("goto id " + paymentId);
-    console.log("password id " + password);
-
     let sum = 0;
-    for (let i = 0; i <= 100000000; i++) {
+    for (let i = 0; i <= 1000000000; i++) {
       sum += i;
     }
+    setIsWaitingResponse(false);
     postPasswordGetPaymentDetail(paymentId, password).then((response) => {
       dispatch({
         type: GET_PAYMENT_DETAIL_AFTER_PASSWORD,
@@ -143,48 +87,67 @@ function Payment() {
     });
   }
 
-  function showErrorPopup() {
-    Dialog.show({
-      content: "Please select another seat.",
-      closeOnAction: true,
-      actions: [
-        {
-          key: "ok",
-          text: "OK",
-          onClick: () => {
-            history.goBack();
+  function showErrorPopup(response) {
+    if (response.status === 403) {
+      Dialog.show({
+        content: (
+          <div className="pw-pop-title">Please input a one time password"</div>
+        ),
+        closeOnAction: true,
+        actions: [
+          {
+            key: "ok",
+            text: "Ok",
+            bold: true,
           },
-        },
-      ],
-    });
+        ],
+      });
+    }
+    if (response.status === 404) {
+      Dialog.show({
+        content: (
+          <div className="pw-pop-title">Please select another seat.</div>
+        ),
+        closeOnAction: true,
+        actions: [
+          {
+            key: "ok",
+            text: "OK",
+            onClick: () => {
+              history.goBack();
+            },
+          },
+        ],
+      });
+    }
   }
 
   function handlePasswordChange(event) {
-    password = event.target.value;
+    setPassword(event.target.value);
   }
 
   function handleNameChange(event) {
-    cardHolderName = event.target.value;
+    setCardHolderName(event.target.value);
   }
 
   function handleCardNumberChange(event) {
-    cardNumber = event.target.value;
+    setCardNumber(event.target.value);
   }
 
   function handleMonthChange(event) {
-    expiryMonth = event.target.value;
+    setExpiryMonth(event.target.value);
   }
 
   function handleYearChange(event) {
-    expiryYear = event.target.value;
+    setExpiryYear(event.target.value);
   }
 
   function handleCvvChange(event) {
-    cvv = event.target.value;
+    setCvv(event.target.value);
   }
 
   function handlePhoneNumberChange(event) {
-    phoneNumber = event.target.value;
+    setPhoneNumber(event.target.value);
   }
 
   const getSnackPaymentDiv = () => {
@@ -240,7 +203,11 @@ function Payment() {
   return (
     <>
       <div>
-        <div className="back-text" onClick={() => history.goBack()}>
+        <div
+          style={isWaitingReponse ? { display: "none" } : {}}
+          className="back-text"
+          onClick={() => history.goBack()}
+        >
           <LeftOutline className="back-arrow" />
         </div>
         <div className="movie-title-box">{title}</div>
@@ -251,7 +218,6 @@ function Payment() {
         <div className="cinema-detail">{cinemaDetail}</div>
         <div className="show-date-and-time">{showDateandTime}</div>
       </div>
-
       <div className="receipt-info-box">
         <span>
           <div className="receipt-header">Seat No.</div>
@@ -271,7 +237,6 @@ function Payment() {
         <span className="receipt-header">Total Price: </span>
         <span className="receipt-content">${totalPrice.toFixed(1)}</span>
       </div>
-
       <div className="credit-card-info-box">
         <div style={{ display: "flex" }}>
           <span>
@@ -289,6 +254,7 @@ function Payment() {
             required
             className="credit-card-text"
             pattern="[a-zA-Z]{+}"
+            disabled={isWaitingReponse}
           ></input>
 
           <div className="credit-card-subheading">Card Number (16 digits)</div>
@@ -298,8 +264,8 @@ function Payment() {
             maxlength="16"
             className="credit-card-text"
             maxLength={16}
-            type="number"
             pattern="[0-9]{16}"
+            disabled={isWaitingReponse}
           ></input>
 
           <div className="credit-card-subheading">Expiry Date (MM/YY)</div>
@@ -308,6 +274,7 @@ function Payment() {
             required
             className="credit-card-select"
             type="select"
+            disabled={isWaitingReponse}
           >
             {optionMonth}
           </select>
@@ -316,6 +283,7 @@ function Payment() {
             required
             className="credit-card-select"
             type="select"
+            disabled={isWaitingReponse}
           >
             {optionYear}
           </select>
@@ -325,10 +293,10 @@ function Payment() {
             onChange={handleCvvChange}
             required
             maxlength="3"
-            type="number"
             className="credit-card-text"
             pattern="[0-9]{3}"
             maxLength={3}
+            disabled={isWaitingReponse}
           ></input>
 
           <div className="credit-card-subheading">Phone Number (8 digits)</div>
@@ -337,18 +305,70 @@ function Payment() {
             required
             className="credit-card-text"
             maxlength="8"
-            type="number"
             pattern="[0-9]{8}"
             maxLength={8}
+            disabled={isWaitingReponse}
           ></input>
 
           <input
             type="submit"
             className="credit-card-btn"
             value="Pay Now"
+            disabled={isWaitingReponse}
           ></input>
         </form>
       </div>
+      <Dialog
+        visible={isSetPwPopVisible}
+        content={
+          <div>
+            <div className="pw-pop-content">
+              Please set a one time password:{" "}
+            </div>
+            <input
+              type="password"
+              onChange={handlePasswordChange}
+              style={{ width: "100%" }}
+            ></input>{" "}
+          </div>
+        }
+        title={<div className="pw-pop-title">Purchase Success</div>}
+        closeOnAction
+        actions={[
+          {
+            key: "ok",
+            text: "Confirm",
+            onClick: () => {
+              const paymentRequestBody = {
+                payment: {
+                  sessionId: sessionID,
+                  selectedSeats: selectedSeats,
+                  unitPrice: parseInt(price),
+                },
+                password: password,
+                cardHolderName: cardHolderName,
+                creditCardNumber: cardNumber,
+                expiryMonth: parseInt(expiryMonth),
+                expiryYear: parseInt(expiryYear),
+                cardCVV: parseInt(cvv),
+                phoneNumber: parseInt(phoneNumber),
+                foodOrderList: snackRequestObject,
+              };
+              setIsWaitingResponse(true);
+              api
+                .post("/payments", paymentRequestBody)
+                .then((response) => {
+                  gotoPurchaseDetails(response.data.payment.id, password);
+                })
+                .catch((error) => {
+                  setIsWaitingResponse(false);
+                  showErrorPopup(error.response);
+                });
+            },
+          },
+        ]}
+      ></Dialog>
+      ;
     </>
   );
 }
