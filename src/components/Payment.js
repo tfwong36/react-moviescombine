@@ -1,5 +1,8 @@
 import { LeftOutline } from "antd-mobile-icons";
 import "../style/Payment.css";
+import { Dialog } from "antd-mobile/es/components/dialog/dialog";
+import { ConfigProvider } from 'antd';
+import enUS from 'antd/lib/locale/en_US';
 import { useHistory, useLocation } from "react-router-dom";
 import api from "../apis/api";
 import creditCardIcon from "../assects/creditCard.png";
@@ -15,19 +18,20 @@ function Payment() {
     sessionID,
   } = location.state;
 
+  let optionMonth = [];
+  let optionYear = [];
+  let thisYear = new Date().getFullYear();
+
   const numberOfTicket = selectedSeats.length;
   const totalPrice = numberOfTicket * price;
   let cardHolderName;
   let cardNumber;
-  let expiryMonth;
-  let expiryYear;
+  let expiryMonth = 1;
+  let expiryYear = thisYear;
   let cvv;
   let phoneNumber;
   let password;
 
-  let optionMonth = [];
-  let optionYear = [];
-  let thisYear = new Date().getFullYear();
 
   for (let i = 1; i <= 12; i++) {
     optionMonth.push(<option>{i}</option>);
@@ -46,7 +50,7 @@ function Payment() {
     console.log("cvv: " + cvv);
     console.log("phone: " + phoneNumber);
 
-    const requestBody = {
+    const paymentRequestBody = {
       payment: {
         sessionId: sessionID,
         selectedSeats: selectedSeats,
@@ -60,16 +64,38 @@ function Payment() {
       phoneNumber: parseInt(phoneNumber),
     };
 
-    api
-      .post("/payments", requestBody)
-      .then((response) => {
-        console.log(response); // success
-        history.push("/");
+
+    api.post("/payments" , paymentRequestBody).then( (response) => {
+      Dialog.show({
+        content: (<div> <p>Success, please set a one time password: </p> <input type="password" onChange={handlePasswordChange}></input> </div>),
+        closeOnAction: true,
+        actions: [{
+          key: "ok",
+          text: "OK",
+          onClick: () => {
+            console.log(response.data)
+            const passwordRequestBody = {"id": response.data.payment.id , "password": password }
+            api.post("/payments/password" , passwordRequestBody).then(history.push("/PurcahseDetails"))
+          }
+        }]
       })
-      .catch((response) => {
-        console.log("got 404");
-        history.goBack();
-      });
+    }).catch( () => {
+      Dialog.show({
+                      content: "Please select another seat." , 
+                      closeOnAction: true,
+                      actions: [{
+                        key: "ok",
+                        text: "OK",
+                        onClick: () => {history.goBack()}
+                    }]
+                })
+    })
+
+  }
+
+
+  function handlePasswordChange(event) {
+    password = event.target.value;
   }
 
   function handleNameChange(event) {
@@ -147,6 +173,7 @@ function Payment() {
             onChange={handleNameChange}
             required
             className="credit-card-text"
+            pattern="[a-zA-Z]{+}"
           ></input>
 
           <div className="credit-card-subheading">Card Number</div>
@@ -154,6 +181,7 @@ function Payment() {
             onChange={handleCardNumberChange}
             required
             className="credit-card-text"
+            pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}"
           ></input>
 
           <div className="credit-card-subheading">Expiry Date (MM/YY)</div>
@@ -179,6 +207,7 @@ function Payment() {
             onChange={handleCvvChange}
             required
             className="credit-card-text"
+            pattern="[0-9]{3}"
           ></input>
 
           <div className="credit-card-subheading">Phone Number</div>
@@ -186,6 +215,7 @@ function Payment() {
             onChange={handlePhoneNumberChange}
             required
             className="credit-card-text"
+            pattern="[0-9]{8}"
           ></input>
 
           <input

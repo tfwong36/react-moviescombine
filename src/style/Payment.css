@@ -114,6 +114,7 @@
   height: 31px;
   margin-left: calc(var(--marginLeft) - 5px);
   margin-bottom: 10px;
+  padding-left: 14px;
 }
 
 .credit-card-select {
