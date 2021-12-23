@@ -5,6 +5,9 @@ import {
   INIT_CINEMAS,
   INIT_SESSIONS,
   INIT_SEATING_PLAN,
+  INIT_SNACKS,
+  REDUCE_SNACKS_QUANTITY,
+  ADD_SNACKS_QUANTITY,
 } from "../constants/constants";
 
 const initState = {
@@ -12,6 +15,7 @@ const initState = {
   seatingStatusList: [],
   selectedSeatList: [],
   sessionList: [],
+  snackList: [],
   cinemaListWithSessions: [],
   cinemaList: [],
 };
@@ -29,6 +33,31 @@ const MovieReducer = (state = initState, action) => {
 
     case INIT_SEATING_PLAN:
       return { ...state, seatingStatusList: action.payload };
+
+    case REDUCE_SNACKS_QUANTITY:
+      return {
+        ...state,
+        snackList: state.snackList.map((snack, index) => {
+          if (index === action.payload) {
+            if (snack.quantity > 0) snack.quantity--;
+          }
+          return snack;
+        }),
+      };
+
+    case ADD_SNACKS_QUANTITY:
+      return {
+        ...state,
+        snackList: state.snackList.map((snack, index) => {
+          if (index === action.payload) {
+            if (snack.quantity < 99) snack.quantity++;
+          }
+          return snack;
+        }),
+      };
+
+    case INIT_SNACKS:
+      return { ...state, snackList: action.payload };
 
     case SELECT_SEAT:
       return {

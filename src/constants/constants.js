@@ -4,6 +4,12 @@ export const INIT_CINEMA_SESSIONS = "/initCinemaSessions";
 export const INIT_SESSIONS = "/initSessions";
 export const SELECT_SEAT = "/selectSeat";
 export const INIT_SEATING_PLAN = "/initSeatingPlan";
+export const INIT_SNACKS = "/initSnacks";
+export const REDUCE_SNACKS_QUANTITY = "/reduceSnackQuantity";
+export const ADD_SNACKS_QUANTITY = "/addSnackQuantity";
+
+export const DEFAULT_FOOD_SWIPER_INDEX = 0;
+export const DEFAULT_FOOD_QUANTITY = 0;
 
 export const SEAT_SELECTED = "s";
 export const SEAT_AVALIABLE = "a";

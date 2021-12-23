@@ -38,12 +38,6 @@ function Payment() {
 
   function payNow(event) {
     event.preventDefault();
-    console.log("holder: " + cardHolderName);
-    console.log("number: " + cardNumber);
-    console.log("month: " + expiryMonth);
-    console.log("year: " + expiryYear);
-    console.log("cvv: " + cvv);
-    console.log("phone: " + phoneNumber);
 
     const requestBody = {
       payment: {
