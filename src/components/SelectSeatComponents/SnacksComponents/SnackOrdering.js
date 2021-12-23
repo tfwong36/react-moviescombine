@@ -76,11 +76,11 @@ function SnackOrdering(props) {
           [
             {
               key: "cancel",
-              text: "No",
+              text: "Cancel",
             },
             {
-              key: "delete",
-              text: "Yes",
+              key: "sure",
+              text: "Sure",
               bold: true,
               danger: true,
               onClick: () =>
