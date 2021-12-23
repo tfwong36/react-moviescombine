@@ -28,13 +28,16 @@ function MovieSwiper(props) {
     <>
       <h3 className="title">{props.title}</h3>
       <Swiper
-        slideSize={70}
+        slideSize={48}
         trackOffset={15}
         loop
         stuckAtBoundary={false}
         defaultIndex={0}
         autoplay={true}
         autoplayInterval={10000}
+        style={{
+          'margin-top': '15px'
+        }}
       >
         {getMovieData()}
       </Swiper>
