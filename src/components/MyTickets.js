@@ -1,5 +1,5 @@
 import "../style/MyTickets.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
@@ -36,7 +36,6 @@ function MyTickets() {
 
   function submitPhoneNumber() {
     getPaymentByPhoneNumber(mobileNumber).then((response) => {
-      console.log(response.data);
       dispatch({ type: GET_PAYMENT_BY_PHONE_NUMBER, payload: response.data });
     });
   }
@@ -56,17 +55,16 @@ function MyTickets() {
   function submitPassword() {
     setIsModalVisible(false);
     postPasswordGetPaymentDetail(paymentId, password).then((response) => {
-      setStatus(response.status);
       dispatch({
         type: GET_PAYMENT_DETAIL_AFTER_PASSWORD,
         payload: response.data,
       });
+      setStatus(response.status);
+      if (response.status === 200) {
+        history.push("/PurcahseDetails", response.data);
+      }
     });
     setPassword("");
-    if (status === 200) {
-      console.log(responseAfterPassword);
-      history.push("/PurcahseDetails", responseAfterPassword);
-    }
   }
 
   function loadHistory() {
@@ -74,7 +72,6 @@ function MyTickets() {
       <div id="searchResultPanel" className="resultPanelGroup">
         <div
           className="search-result-item"
-          //   onClick={() => history.push("/PurcahseDetails")}
           onClick={() => displayModal(payment.paymentId)}
         >
           <p className="search-result-item-title">{payment.movie.title}</p>
@@ -110,7 +107,6 @@ function MyTickets() {
           className="search-submit"
           onClick={submitPhoneNumber}
         >
-          {" "}
           <SearchOutline fontSize={26} color="white" />
         </button>
       </div>

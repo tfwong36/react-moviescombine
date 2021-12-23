@@ -6,13 +6,15 @@ function PurchaseDetails() {
   const location = useLocation();
   const history = useHistory();
   const qrcodeURL =
-    "https://dev-moviescombine-api.herokuapp.com/qrcode?url=https://dev-moviescombine-api.herokuapp.com/payments?phoneNumber=";
+    "https://dev-moviescombine-api.herokuapp.com/qrcode?url=https://dev-moviescombine-api.herokuapp.com/payments?qrKey=";
 
   console.log(location.state);
 
   function displaySeats(seatList) {
     return seatList.map((seat, index) => (
-      <span className="right-align">{seat}</span>
+      <span key="index" className="right-align">
+        {seat}
+      </span>
     ));
   }
 
