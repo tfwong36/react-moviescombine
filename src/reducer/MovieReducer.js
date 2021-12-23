@@ -17,7 +17,7 @@ const initState = {
   cinemaListWithSessions: [],
   cinemaList: [],
   paymentByPhoneNumberList: [],
-  paymentListAfterPassword: [],
+  paymentAfterPassword: [],
 };
 
 const MovieReducer = (state = initState, action) => {
@@ -53,7 +53,7 @@ const MovieReducer = (state = initState, action) => {
     case GET_PAYMENT_BY_PHONE_NUMBER:
       return { ...state, paymentByPhoneNumberList: action.payload };
     case GET_PAYMENT_DETAIL_AFTER_PASSWORD:
-      return { ...state, paymentListAfterPassword: action.payload };
+      return { ...state, paymentAfterPassword: action.payload };
     default:
       return state;
   }
