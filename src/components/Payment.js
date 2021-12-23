@@ -80,8 +80,6 @@ function Payment() {
       foodOrderList: snackRequestObject,
     };
 
-    console.log(paymentRequestBody);
-
     api
       .post("/payments", paymentRequestBody)
       .then((response) => {
@@ -125,8 +123,6 @@ function Payment() {
   }
 
   function gotoPurchaseDetails(paymentId, password) {
-    console.log("goto id " + paymentId);
-    console.log("password id " + password);
 
     let sum = 0;
     for (let i = 0; i <= 100000000; i++) {
@@ -298,7 +294,6 @@ function Payment() {
             maxlength="16"
             className="credit-card-text"
             maxLength={16}
-            type="number"
             pattern="[0-9]{16}"
           ></input>
 
@@ -325,7 +320,6 @@ function Payment() {
             onChange={handleCvvChange}
             required
             maxlength="3"
-            type="number"
             className="credit-card-text"
             pattern="[0-9]{3}"
             maxLength={3}
@@ -337,7 +331,6 @@ function Payment() {
             required
             className="credit-card-text"
             maxlength="8"
-            type="number"
             pattern="[0-9]{8}"
             maxLength={8}
           ></input>
