@@ -140,3 +140,9 @@
   margin-left: var(--marginLeft);
   margin-top: 20px;
 }
+
+.credit-card-icon {
+  margin-left: 32px;
+  width: 103px;
+  height: 30px;
+}
