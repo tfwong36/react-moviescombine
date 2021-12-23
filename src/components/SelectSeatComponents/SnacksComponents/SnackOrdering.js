@@ -50,11 +50,6 @@ function SnackOrdering(props) {
 
   const handleConfirm = () => {
     props.setIsSnackModalVisible(false);
-    const defaultSnackList = snackList.map((food) => {
-      food.quantity = DEFAULT_FOOD_QUANTITY;
-      return food;
-    });
-    dispatch({ type: INIT_SNACKS, payload: defaultSnackList });
     history.push("/Payment", {
       selectedSeats: props.selectedSeats,
       cinemaDetail: props.cinemaDetail,
