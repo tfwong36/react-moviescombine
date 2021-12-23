@@ -18,10 +18,11 @@ function SelectSeat() {
   const location = useLocation();
   const history = useHistory();
   const dispatch = useDispatch();
-  const { movieTitle, cinema, session } = location.state;
+  const { movieTitle, cinema, session ,movieDuration} = location.state;
   const [isSnackModalVisible, setIsSnackModalVisible] = useState(false);
   const title = movieTitle;
   const price = session.price;
+  const duration =  movieDuration;
   const options = {
     weekday: "short",
     year: "numeric",
@@ -59,7 +60,7 @@ function SelectSeat() {
       <div className="container">
         <div className="movieTitle">{title}</div>
         <div className="priceDuration">
-          Price: ${price}| Duration: 128.3 minures
+          Price: ${price}| Duration: {duration} minures
         </div>
         <div className="cinemaDetail">{cinemaDetail}</div>
         <div className="showDateandTime">{showDateandTime}</div>
