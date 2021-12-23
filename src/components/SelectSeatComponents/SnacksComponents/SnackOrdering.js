@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Button } from "antd-mobile";
+import { Dialog, Modal, Button } from "antd-mobile";
 import SnackSwiper from "./SnackSwiper";
 import { getAllSnacks } from "../../../apis/MoviesCombine";
 import "../../../style/SnackOrdering.css";
@@ -50,6 +50,56 @@ function SnackOrdering(props) {
 
   const handleConfirm = () => {
     props.setIsSnackModalVisible(false);
+    let isEmptySnackBucket = true;
+    for (let snack of snackList) {
+      if (snack.quantity > 0) {
+        isEmptySnackBucket = false;
+        break;
+      }
+    }
+    if (isEmptySnackBucket) {
+      Dialog.show({
+        content: (
+          <div
+            style={{
+              fontFamily: "Abyssinica SIL",
+              fontSize: "18px",
+              textAlign: "center",
+              fontWeight: "400",
+            }}
+          >
+            Are you sure? It is necessary for having great movie time! :)
+          </div>
+        ),
+        closeOnAction: true,
+        actions: [
+          [
+            {
+              key: "cancel",
+              text: "No",
+            },
+            {
+              key: "delete",
+              text: "Yes",
+              bold: true,
+              danger: true,
+              onClick: () =>
+                history.push("/Payment", {
+                  selectedSeats: props.selectedSeats,
+                  cinemaDetail: props.cinemaDetail,
+                  title: props.title,
+                  price: props.price,
+                  showDateandTime: props.showDateandTime,
+                  sessionID: props.sessionID,
+                }),
+            },
+          ],
+        ],
+      });
+
+      return;
+    }
+
     history.push("/Payment", {
       selectedSeats: props.selectedSeats,
       cinemaDetail: props.cinemaDetail,
