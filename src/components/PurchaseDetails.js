@@ -31,8 +31,11 @@ function PurchaseDetails() {
     return <></>;
     const foodNames = SnackDetails.map((food) => (    
       <>
+          <div className="left-align">
+            {food.food.name + " x " + food.quantity }
+          </div>
           <div className="right-align">
-            {food.food.name + " x " + food.quantity + " : "+ food.food.unitPrice}
+          HKD$ {food.quantity * food.food.unitPrice }
           </div>
           <br></br> 
       </>      
@@ -43,11 +46,14 @@ function PurchaseDetails() {
         <div className="purchase-detail">
         <br></br>
           <p>
-          <span className="left-align">Snacks ordered:</span>
+          <span className="left-align">Snack ordered:</span>
+          <span className="right-align">Sub Total</span>
+          <br></br>
           {foodNames}
-          <span className="left-align">Snacks Totoal:</span>
+          <br></br>
+          <span className="left-align">Total snack price:</span>
           <span className="right-align">
-            ${foodTotalprice}
+          HKD$ {foodTotalprice}
           </span>
           </p>
       </div>
@@ -112,7 +118,7 @@ function PurchaseDetails() {
         </p>
         <br></br>
         <p>
-          <span className="left-align">Total price (HKD):</span>
+          <span className="left-align">Total ticket price (HKD):</span>
           <span className="right-align">
             HKD$ {location.state.paymentDetails.movieTotalPrice}
           </span>
@@ -142,6 +148,16 @@ function PurchaseDetails() {
         </p>
       </div>
       {SnackDetails(location.state.paymentDetails.foodOrder)}
+    <div className="purchase-detail">
+        <p>
+          <span className="left-align">Grand Total (HKD):</span>
+          <span className="right-align">
+            HKD$ {location.state.paymentDetails.movieTotalPrice+location.state.paymentDetails.foodTotalPrice}
+          </span>
+        </p>
+      </div>     
+      <div className="emptyDiv">
+      </div> 
     </>
   );
 }

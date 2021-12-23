@@ -39,9 +39,13 @@
 .qrcode {
   padding-left: 10vw;
   padding-right: 10vw;
-  margin-top: 6vh;
+  margin-top: 3vh;
   height: 35vh;
   color: white;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.emptyDiv {
+  height: 100px;
 }
