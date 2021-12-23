@@ -1,13 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600&family=Acme&family=Actor&family=Advent+Pro:wght@200&family=Alef&family=Imperial+Script&family=Signika:wght@300&display=swap");
 .trailer,
 .movieName {
-  width: 80vw;
-  height: 5vh;
+  width: 85vw;
   font-family: Advent Pro;
   font-style: normal;
   font-weight: 400;
   font-size: 26px;
-  margin-bottom: 1vh;
+  margin-bottom: 0.5vh;
+  margin-top: 10px;
+  margin-left: 8px;
 
   /* identical to box height */
   text-align: left;
@@ -15,9 +16,29 @@
   color: #ffffff;
 }
 
+.buttonContainer {
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+.showtimeButton {
+  font-family: Acme;
+  background: linear-gradient(
+    255.96deg,
+    rgba(255, 187, 0, 0.6) 0%,
+    #ffbb00 100%
+  );
+  border-radius: 10px;
+  border-style: none;
+  width: 206px;
+  height: 37px;
+  margin: 0 auto;
+}
+
 #movieDescription {
+  margin-left: 12px;
   width: 90%;
-  height: 139px;
+  height: auto;
 
   margin-bottom: 10px;
   font-family: Actor;
@@ -97,7 +118,7 @@
   font-family: Alef;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 20px;
   letter-spacing: -0.24px;
   color: #ffffff;
@@ -110,7 +131,7 @@
 .ratingGenreFlex {
   display: flex;
   justify-content: flex-start;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .showtime {
@@ -126,7 +147,8 @@
   font-family: Acme;
   font-style: normal;
   color: #ffffff;
-  background-color: #232835;
+  background-color: #2e3243;
+  height: 51px;
 }
 
 .backArrow {

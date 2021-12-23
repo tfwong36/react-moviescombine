@@ -15,6 +15,8 @@ body {
   width: 100%;
   color: white;
   text-align: center;
+  height: 70px;
+  background-color: #2e3243;
 }
 
 .navigation-tab {
@@ -30,7 +32,7 @@ body {
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #2e3243;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
