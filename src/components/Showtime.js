@@ -76,7 +76,7 @@ function Showtime() {
         return (
           <List.Item>
             <div className="cinemaTitle">{cinema.name}</div>
-            <div className="showdateFlex">
+            <div className="sessionFlex">
               {cinema.sessionList
                 .sort(function (a, b) {
                   return (
