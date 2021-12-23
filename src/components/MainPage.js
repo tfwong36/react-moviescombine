@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 
 import MovieSwiper from "./MainPageComponents/MovieSwiper";
 import SearchBar from "./MainPageComponents/SearchBar";
+import logo from '../assects/MC3.png';
 
 function MainPage() {
   const dispatch = useDispatch();
@@ -27,7 +28,10 @@ function MainPage() {
 
   return (
     <div>
-      <SearchBar></SearchBar>
+      <div className="flexContainer">
+        <img src={logo} alt="Logo" />
+        <SearchBar></SearchBar>
+      </div>
       <MovieSwiper title={"SHOWING"} movieList={showingMovieList}></MovieSwiper>
       <MovieSwiper
         title={"UPCOMING"}
