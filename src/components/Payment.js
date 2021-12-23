@@ -106,11 +106,16 @@ function Payment() {
 
   const getSnackPaymentDiv = () => {
     if (snackList.filter((snack) => snack.quantity > 0).length < 1) return <></>
-    const foodNamesWithquantity = snackList.filter((snack) => snack.quantity > 0).map((food) => (
-      <div className="receipt-content" key={food.name + food.quantity}>
-        {food.name} x {food.quantity}
-      </div>
-    ));
+    const foodNames = snackList.filter((snack) => snack.quantity > 0).map((food) =>(
+      <div className="receipt-content" key={food.name + food.unitPrice}>
+        {food.name}
+      </div>      
+    ))
+    const foodQuantity = snackList.filter((snack) => snack.quantity > 0).map((food) =>(
+      <div className="receipt-content" key={food.name + food.unitPrice}>
+        {food.quantity}
+      </div>      
+    ))   
     const foodPrices = snackList.filter((snack) => snack.quantity > 0).map((food) => (
       <div className="receipt-content" key={food.name + food.unitPrice}>
         ${food.unitPrice}
@@ -127,7 +132,11 @@ function Payment() {
         <div className="receipt-info-box">
           <span>
             <div className="receipt-header">Food</div>
-            {foodNamesWithquantity}
+            {foodNames}
+          </span>
+          <span>
+            <div className="receipt-header">Quantity</div>
+            {foodQuantity}
           </span>
           <span>
             <div className="receipt-header">Price</div>
