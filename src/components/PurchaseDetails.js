@@ -15,10 +15,17 @@ function PurchaseDetails() {
       </span>
     ));
   }
-  
+
+  function redirectPage() {
+    if (history.entries[history.length - 2].pathname === "/Payment") {
+      history.go(-6);
+    } else {
+      history.goBack();
+    }
+  }
   return (
     <>
-      <div onClick={() => history.goBack()}>
+      <div onClick={() => redirectPage()}>
         <NavBar className="backText">Purchase Details</NavBar>
       </div>
       <div>
@@ -30,7 +37,10 @@ function PurchaseDetails() {
         <p>
           <span className="left-align">Theatre:</span>
           <span className="right-align">
-            {location.state.paymentDetails.cinema.name + " ("+ location.state.paymentDetails.cinema.location+")"}
+            {location.state.paymentDetails.cinema.name +
+              " (" +
+              location.state.paymentDetails.cinema.location +
+              ")"}
           </span>
         </p>
         <br></br>
@@ -56,7 +66,7 @@ function PurchaseDetails() {
         <p>
           <span className="left-align">Total price (HKD):</span>
           <span className="right-align">
-            HKD$ {location.state.paymentDetails.unitPrice}
+            HKD$ {location.state.paymentDetails.movieTotalPrice}
           </span>
         </p>
         <br></br>
