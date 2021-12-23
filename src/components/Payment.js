@@ -298,6 +298,7 @@ function Payment() {
             maxlength="16"
             className="credit-card-text"
             maxLength={16}
+            type="number"
             pattern="[0-9]{16}"
           ></input>
 
@@ -324,6 +325,7 @@ function Payment() {
             onChange={handleCvvChange}
             required
             maxlength="3"
+            type="number"
             className="credit-card-text"
             pattern="[0-9]{3}"
             maxLength={3}
@@ -335,6 +337,7 @@ function Payment() {
             required
             className="credit-card-text"
             maxlength="8"
+            type="number"
             pattern="[0-9]{8}"
             maxLength={8}
           ></input>
