@@ -5,6 +5,7 @@ import {
   INIT_CINEMAS,
   INIT_SESSIONS,
   INIT_SEATING_PLAN,
+  GET_PAYMENT_BY_PHONE_NUMBER,
   INIT_SNACKS,
   REDUCE_SNACKS_QUANTITY,
   ADD_SNACKS_QUANTITY,
@@ -18,6 +19,7 @@ const initState = {
   snackList: [],
   cinemaListWithSessions: [],
   cinemaList: [],
+  paymentByPhoneNumberList: [],
 };
 
 const MovieReducer = (state = initState, action) => {
@@ -75,6 +77,8 @@ const MovieReducer = (state = initState, action) => {
           }
         }),
       };
+    case GET_PAYMENT_BY_PHONE_NUMBER:
+      return { ...state, paymentByPhoneNumberList: action.payload };
     default:
       return state;
   }

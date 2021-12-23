@@ -1,11 +1,15 @@
 import { LeftOutline } from "antd-mobile-icons";
+import { useSelector } from "react-redux";
 import "../style/Payment.css";
 import { useHistory, useLocation } from "react-router-dom";
+import { Divider } from "antd-mobile";
 import api from "../apis/api";
 import creditCardIcon from "../assects/creditCard.png";
 function Payment() {
   const location = useLocation();
   const history = useHistory();
+  const snackList = useSelector((state) => state.snackList);
+
   const {
     title,
     price,
@@ -16,7 +20,17 @@ function Payment() {
   } = location.state;
 
   const numberOfTicket = selectedSeats.length;
-  const totalPrice = numberOfTicket * price;
+  const totalPrice =
+    numberOfTicket * price +
+    snackList.reduce((sum, { quantity, unitPrice }) => sum + quantity * unitPrice, 0);
+
+  const snackRequestObject = snackList.filter((snack) => snack.quantity > 0).map((snack) => {
+    return {
+      foodId: snack.id,
+      quantity: snack.quantity,
+    };
+  });
+
   let cardHolderName;
   let cardNumber;
   let expiryMonth;
@@ -51,8 +65,9 @@ function Payment() {
       expiryYear: parseInt(expiryYear),
       cardCVV: parseInt(cvv),
       phoneNumber: parseInt(phoneNumber),
+      foodOrderList: snackRequestObject,
     };
-
+    console.log(requestBody)
     api
       .post("/payments", requestBody)
       .then((response) => {
@@ -89,6 +104,40 @@ function Payment() {
     phoneNumber = event.target.value;
   }
 
+  const getSnackPaymentDiv = () => {
+    if (snackList.filter((snack) => snack.quantity > 0).length < 1) return <></>
+    const foodNamesWithquantity = snackList.filter((snack) => snack.quantity > 0).map((food) => (
+      <div className="receipt-content" key={food.name + food.quantity}>
+        {food.name} x {food.quantity}
+      </div>
+    ));
+    const foodPrices = snackList.filter((snack) => snack.quantity > 0).map((food) => (
+      <div className="receipt-content" key={food.name + food.unitPrice}>
+        ${food.unitPrice}
+      </div>
+    ));
+    return (
+      <>
+        <Divider
+          style={{
+            marginBottom: "-15px",
+            borderColor: "#bdcaec",
+          }}
+        />
+        <div className="receipt-info-box">
+          <span>
+            <div className="receipt-header">Food</div>
+            {foodNamesWithquantity}
+          </span>
+          <span>
+            <div className="receipt-header">Price</div>
+            {foodPrices}
+          </span>
+        </div>
+      </>
+    );
+  };
+
   return (
     <>
       <div>
@@ -98,7 +147,7 @@ function Payment() {
         <div className="movie-title-box">{title}</div>
 
         <div className="price-duration">
-          Price: {price} | Duration: 148 mins
+          Price: ${price} | Duration: 148 mins
         </div>
         <div className="cinema-detail">{cinemaDetail}</div>
         <div className="show-date-and-time">{showDateandTime}</div>
@@ -118,7 +167,7 @@ function Payment() {
           <div className="receipt-content">${price}</div>
         </span>
       </div>
-
+      {getSnackPaymentDiv()}
       <div className="receipt-total-box">
         <span className="receipt-header">Total Price: </span>
         <span className="receipt-content">${totalPrice.toFixed(1)}</span>

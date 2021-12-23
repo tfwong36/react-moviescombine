@@ -55,14 +55,14 @@ function SnackOrdering(props) {
       return food;
     });
     dispatch({ type: INIT_SNACKS, payload: defaultSnackList });
-    // history.push("/Payment", {
-    //   selectedSeats: props.selectedSeats,
-    //   cinemaDetail: props.cinemaDetail,
-    //   title: props.title,
-    //   price: props.price,
-    //   showDateandTime: props.showDateandTime,
-    //   sessionID: props.sessionID,
-    // });
+    history.push("/Payment", {
+      selectedSeats: props.selectedSeats,
+      cinemaDetail: props.cinemaDetail,
+      title: props.title,
+      price: props.price,
+      showDateandTime: props.showDateandTime,
+      sessionID: props.sessionID,
+    });
   };
 
   const handleCancel = () => {
