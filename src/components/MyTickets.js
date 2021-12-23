@@ -73,7 +73,7 @@ function MyTickets() {
         >
           <p className="search-result-item-title">{payment.movie.title}</p>
           <p className="search-result-item-location">
-            {payment.cinema.location}
+            {payment.cinema.name}
           </p>
           <p className="search-result-item-time">
             <span>{payment.sessionResponse.date}</span>
@@ -81,7 +81,7 @@ function MyTickets() {
               {payment.sessionResponse.time}
             </span>
             <span className="search-result-item-price">
-              HKD$ {payment.unitPrice}
+              HKD$ {payment.movieTotalPrice}
             </span>
           </p>
         </div>
