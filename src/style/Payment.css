@@ -149,3 +149,17 @@
   width: 103px;
   height: 30px;
 }
+
+.pw-pop-title {
+  font-family: "Acme";
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.pw-pop-content {
+  font-family: "Acme";
+  font-size: 15px;
+  font-weight: 400;
+  color: #888888;
+  margin-top: 5px;
+}
