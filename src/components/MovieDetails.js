@@ -3,7 +3,7 @@ import { NavBar } from "antd-mobile";
 import { Button } from "antd-mobile";
 import "../style/MovieDetails.css";
 import { useHistory, useLocation } from "react-router-dom";
-import YoutubeEmbed from "./YoutubeEmbed";
+import YoutubeEmbed from "./MovieDetailComponents/YoutubeEmbed";
 function MovieDetails() {
   const location = useLocation();
   const history = useHistory();
@@ -20,11 +20,12 @@ function MovieDetails() {
   } = location.state;
   const sectionStyle = {
     background:
-      " linear-gradient(to top, rgba(0, 0, 0, 255) 25%, rgb(0, 0, 0,0) ),url(" +
+      " linear-gradient(to top, rgba(0, 0, 0, 255) 35%, rgb(0, 0, 0,0) ),url(" +
       location.state.posterSource +
       ")",
     borderRadius: "50px",
     backgroundSize: "contain",
+    backgroundRepeat: "no-repeat",
   };
 
   return (
