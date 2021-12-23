@@ -77,3 +77,30 @@
 .search-result-item-price {
   padding-left: 30vw;
 }
+
+.modal-input {
+  width: 60vw;
+  height: 4vh;
+  text-decoration: none;
+  border-radius: 10px;
+  border: 1px solid gray;
+  margin-bottom: 1vh;
+  padding: 3vw;
+  /* background-color: #2e3243; */
+}
+
+.modal-button-confirm {
+  border-radius: 10px;
+  text-decoration: none;
+  background-color: #2e3243;
+  border: none;
+  color: white;
+  height: 3vh;
+}
+.modal-button-cancel {
+  border-radius: 10px;
+  text-decoration: none;
+  border: none;
+  height: 3vh;
+  margin-right: 3vw;
+}

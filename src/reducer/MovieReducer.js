@@ -1,13 +1,18 @@
 import {
   INIT_MOVIES,
   SELECT_SEAT,
+  INIT_CINEMA_SESSIONS,
+  INIT_CINEMAS,
+  INIT_SESSIONS,
   INIT_SEATING_PLAN,
+  GET_PAYMENT_DETAIL_AFTER_PASSWORD,
 } from "../constants/constants";
 
 const initState = {
   movieList: [],
   seatingStatusList: [],
   selectedSeatList: [],
+  paymentListAfterPassword: [],
 };
 
 const MovieReducer = (state = initState, action) => {
@@ -34,6 +39,8 @@ const MovieReducer = (state = initState, action) => {
           }
         }),
       };
+    case GET_PAYMENT_DETAIL_AFTER_PASSWORD:
+      return { ...state, paymentListAfterPassword: action.payload };
     default:
       return state;
   }

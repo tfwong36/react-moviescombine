@@ -1,17 +1,54 @@
 import "../style/MyTickets.css";
 import { useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
+import {
+  GET_PAYMENT_BY_PHONE_NUMBER,
+  GET_PAYMENT_DETAIL_AFTER_PASSWORD,
+} from "../constants/constants";
+import {
+  getPaymentByPhoneNumber,
+  postPasswordGetPaymentDetail,
+} from "../apis/MoviesCombine";
+import { Modal } from "antd-mobile";
 
 function MyTickets() {
 
   const [mobileNumber, setMobileNumber] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [password, setPassword] = useState([]);
+  const [paymentId, setPaymentId] = useState([]);
   const history = useHistory();
 
   function onChangeMobileNumber(event) {
-    console.log(event.target.value);
     setMobileNumber(event.target.value);
   }
 
+  function onChangePassword(event) {
+    setPassword(event.target.value);
+  }
+
+  function displayModal(paymentId) {
+    setPaymentId(paymentId);
+    setIsModalVisible(true);
+  }
+  function handleCancel() {
+    setIsModalVisible(false);
+  }
+
+  function submitPassword() {
+    setIsModalVisible(false);
+    postPasswordGetPaymentDetail(paymentId).then((response) => {
+      dispatch({
+        type: GET_PAYMENT_DETAIL_AFTER_PASSWORD,
+        payload: response.data,
+      });
+    });
+  }
+
+  function loadHistory() {
+          //   onClick={() => history.push("/PurcahseDetails")}
+          onClick={() => displayModal(payment.paymentId)}
+              HKD$ {payment.unitPrice}
   return (
     <>
       <div>
@@ -27,20 +64,28 @@ function MyTickets() {
       <div>
         <div className="my-ticket-result">Result</div>
       </div>
-      <div id="searchResultPanel" className="resultPanelGroup">
-        <div
-          className="search-result-item"
-          onClick={() => history.push("/PurcahseDetails")}
-        >
-          <p className="search-result-item-title">Spider-Man: Work From Home</p>
-          <p className="search-result-item-location">MCL (Shatin)</p>
-          <p className="search-result-item-time">
-            <span>25 Dec 2021</span>
-            <span style={{ paddingLeft: "3vw" }}>10:35</span>
-            <span className="search-result-item-price">HKD$ 140</span>
-          </p>
-        </div>
-      </div>
+      {loadHistory()}
+      <Modal
+        title="Please Input Password"
+        visible={isModalVisible}
+        content={
+          <>
+            <input
+              type="password"
+              placeholder="Password"
+              className="modal-input"
+              onChange={onChangePassword}
+              value={password}
+            ></input>
+            <button onClick={handleCancel} className="modal-button-cancel">
+              Cancel
+            </button>
+            <button onClick={submitPassword} className="modal-button-confirm">
+              Confirm
+            </button>
+          </>
+        }
+      ></Modal>
     </>
   );
 }

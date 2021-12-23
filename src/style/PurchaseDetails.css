@@ -40,8 +40,9 @@
   padding-right: 10vw;
   margin-top: 6vh;
   height: 35vh;
-  border: 3px solid red;
   color: white;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .resultPanelGroup {
