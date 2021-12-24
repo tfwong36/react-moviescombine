@@ -112,8 +112,8 @@
   color: #ffffff;
 }
 
-.emptyDiv {
-  height: 300px;
+.my-ticet-empty-div {
+  height: 40vh;
 }
 
 .genre {

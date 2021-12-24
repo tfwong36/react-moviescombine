@@ -139,7 +139,7 @@ function MyTickets() {
           </>
         }
       ></Modal>
-      <div className="emptyDiv"></div>
+      <div className="my-ticet-empty-div"></div>
     </>
   );
 }

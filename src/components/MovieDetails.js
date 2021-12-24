@@ -27,17 +27,19 @@ function MovieDetails() {
     borderRadius: "45px",
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
-    marginTop: "51px"
+    marginTop: "51px",
   };
 
   return (
     <>
       <div>
-        <NavBar onBack={() => history.goBack()} className="backText">Movie Details</NavBar>
+        <NavBar onBack={() => history.goBack()} className="backText">
+          Movie Details
+        </NavBar>
       </div>
       <div style={sectionStyle}>
         <div className="movieDetailsContainer">
-          <div className="emptyDiv" />
+          <div className="movie-detail-empty-div" />
           <div className="movieName">{location.state.title}</div>
           <div className="ratingGenreFlex">
             <span className="genre">{location.state.genre}</span>
@@ -47,7 +49,7 @@ function MovieDetails() {
               readOnly
               value={location.state.rating}
               style={{
-                '--active-color': '#F79E44'
+                "--active-color": "#F79E44",
               }}
             />
           </div>
@@ -72,14 +74,17 @@ function MovieDetails() {
           </div>
           <div className="trailer">Trailer</div>
           <div className="youtubeVideo">
-          <YoutubeEmbed embedId={location.state.trailerSource} />
+            <YoutubeEmbed embedId={location.state.trailerSource} />
           </div>
           <div className="buttonContainer">
-            <Button className="showtimeButton" onClick={() => history.push("/Showtime", id)}>
+            <Button
+              className="showtimeButton"
+              onClick={() => history.push("/Showtime", id)}
+            >
               SHOWTIME
             </Button>
           </div>
-          </div>
+        </div>
       </div>
     </>
   );
