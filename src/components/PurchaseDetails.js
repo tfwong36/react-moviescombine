@@ -24,8 +24,6 @@ function PurchaseDetails() {
     }
   }
 
-  console.log(location.state.paymentDetails)
-
   const SnackDetails= (SnackDetails) => {
     if (SnackDetails === null || SnackDetails.length < 1 )
     return <></>;
