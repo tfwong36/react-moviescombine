@@ -9,17 +9,25 @@ function MovieSwiper(props) {
 
   function getMovieData() {
     if (props.movieList != null) {
-      return props.movieList.slice(0, 5).map((movie, index) => (
-        <Swiper.Item key={index}>
-          <div
-            className="content"
-            style={{
-              backgroundImage: "url(" + movie.posterSource + ")",
-            }}
-            onClick={() => history.push("/MovieDetails", movie)}
-          ></div>
-        </Swiper.Item>
-      ));
+      return props.movieList
+        .sort(function compareTiming(movieA, movieB) {
+          return movieA.releaseDate - movieB.releaseDate;
+        })
+        .sort(function compareRating(movieA, movieB) {
+          return movieB.rating - movieA.rating;
+        })
+        .slice(0, 5)
+        .map((movie, index) => (
+          <Swiper.Item key={index}>
+            <div
+              className="content"
+              style={{
+                backgroundImage: "url(" + movie.posterSource + ")",
+              }}
+              onClick={() => history.push("/MovieDetails", movie)}
+            ></div>
+          </Swiper.Item>
+        ));
     }
   }
 

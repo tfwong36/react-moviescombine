@@ -52,22 +52,32 @@ function MyTickets() {
 
   function submitPassword() {
     setIsModalVisible(false);
-    postPasswordGetPaymentDetail(paymentId, password).then((response) => {
-      dispatch({
-        type: GET_PAYMENT_DETAIL_AFTER_PASSWORD,
-        payload: response.data,
-      });
-      if (response.status === 200) {
-        history.push("/PurcahseDetails", response.data);
-      }
-    }).catch(()=>{
+    postPasswordGetPaymentDetail(paymentId, password)
+      .then((response) => {
+        dispatch({
+          type: GET_PAYMENT_DETAIL_AFTER_PASSWORD,
+          payload: response.data,
+        });
+        if (response.status === 200) {
+          history.push("/PurcahseDetails", response.data);
+        }
+      })
+      .catch(() => {
         Toast.show({
-          icon: 'fail',
-          content: 'Invalid Password',
-        })
-      }
-    );
+          icon: "fail",
+          content: "Invalid Password",
+        });
+      });
     setPassword("");
+  }
+
+  function getFoodTotalCost(payment, foods) {
+    let foodTotal = 0;
+    foods.forEach((food) => {
+      foodTotal += food.food.unitPrice * food.quantity;
+    });
+
+    return foodTotal;
   }
 
   function loadHistory() {
@@ -78,16 +88,16 @@ function MyTickets() {
           onClick={() => displayModal(payment.paymentId)}
         >
           <p className="search-result-item-title">{payment.movie.title}</p>
-          <p className="search-result-item-location">
-            {payment.cinema.name}
-          </p>
+          <p className="search-result-item-location">{payment.cinema.name}</p>
           <p className="search-result-item-time">
             <span>{payment.sessionResponse.date}</span>
             <span style={{ paddingLeft: "3vw" }}>
               {payment.sessionResponse.time}
             </span>
             <span className="search-result-item-price">
-              HKD$ {payment.movieTotalPrice}
+              HKD${" "}
+              {payment.movieTotalPrice +
+                getFoodTotalCost(payment, payment.foodOrder)}
             </span>
           </p>
         </div>
